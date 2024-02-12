@@ -1,6 +1,6 @@
 import React, {ReactElement} from 'react';
 import { hasRole } from '../utils/authUtils';
-import Header from "./Header";
+
 
 
 const ROLE_COMPONENTS: { [key: string]: ReactElement } = {
@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <div>
-            <Header />
+           
             {ROLE_COMPONENTS[role]}
             {/* Role-specific components and information */}
         </div>

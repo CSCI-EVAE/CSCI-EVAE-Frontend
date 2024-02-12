@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { TextField, Button, Alert } from '@mui/material';
+import { TextField, Alert } from '@mui/material';
 import { login } from '../services/authService';
+import ButtonComponent from '../composants/Button';
 
 interface Props {
     onLoginSuccess: () => void;
@@ -10,6 +11,7 @@ const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -26,25 +28,27 @@ const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
         <form onSubmit={handleSubmit}>
             {error && <Alert severity="error">{error}</Alert>}
             <TextField
-                label="Username"
+                label="Nom d'utilisateur"
                 variant="outlined"
                 fullWidth
                 margin="normal"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
+                placeholder="Entrez votre nom d'utilisateur"
             />
             <TextField
-                label="Password"
+                label="Mot de Passe"
                 type="password"
                 variant="outlined"
                 fullWidth
                 margin="normal"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                placeholder="Entrez votre mot de passe"
+
             />
-            <Button type="submit" variant="contained" fullWidth>
-                Login
-            </Button>
+            <ButtonComponent text='Se Connecter' type='submit' variant="contained" />
+              
         </form>
     );
 };
