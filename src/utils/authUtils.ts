@@ -11,3 +11,8 @@ export const logout = () => {
     localStorage.removeItem('jwtToken');
     localStorage.removeItem('user');
 }
+
+export const userInfos=()=>{
+    const user = JSON.parse(localStorage.getItem('user') || '{}');
+    return {prenom : user.prenom, nom : user.nom, role:user.roles[0]};
+}

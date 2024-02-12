@@ -18,7 +18,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <div>
-            <Header />
+           
             {ROLE_COMPONENTS[role]}
             {/* Role-specific components and information */}
         </div>
