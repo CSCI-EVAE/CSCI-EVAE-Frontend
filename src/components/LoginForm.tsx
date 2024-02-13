@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Button, Alert } from '@mui/material';
 import { login } from '../services/authService';
-
+import { useNavigate } from 'react-router-dom';
 interface Props {
     onLoginSuccess: () => void;
 }
@@ -10,13 +10,16 @@ const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        setError(''); // Clear previous errors
+        setError(''); 
         try {
             await login({ username, password });
             onLoginSuccess();
+            navigate("/dashboard")
+            
         } catch (error: any) {
             setError(error.response?.data?.message || 'Login failed');
         }
