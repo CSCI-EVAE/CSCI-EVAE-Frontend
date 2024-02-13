@@ -13,8 +13,8 @@ export const login = async (credentials: LoginCredentials): Promise<AuthResponse
         const token = response.data.data.accessToken;
         localStorage.setItem('jwtToken', token);
         localStorage.setItem('user', JSON.stringify(response.data.data.user));
-        // redirect to the Dashboard
-        window.location.href = '/dashboard';
+        
+        
         return response.data;
     } catch (error) {
         console.error('Login failed:', error);
