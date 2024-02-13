@@ -1,27 +1,50 @@
-import React, {ReactElement} from 'react';
-import { hasRole } from '../utils/authUtils';
+import React from 'react';
+import {  userInfos } from '../utils/authUtils';
+import { Route, Routes } from 'react-router-dom';
+import Etudiant from '../pages/Etudiant';
+import Admin from '../pages/Admin';
+import Enseignant from '../pages/Enseignant';
+import Page404 from './Page404';
 
-
-
-const ROLE_COMPONENTS: { [key: string]: ReactElement } = {
-    'ADMIN': <h2>Admin Dashboard</h2>,
-    'ENSEIGNANT': <h2>Enseignant Dashboard</h2>,
-    'ETUDIANT': <h2>Etudiant Dashboard</h2>,
-};
 
 const Dashboard: React.FC = () => {
-    const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
-
+   // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
+    const role = userInfos().role;
     if (!role) {
-        return <div>You do not have access to the dashboard.</div>;
+        return <Page404/>;
     }
 
     return (
-        <div>
+        <div >
+            <Routes>
+             
+             {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
+
+            {role==="ETUDIANT" && (
+          <Route path='/etudiant'  element={<Etudiant/>} />
+        )}
+                     {/* //METTRE TOUTES LES PAGES ADMIN ICI */}
+
+         {role==="ADMIN" && (
+          <Route path='/admin'  element={<Admin/>} />
+        )}
+                     {/* //METTRE TOUTES LES PAGES ENSEIGNANT ICI */}
+
+         {role==="ENSEIGNANT" && (
+          <Route path='/etudiant'  element={<Enseignant/>}  />
+        )}
+             
+              <Route path='/404' element={<Page404 />} />
+              <Route path='*' element={<Page404 />} />
+             
+              
+            </Routes>
+          </div>
+
+
            
-            {ROLE_COMPONENTS[role]}
-            {/* Role-specific components and information */}
-        </div>
+            
+        
     );
 };
 export default Dashboard;
