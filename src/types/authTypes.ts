@@ -12,6 +12,24 @@ export interface AuthResponse {
 }
 
 
+export interface InfosGenerales {
+    promotion: string;
+    designation: string;
+    formation: string;
+    ue: string;
+    ec: string; 
+    
+}
+
+export interface ResponseInfoGenerales {
+    message: string;
+    data: {
+        evaluation: string;
+        user: User;
+    };
+    success: boolean;
+}
+
 export interface User {
     id: number;
     username: string;

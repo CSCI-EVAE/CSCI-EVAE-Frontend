@@ -4,7 +4,7 @@ import { hasRole } from '../utils/authUtils';
 
 interface ProtectedRouteProps {
     children: React.ReactNode;
-    requiredRole: string;
+    
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
