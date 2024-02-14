@@ -1,10 +1,8 @@
-export interface Qualificatif{
+export interface Qualificatif {
     id?: number;
-    minimal : string;
-    maximal : string;
+    minimal: string;
+    maximal: string;
 }
-
-
 
 export interface QualificatifListResponse {
     message: string;
