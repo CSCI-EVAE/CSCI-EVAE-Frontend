@@ -1,40 +1,35 @@
-import React, { useState } from 'react';
-import { TextField, Alert } from '@mui/material';
-import { login } from '../services/authService';
-import ButtonComponent from '../composants/Button';
-import { useNavigate } from 'react-router-dom';
-import { userInfos } from '../utils/authUtils';
-import { ROLE } from '../constants';
-
-
+import React, { useState } from "react";
+import { TextField, Alert } from "@mui/material";
+import { login } from "../services/authService";
+import ButtonComponent from "../composants/Button";
+import { useNavigate } from "react-router-dom";
+import { userInfos } from "../utils/authUtils";
+import { ROLE } from "../constants";
 
 interface Props {
     onLoginSuccess: () => void;
 }
 
 const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [error, setError] = useState('');
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
     const navigate = useNavigate();
-     
-
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        setError(''); // Clear previous errors
+        setError(""); // Clear previous errors
         try {
             await login({ username, password });
             onLoginSuccess();
 
             const role = userInfos().role;
 
-            role===ROLE.admin && navigate('/dashboard/admin');
-            role===ROLE.enseigannt && navigate('/dashboard/enseignant');
-            role===ROLE.etudiant && navigate('/dashboard/etudiant');
-    
+            role === ROLE.admin && navigate("/dashboard/admin");
+            role === ROLE.enseigannt && navigate("/dashboard/enseignant");
+            role === ROLE.etudiant && navigate("/dashboard/etudiant");
         } catch (error: any) {
-            setError(error.response?.data?.message || 'Login failed');
+            setError(error.response?.data?.message || "Login failed");
         }
     };
 
@@ -59,10 +54,12 @@ const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Entrez votre mot de passe"
-
             />
-            <ButtonComponent text='Se Connecter' type='submit' variant="contained" />
-              
+            <ButtonComponent
+                text="Se Connecter"
+                type="submit"
+                variant="contained"
+            />
         </form>
     );
 };

@@ -1,18 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { isAuthenticated, userInfos } from '../utils/authUtils';
-import { Button, Typography, Toolbar, AppBar, Box, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material';
-import ButtonComponent from '../composants/Button';
-import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { isAuthenticated, userInfos } from "../utils/authUtils";
+import {
+    Button,
+    Typography,
+    Toolbar,
+    AppBar,
+    Box,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+} from "@mui/material";
+import ButtonComponent from "../composants/Button";
+import LoginIcon from "@mui/icons-material/Login";
+import LogoutIcon from "@mui/icons-material/Logout";
 
 const Header: React.FC = () => {
     let navigate = useNavigate();
     const [open, setOpen] = useState(false); // État pour contrôler l'ouverture de la boîte de dialogue
 
     const isAuth = isAuthenticated();
-    const [prenom, setPrenom] = useState('');
-    const [role, setRole] = useState('');
+    const [prenom, setPrenom] = useState("");
+    const [role, setRole] = useState("");
 
     useEffect(() => {
         if (isAuth) {
@@ -27,9 +37,9 @@ const Header: React.FC = () => {
 
     const handleLogoutConfirmed = () => {
         setOpen(false);
-        localStorage.removeItem('jwtToken');
-        localStorage.removeItem('user');
-        navigate('/login');
+        localStorage.removeItem("jwtToken");
+        localStorage.removeItem("user");
+        navigate("/login");
     };
 
     const handleCancelLogout = () => {
@@ -37,31 +47,58 @@ const Header: React.FC = () => {
     };
 
     const handleLogin = () => {
-        navigate('/login');
+        navigate("/login");
     };
 
     return (
         <>
-            <AppBar position="static" sx={{ background: '#d1def0', color: 'black' }}>
+            <AppBar
+                position="static"
+                sx={{ background: "#d1def0", color: "black" }}
+            >
                 <Toolbar>
                     <Box mb={2}>
-                        <img src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/51/Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg/1280px-Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg.png" alt="Logo" width="100" />
+                        <img
+                            src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/51/Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg/1280px-Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg.png"
+                            alt="Logo"
+                            width="100"
+                        />
                     </Box>
                     {isAuth ? (
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1, textAlign: 'center' }}>
+                        <Typography
+                            variant="h6"
+                            component="div"
+                            sx={{ flexGrow: 1, textAlign: "center" }}
+                        >
                             Bienvenue {prenom}
                             <br />
-                            <span style={{ fontSize: 'small', color: 'blue' }}>{role}</span>
+                            <span style={{ fontSize: "small", color: "blue" }}>
+                                {role}
+                            </span>
                         </Typography>
                     ) : (
-                        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                        <Typography
+                            variant="h6"
+                            component="div"
+                            sx={{ flexGrow: 1 }}
+                        >
                             Bienvenue
                         </Typography>
                     )}
                     {isAuth ? (
-                        <ButtonComponent variant='outlined' icon={<LogoutIcon />} text='Déconnexion' onClick={handleLogout} />
+                        <ButtonComponent
+                            variant="outlined"
+                            icon={<LogoutIcon />}
+                            text="Déconnexion"
+                            onClick={handleLogout}
+                        />
                     ) : (
-                        <ButtonComponent variant='outlined' icon={<LoginIcon />} text='Connexion' onClick={handleLogin} />
+                        <ButtonComponent
+                            variant="outlined"
+                            icon={<LoginIcon />}
+                            text="Connexion"
+                            onClick={handleLogin}
+                        />
                     )}
                 </Toolbar>
             </AppBar>
@@ -74,7 +111,11 @@ const Header: React.FC = () => {
                     <Button onClick={handleLogoutConfirmed} color="primary">
                         Oui
                     </Button>
-                    <Button onClick={handleCancelLogout} color="primary" autoFocus>
+                    <Button
+                        onClick={handleCancelLogout}
+                        color="primary"
+                        autoFocus
+                    >
                         Non
                     </Button>
                 </DialogActions>

@@ -11,7 +11,6 @@ export interface AuthResponse {
     success: boolean;
 }
 
-
 export interface User {
     id: number;
     username: string;

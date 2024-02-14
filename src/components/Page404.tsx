@@ -11,12 +11,10 @@
  * @returns {ReactElement} Composant Page404.
  */
 
-import React from 'react';
+import React from "react";
 
 const Page404 = () => {
-  return (
-    <div >La page que vous recherchez n'a pas été trouvée.</div>
-  );
+    return <div>La page que vous recherchez n'a pas été trouvée.</div>;
 };
 
 export default Page404;
