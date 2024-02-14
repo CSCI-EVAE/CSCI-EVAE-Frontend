@@ -12,7 +12,22 @@ export const logout = () => {
     localStorage.removeItem('user');
 }
 
-export const userInfos=()=>{
+export const userInfos = () => {
+    const token = localStorage.getItem('jwtToken');
     const user = JSON.parse(localStorage.getItem('user') || '{}');
-    return {prenom : user.prenom, nom : user.nom, role:user.roles[0]};
+
+   // if (user && token) {
+        return {
+            token: token,
+            prenom: user.prenom,
+            nom: user.nom,
+            role: user.roles[0]
+       };
+//   //  }else {return {
+//         token: 'token',
+//             prenom: '',
+//             nom: '',
+//             role: ''
+//     }}
 }
+
