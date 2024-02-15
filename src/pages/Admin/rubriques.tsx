@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import ListComponent from "../../composants/List";
 import RubriqueForm from "../../components/RubriqueForm";
 import { useContext } from "react";
@@ -6,7 +6,7 @@ import { RubriqueContext, trierParOrdre } from "../../context/rubriqueContext";
 import {  RUBRIQUE_COLUMNS } from "../../constants";
 import {
     supprimerColonnesId,
-    trouverRubrique,
+    trouverRubrique
 } from "../../context/rubriqueContext";
 
 
@@ -17,14 +17,28 @@ const RubriquePage: React.FC = () => {
         removeRubrique,
         deleteRubriqueError,
         modifyRubriqueError,
-        updateCurrentRubrique
+        updateCurrentRubrique,
+        getList
        
     } = useContext(RubriqueContext);
 
-    console.log("rub  : ",rubriqueList)
+    useEffect(()=>{
+        getList();
+    });
+
+    
+    
     // Données fictives
-    const dat = supprimerColonnesId(trierParOrdre(rubriqueList));
-    //const dat = [{"designation" : "Cours"},{"designation" : "Tp"},{"designation" : "CM"}, ]
+    
+    const getR = () =>{
+        if(rubriqueList){
+            const dat = supprimerColonnesId(trierParOrdre(rubriqueList));
+            return  dat;
+        }
+        return null;
+        
+    }
+   const dat = getR();
 
     // Handlers pour les actions
 
@@ -57,7 +71,7 @@ const RubriquePage: React.FC = () => {
             
                 title={"Liste des Rubriques"}
                 columns={RUBRIQUE_COLUMNS}
-                data={dat.reverse()}
+                data={dat ? dat.reverse() : []}
                 actions={true}
                 remove={true}
                 deleteHandler={handleDelete}

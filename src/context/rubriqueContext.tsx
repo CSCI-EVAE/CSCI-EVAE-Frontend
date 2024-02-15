@@ -105,9 +105,11 @@ export const RubriqueContextProvider: React.FC<
             setRubriqueListError("Une erreur de chargement est survenue");
         }
     }, [updateRubriqueList]);
+
     useEffect(() => {
         getList();
     }, [getList]);
+
     const addNewRubrique = useCallback(
         async (rubrique: Rubrique) => {
             const response = await addRubrique(rubrique);
@@ -169,6 +171,7 @@ export const RubriqueContextProvider: React.FC<
                 deleteRubriqueError,
                 modifyRubriqueError,
                 modifyRubrique,
+                getList,
             }}
         >
             {children}
