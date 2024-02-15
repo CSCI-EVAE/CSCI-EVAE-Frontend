@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import ListComponent from "../../composants/List";
 import RubriqueForm from "../../components/RubriqueForm";
 import { useContext } from "react";
@@ -18,13 +18,11 @@ const RubriquePage: React.FC = () => {
         deleteRubriqueError,
         modifyRubriqueError,
         updateCurrentRubrique,
-        getList
+        
        
     } = useContext(RubriqueContext);
 
-    useEffect(()=>{
-        getList();
-    });
+  
 
     
     
