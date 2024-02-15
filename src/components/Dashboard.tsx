@@ -8,6 +8,8 @@ import Page404 from "./Page404";
 import Qualificatif from "../pages/Admin/qualificatif";
 import { ListContextProvider } from "../context/listContext";
 import { QualificatifContextProvider } from "../context/qualificatifContext";
+import RubriquePage from "../pages/Admin/rubriques";
+import { RubriqueContextProvider } from "../context/rubriqueContext";
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
@@ -20,6 +22,7 @@ const Dashboard: React.FC = () => {
         <div>
             <ListContextProvider>
                 <QualificatifContextProvider>
+                    <RubriqueContextProvider>
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
 
@@ -35,6 +38,10 @@ const Dashboard: React.FC = () => {
                                     path="/qualificatif"
                                     element={<Qualificatif />}
                                 />
+                                <Route
+                                    path="/rubrique"
+                                    element={<RubriquePage />}
+                                />
                             </>
                         )}
                         {/* //METTRE TOUTES LES PAGES ENSEIGNANT ICI */}
@@ -46,6 +53,7 @@ const Dashboard: React.FC = () => {
                         <Route path="/404" element={<Page404 />} />
                         <Route path="*" element={<Page404 />} />
                     </Routes>
+                    </RubriqueContextProvider>
                 </QualificatifContextProvider>
             </ListContextProvider>
         </div>
