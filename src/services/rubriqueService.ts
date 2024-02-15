@@ -71,7 +71,9 @@ export const updateRubrique = async (
         if (response.status === 400) {
             return true;
         }
+        console.log(response.data)
         return response.data;
+        
     } catch (error) {
         console.error("rubrique failed:", error);
         return false;
