@@ -1,6 +1,6 @@
 export const hasRole = (requiredRole: string): boolean => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    return user.roles && user.roles.includes(requiredRole);
+    return user.role && user.role===requiredRole;
 };
 export const isAuthenticated = (): boolean => {
     const token = localStorage.getItem("jwtToken");
@@ -20,7 +20,7 @@ export const userInfos = () => {
         token: token,
         prenom: user.prenom,
         nom: user.nom,
-        role: user.roles[0],
+        role: user.role,
     };
         }else {return {
             token: 'token',

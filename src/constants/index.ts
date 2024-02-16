@@ -1,7 +1,7 @@
 export const ROLE = {
-    admin: "ADMIN",
-    enseigannt: "ENSEIGNANT",
-    etudiant: "ETUDIANT",
+    admin: "ADM",
+    enseigannt: "ENS",
+    etudiant: "ETU",
 };
 
 export const LIST_ACTIONS = {

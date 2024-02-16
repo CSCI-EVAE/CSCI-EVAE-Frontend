@@ -10,6 +10,10 @@ import { ListContextProvider } from "../context/listContext";
 import { QualificatifContextProvider } from "../context/qualificatifContext";
 import RubriquePage from "../pages/Admin/rubriques";
 import { RubriqueContextProvider } from "../context/rubriqueContext";
+import Tab from "../composants/List/essai";
+import { RubriqueComposeContextProvider } from "../context/rubriqueComposeContext";
+import RubriqueComposePage from "../pages/Admin/rubriquesCompose";
+import { ROLE } from "../constants";
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
@@ -23,15 +27,17 @@ const Dashboard: React.FC = () => {
             <ListContextProvider>
                 <QualificatifContextProvider>
                     <RubriqueContextProvider>
+                        <RubriqueComposeContextProvider>
+                    
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
 
-                        {role === "ETUDIANT" && (
+                        {role === ROLE.etudiant && (
                             <Route path="/etudiant" element={<Etudiant />} />
                         )}
                         {/* //METTRE TOUTES LES PAGES ADMIN ICI */}
 
-                        {role === "ADMIN" && (
+                        {role === ROLE.admin && (
                             <>
                                 <Route path="/admin" element={<Admin />} />
                                 <Route
@@ -42,17 +48,26 @@ const Dashboard: React.FC = () => {
                                     path="/rubrique"
                                     element={<RubriquePage />}
                                 />
+                                 <Route
+                                    path="/essai"
+                                    element={<Tab />}
+                                />
+                                 <Route
+                                    path="/rubriquecompose"
+                                    element={<RubriqueComposePage />}
+                                />
                             </>
                         )}
                         {/* //METTRE TOUTES LES PAGES ENSEIGNANT ICI */}
 
-                        {role === "ENSEIGNANT" && (
+                        {role === ROLE.etudiant && (
                             <Route path="/etudiant" element={<Enseignant />} />
                         )}
 
                         <Route path="/404" element={<Page404 />} />
                         <Route path="*" element={<Page404 />} />
                     </Routes>
+                    </RubriqueComposeContextProvider>
                     </RubriqueContextProvider>
                 </QualificatifContextProvider>
             </ListContextProvider>
