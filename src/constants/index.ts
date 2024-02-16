@@ -1,3 +1,5 @@
+import { couldStartTrivia } from "typescript";
+
 export const ROLE = {
     admin: "ADMIN",
     enseigannt: "ENSEIGNANT",
@@ -15,4 +17,10 @@ export const LIST_ACTIONS = {
 export const QUALIFICATIF_COLUMNS = [
     { id: "minimal", label: "minimal" },
     { id: "maximal", label: "maximal" },
+];
+
+export const Question_COLUMNS = [
+    { id: "intitulֹ", label: "intitulֹ" },
+    { id: "minimal", label: "minimal" },
+    { id: "maximal", label: "maximal" }
 ];

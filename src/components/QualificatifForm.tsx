@@ -21,7 +21,6 @@ const QualificatifForm: React.FC<qualificatifFormProps> = ({ add }) => {
         qualificatifList,
     } = useContext(QualificatifContext);
     const { updateModalOpen, selectedRow } = useContext(ListContext);
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (add === true) {

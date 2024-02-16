@@ -51,11 +51,10 @@
     "devDependencies": {
         "prettier": "3.2.5"
     },
-    "prettier":{
+    "prettier": {
         "trailingComma": "es5",
         "tabWidth": 4,
         "semi": false,
         "singleQuote": false
-      }
-      
+    }
 }
