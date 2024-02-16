@@ -1,5 +1,3 @@
-import { couldStartTrivia } from "typescript";
-
 export const ROLE = {
     admin: "ADMIN",
     enseigannt: "ENSEIGNANT",
