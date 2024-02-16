@@ -45,6 +45,7 @@ const QualificatifPage: React.FC = () => {
                 {modifyQualificatifError&& modifyQualificatifError}
             </div>
             <ListComponent
+            
                 title={"Liste des qualificatifs"}
                 columns={QUALIFICATIF_COLUMNS}
                 data={dat.reverse()}
