@@ -17,6 +17,10 @@ export const QUALIFICATIF_COLUMNS = [
     { id: "maximal", label: "maximal" },
 ];
 
+export const Question_COLUMNS = [
+    { id: "intitulֹ", label: "intitulֹ" },
+    { id: "minimal", label: "minimal" },
+    { id: "maximal", label: "maximal" }
 
 export const RUBRIQUE_COLUMNS = [
     { id: "designation", label: "designation" },

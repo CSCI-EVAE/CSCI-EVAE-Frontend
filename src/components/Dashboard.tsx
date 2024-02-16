@@ -6,8 +6,10 @@ import Admin from "../pages/Admin";
 import Enseignant from "../pages/Enseignant";
 import Page404 from "./Page404";
 import Qualificatif from "../pages/Admin/qualificatif";
+import Question from "../pages/Admin/question";
 import { ListContextProvider } from "../context/listContext";
 import { QualificatifContextProvider } from "../context/qualificatifContext";
+import { QuestionContextProvider } from "../context/questionContext";
 import RubriquePage from "../pages/Admin/rubriques";
 import { RubriqueContextProvider } from "../context/rubriqueContext";
 import Tab from "../composants/List/essai";
@@ -26,6 +28,7 @@ const Dashboard: React.FC = () => {
         <div>
             <ListContextProvider>
                 <QualificatifContextProvider>
+                    <QuestionContextProvider>
                     <RubriqueContextProvider>
                         <RubriqueComposeContextProvider>
                     
@@ -44,6 +47,11 @@ const Dashboard: React.FC = () => {
                                     path="/qualificatif"
                                     element={<Qualificatif />}
                                 />
+                                 <Route
+                                    path="/questions"
+                                    element={<Question />}
+                                />
+                               
                                 <Route
                                     path="/rubrique"
                                     element={<RubriquePage />}
@@ -68,7 +76,9 @@ const Dashboard: React.FC = () => {
                         <Route path="*" element={<Page404 />} />
                     </Routes>
                     </RubriqueComposeContextProvider>
+                   
                     </RubriqueContextProvider>
+                    </QuestionContextProvider>
                 </QualificatifContextProvider>
             </ListContextProvider>
         </div>
