@@ -14,7 +14,6 @@ import RubriquePage from "../pages/Admin/rubriques";
 import { RubriqueContextProvider } from "../context/rubriqueContext";
 
 const Dashboard: React.FC = () => {
-    // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
     const role = userInfos().role;
     if (!role) {
         return <Page404 />;
@@ -25,44 +24,36 @@ const Dashboard: React.FC = () => {
             <ListContextProvider>
                 <QualificatifContextProvider>
                     <QuestionContextProvider>
-                    <RubriqueContextProvider>
-                    <Routes>
-                        {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
-
-                        {role === "ETUDIANT" && (
-                            <Route path="/etudiant" element={<Etudiant />} />
-                        )}
-                        {/* //METTRE TOUTES LES PAGES ADMIN ICI */}
-
-                        {role === "ADMIN" && (
-                            <>
-                                <Route path="/admin" element={<Admin />} />
-                                <Route
-                                    path="/qualificatif"
-                                    element={<Qualificatif />}
-                                />
-                                 <Route
-                                    path="/questions"
-                                    element={<Question />}
-                                />
-                               
-                                <Route
-                                    path="/rubrique"
-                                    element={<RubriquePage />}
-                                />
-                            </>
-                        )}
-                        {/* //METTRE TOUTES LES PAGES ENSEIGNANT ICI */}
-
-                        {role === "ENSEIGNANT" && (
-                            <Route path="/etudiant" element={<Enseignant />} />
-                        )}
-
-                        <Route path="/404" element={<Page404 />} />
-                        <Route path="*" element={<Page404 />} />
-                    </Routes>
+                        <RubriqueContextProvider>
+                            <Routes>
+                                {role === "ETUDIANT" && (
+                                    <Route path="/etudiant" element={<Etudiant />} />
+                                )}
+                                {role === "ADMIN" && (
+                                    <>
+                                        <Route path="/admin" element={<Admin />} />
+                                        <Route
+                                            path="/qualificatif"
+                                            element={<Qualificatif />}
+                                        />
+                                        <Route
+                                            path="/questions"
+                                            element={<Question />}
+                                        />
+                                        <Route
+                                            path="/rubrique"
+                                            element={<RubriquePage />}
+                                        />
+                                    </>
+                                )}
+                                {role === "ENSEIGNANT" && (
+                                    <Route path="/etudiant" element={<Enseignant />} />
+                                )}
+                                <Route path="/404" element={<Page404 />} />
+                                <Route path="*" element={<Page404 />} />
+                            </Routes>
+                        </RubriqueContextProvider>
                     </QuestionContextProvider>
-                    </RubriqueContextProvider>
                 </QualificatifContextProvider>
             </ListContextProvider>
         </div>
