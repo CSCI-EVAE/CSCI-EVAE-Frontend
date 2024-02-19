@@ -1,6 +1,5 @@
 import React from "react";
 import ListComponent from "../../components/common/List/list";
-import RubriqueForm from "../../components/RubriqueForm";
 import { useContext } from "react";
 import { RubriqueContext, trierParOrdre } from "../../context/rubriqueContext";
 import {  RUBRIQUE_COLUMNS } from "../../constants";
@@ -8,6 +7,8 @@ import {
     supprimerColonnesId,
     trouverRubrique
 } from "../../context/rubriqueContext";
+import RubriqueCompose from "../../components/RubriqueCompose";
+import RubriqueComposeAdd from "../../components/RubriqueComposeAdd";
 
 
 const RubriquePage: React.FC = () => {
@@ -66,8 +67,14 @@ const RubriquePage: React.FC = () => {
             </div>
             <ListComponent
              
-            
-                title={"Liste des Rubriques"}
+                details={true}
+                detailsElement={
+                    <div>
+                        <RubriqueCompose/>
+                    </div>
+                }
+
+                title={"Liste des Rubriques Composes"}
                 columns={RUBRIQUE_COLUMNS}
                 data={dat ? dat.reverse() : []}
                 actions={true}
@@ -76,13 +83,13 @@ const RubriquePage: React.FC = () => {
                 modify={true}
                 modifyElement={
                     <div>
-                        <RubriqueForm add={false} />
+                        <RubriqueComposeAdd add={false} />
                     </div>
                 }
                 modifyHandler={handleEdit}
                 addElement={
                     <div>
-                        <RubriqueForm add={true} />
+                        <RubriqueComposeAdd add={true} />
                     </div>
                 }
                 

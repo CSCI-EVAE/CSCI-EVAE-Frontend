@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { TextField, Box, Typography } from "@mui/material";
-import ButtonComponent from "../composants/Button";
+import ButtonComponent from "./common/Button";
 import {
     QualificatifContext,
     trouverIdQualificatif,

@@ -39,10 +39,10 @@ import {
     Delete,
     Visibility,
 } from "@mui/icons-material";
-import { ListContext } from "../../context/listContext";
+import { ListContext } from "../../../context/listContext";
 import ButtonComponent from "../Button";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { LIST_ACTIONS } from "../../constants";
+import { LIST_ACTIONS } from "../../../constants";
 
 interface Column {
     id: string;

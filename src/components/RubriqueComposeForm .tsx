@@ -2,39 +2,43 @@ import React, { useContext } from "react";
 import { TextField, Box, Typography } from "@mui/material";
 import ButtonComponent from "./common/Button";
 import {
-    RubriqueContext,
-   trouverRubrique, getMaxOrdre
-} from "../context/rubriqueContext";
+    RubriqueComposeContext,
+   trouverRubriqueCompose, getMaxOrdre
+} from "../context/rubriqueComposeContext";
 import { ListContext } from "../context/listContext";
-import { TYPE_STANDARD } from "../constants";
-interface rubriqueFormProps {
+interface rubriqueComposeFormProps {
     add: boolean; 
 }
 
-const RubriqueForm: React.FC<rubriqueFormProps> = ({ add }) => {
+const RubriqueComposeForm: React.FC<rubriqueComposeFormProps> = ({ add }) => {
     const {
         
-        rubrique,
-        updateCurrentRubrique,
-        addNewRubrique,
-        modifyRubrique,
-        rubriqueList,
-    } = useContext(RubriqueContext);
+        rubriqueCompose,
+        updateCurrentRubriqueCompose,
+        addNewRubriqueCompose,
+        modifyRubriqueCompose,
+        rubriqueComposeList,
+    } = useContext(RubriqueComposeContext);
     const { updateModalOpen, selectedRow } = useContext(ListContext);
+    
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault(); 
-       
+        if(rubriqueCompose.ordre <= getMaxOrdre(rubriqueComposeList)){
+            alert("Ordre déjà utilisé");
+            return;
+        }
         if (add === true) {
-          
             
-            addNewRubrique({...rubrique, type : TYPE_STANDARD.rubrique_standard, ordre : getMaxOrdre(rubriqueList)+1,
-            noEnseignant :null });
+            addNewRubriqueCompose({...rubriqueCompose, type : "STANDARD",
+            noEnseignant : {
+                id : "1"
+            }});
         } else {
 
-            const rubriqueModify = trouverRubrique(selectedRow, rubriqueList);
+            const rubriqueComposeModify = trouverRubriqueCompose(selectedRow, rubriqueComposeList);
             
-            modifyRubrique(rubriqueModify?.id, {...rubrique, id : rubriqueModify?.id, type :rubriqueModify?.type,  noEnseignant :rubriqueModify?.noEnseignant});
+            modifyRubriqueCompose(rubriqueComposeModify?.id, {...rubriqueCompose, id : rubriqueComposeModify?.id, type :rubriqueComposeModify?.type,  noEnseignant :rubriqueComposeModify?.noEnseignant});
         }
 
         updateModalOpen(false);
@@ -67,11 +71,17 @@ const RubriqueForm: React.FC<rubriqueFormProps> = ({ add }) => {
                 <TextField
                     label="Désignation"
                     variant="outlined"
-                    value={rubrique.designation}
-                    onChange={(e) => updateCurrentRubrique({...rubrique, designation : e.target.value})}
+                    value={rubriqueCompose.designation}
+                    onChange={(e) => updateCurrentRubriqueCompose({...rubriqueCompose, designation : e.target.value})}
                     required
                 />
-                
+                  <TextField
+                    label="Ordre"
+                    variant="outlined"
+                    value={rubriqueCompose.ordre}
+                    onChange={(e) => updateCurrentRubriqueCompose({...rubriqueCompose, ordre : e.target.value})}
+                    required
+                />
                 
             </Box>
             <Box sx={{ display: "flex", justifyContent: "start", gap: "1rem" }}>
@@ -92,4 +102,4 @@ const RubriqueForm: React.FC<rubriqueFormProps> = ({ add }) => {
     );
 };
 
-export default RubriqueForm;
+export default RubriqueComposeForm;

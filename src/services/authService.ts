@@ -12,11 +12,11 @@ export const login = async (
             credentials
         );
         // log the response to the console
-        console.log("Login response:", response);
+        console.log("Login response:", response.data);
         const token = response.data.data.accessToken;
         localStorage.setItem("jwtToken", token);
         localStorage.setItem("user", JSON.stringify(response.data.data.user));
-
+            
         return response.data;
     } catch (error) {
         console.error("Login failed:", error);

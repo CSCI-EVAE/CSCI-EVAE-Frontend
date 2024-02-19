@@ -27,7 +27,7 @@ export interface Enseignant {
 }
 
 export interface QuestionBody {
-    intitulֹ: string;
+    intitule: string;
     type: string;
     idQualificatif: {
         id: number;

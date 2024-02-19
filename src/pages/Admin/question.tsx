@@ -1,5 +1,5 @@
 import React from "react";
-import ListComponent from "../../composants/List";
+import ListComponent from "../../components/common/List/list";
 import QuestionForm from "../../components/QuestionForm";
 import { useContext } from "react";
 import { QuestionContext, trouverIdQuestion } from "../../context/questionContext";
@@ -22,15 +22,14 @@ const QuestionPage: React.FC = () => {
 
    // Données fictives
     const dat = supprimerColonnesId(questionListe);
-    console.log("data", dat);
 
 
     const handleEdit = (rowData: any) => {
         console.log("Modifier:", rowData);
-        console.log("Intitulé:", rowData.intitulֹ); 
+        console.log("Intitulé:", rowData.intitule); 
         console.log("intitule",rowData.maximal);
 
-        updateQuestionintitule(rowData.intitulֹ);
+        updateQuestionintitule(rowData.intitulֹe);
        
         updateCoupleQualificatif(`${rowData.maximal}-${rowData.minimal}`);
     };
@@ -39,7 +38,6 @@ const QuestionPage: React.FC = () => {
     const handleDelete = (rowData: any) => {
         console.log("Supprimer:", rowData);
         const id_supp = trouverIdQuestion(rowData, questionListe);
-        //console.log("id de suppression: "+id_supp);
         removeQuestion(id_supp);
     };
 

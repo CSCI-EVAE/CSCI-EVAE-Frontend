@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isAuthenticated, userInfos } from "../utils/authUtils";
+import { isAuthenticated, userInfos } from "../../utils/authUtils";
 import {
     Button,
     Typography,
@@ -12,12 +12,14 @@ import {
     DialogContent,
     DialogActions,
 } from "@mui/material";
-import ButtonComponent from "../composants/Button";
+import ButtonComponent from "../common/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-
+import {  useTheme,} from '@mui/material/styles';
 const Header: React.FC = () => {
     let navigate = useNavigate();
+
+    
     const [open, setOpen] = useState(false); // État pour contrôler l'ouverture de la boîte de dialogue
 
     const isAuth = isAuthenticated();
@@ -49,13 +51,14 @@ const Header: React.FC = () => {
     const handleLogin = () => {
         navigate("/login");
     };
+    const myTheme  = useTheme();
 
     return (
         <>
             <AppBar
                 position="static"
-                sx={{ background: "#d1def0", color: "black" }}
-            >
+                sx={{backgroundColor : myTheme.palette.secondary.main}}
+                >
                 <Toolbar>
                     <Box mb={2}>
                         <img
@@ -87,20 +90,21 @@ const Header: React.FC = () => {
                     )}
                     {isAuth ? (
                         <ButtonComponent
-                            variant="outlined"
+                            variant="contained"
                             icon={<LogoutIcon />}
                             text="Déconnexion"
                             onClick={handleLogout}
                         />
                     ) : (
                         <ButtonComponent
-                            variant="outlined"
+                            variant="contained"
                             icon={<LoginIcon />}
                             text="Connexion"
                             onClick={handleLogin}
                         />
                     )}
                 </Toolbar>
+                {/* <Sidebar /> */}
             </AppBar>
             <Dialog open={open} onClose={handleCancelLogout}>
                 <DialogTitle>Confirmation de déconnexion</DialogTitle>

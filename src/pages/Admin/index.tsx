@@ -1,32 +1,40 @@
-const Admin = () => {
-    return <div>Admin</div>;
 
-};
-export default Admin;
-// import React from 'react';
-// import { Link } from 'react-router-dom';
-// import { Box, Typography, List, ListItem, ListItemButton } from '@mui/material';
 
-// const Menu = () => {
-//   return (
-//     <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-//       <Box sx={{ bgcolor: 'background.paper', borderRadius: '8px', boxShadow: 4, p: 4, textAlign: 'center' }}>
-//         <Typography variant="h5" gutterBottom>Mini Dashboard</Typography>
-//         <List>
-//           <ListItem disablePadding>
-//             <ListItemButton component={Link} to="/page1">Page 1</ListItemButton>
-//           </ListItem>
-//           <ListItem disablePadding>
-//             <ListItemButton component={Link} to="/page2">Page 2</ListItemButton>
-//           </ListItem>
-//           <ListItem disablePadding>
-//             <ListItemButton component={Link} to="/page3">Page 3</ListItemButton>
-//           </ListItem>
-//           {/* Ajoutez d'autres liens vers vos pages */}
-//         </List>
-//       </Box>
-//     </Box>
-//   );
-// };
 
-// export default Menu;
+import React from 'react';
+import { Container, Grid, Paper, Typography, Divider } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
+import { Icon } from '@mui/material';
+import { ADMIN_DASHBOARD } from '../../constants';
+
+function BigMenu() {
+    const navigate = useNavigate();
+
+
+    return (
+        <Container maxWidth="lg" >
+            <Typography variant="h4" align="center" gutterBottom>
+                Menu
+            </Typography>
+            <Grid container spacing={3} justifyContent="center">
+    {ADMIN_DASHBOARD.slice(1).map((menuItem, index) => ( // Utilisation de slice(1) pour commencer à l'élément 1
+        <Grid key={index} item xs={6}>
+            <Paper
+                onClick={() => navigate(menuItem.link)}
+                elevation={3}
+                sx={{ p: 2, textAlign: 'center', cursor: 'pointer', height: '100%' , backgroundColor: "#d1dcde"}}
+            >
+                <Icon>{menuItem.icon}</Icon>
+                <Divider sx={{ my: 2 }} />
+                <Typography variant="h6">{menuItem.title}</Typography>
+                <Divider sx={{ my: 2 }} />
+            </Paper>
+        </Grid>
+    ))}
+</Grid>
+
+        </Container>
+    );
+}
+
+export default BigMenu;
