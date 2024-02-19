@@ -18,9 +18,9 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
  import Header from './Header';
- import { isAuthenticated, userInfos } from "../utils/authUtils";
+ import { isAuthenticated, userInfos } from "../../utils/authUtils";
  import { useEffect, useState } from 'react';
- import { ADMIN_DASHBOARD, ROLE } from '../constants';
+ import { ADMIN_DASHBOARD, ROLE } from '../../constants';
  import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;

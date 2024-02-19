@@ -1,5 +1,5 @@
 import React from "react";
-import ListComponent from "../../composants/List/list";
+import ListComponent from "../../components/common/List/list";
 import QualificatifForm from "../../components/QualificatifForm";
 import { useContext } from "react";
 import { QualificatifContext } from "../../context/qualificatifContext";

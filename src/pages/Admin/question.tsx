@@ -1,5 +1,5 @@
 import React from "react";
-import ListComponent from "../../composants/List/list";
+import ListComponent from "../../components/common/List/list";
 import QuestionForm from "../../components/QuestionForm";
 import { useContext } from "react";
 import { QuestionContext, trouverIdQuestion } from "../../context/questionContext";

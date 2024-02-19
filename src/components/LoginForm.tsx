@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { TextField, Alert } from "@mui/material";
 import { login } from "../services/authService";
-import ButtonComponent from "../composants/Button";
+import ButtonComponent from "./common/Button";
 import { useNavigate } from "react-router-dom";
 import { userInfos } from "../utils/authUtils";
 import { ROLE } from "../constants";

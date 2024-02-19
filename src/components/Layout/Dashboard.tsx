@@ -1,21 +1,21 @@
 import React from "react";
-import { userInfos } from "../utils/authUtils";
+import { userInfos } from "../../utils/authUtils";
 import { Route, Routes } from "react-router-dom";
-import Etudiant from "../pages/Etudiant";
-import Admin from "../pages/Admin";
-import Enseignant from "../pages/Enseignant";
-import Page404 from "./Page404";
-import Qualificatif from "../pages/Admin/qualificatif";
-import Question from "../pages/Admin/question";
-import { ListContextProvider } from "../context/listContext";
-import { QualificatifContextProvider } from "../context/qualificatifContext";
-import { QuestionContextProvider } from "../context/questionContext";
-import RubriquePage from "../pages/Admin/rubriques";
-import { RubriqueContextProvider } from "../context/rubriqueContext";
-import { RubriqueComposeContextProvider } from "../context/rubriqueComposeContext";
-import RubriqueComposePage from "../pages/Admin/rubriquesCompose";
-import { ROLE } from "../constants";
-import RubriqueCompose from "./RubriqueCompose";
+import Etudiant from "../../pages/Etudiant";
+import Admin from "../../pages/Admin";
+import Enseignant from "../../pages/Enseignant";
+import Page404 from "../../pages/Page404";
+import Qualificatif from "../../pages/Admin/qualificatif";
+import Question from "../../pages/Admin/question";
+import { ListContextProvider } from "../../context/listContext";
+import { QualificatifContextProvider } from "../../context/qualificatifContext";
+import { QuestionContextProvider } from "../../context/questionContext";
+import RubriquePage from "../../pages/Admin/rubriques";
+import { RubriqueContextProvider } from "../../context/rubriqueContext";
+import { RubriqueComposeContextProvider } from "../../context/rubriqueComposeContext";
+import RubriqueComposePage from "../../pages/Admin/rubriquesCompose";
+import { ROLE } from "../../constants";
+import RubriqueCompose from "../RubriqueCompose";
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);

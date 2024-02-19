@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { isAuthenticated, userInfos } from "../utils/authUtils";
+import { isAuthenticated, userInfos } from "../../utils/authUtils";
 import {
     Button,
     Typography,
@@ -12,7 +12,7 @@ import {
     DialogContent,
     DialogActions,
 } from "@mui/material";
-import ButtonComponent from "../composants/Button";
+import ButtonComponent from "../common/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
 import {  useTheme,} from '@mui/material/styles';

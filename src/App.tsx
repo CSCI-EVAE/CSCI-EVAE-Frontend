@@ -1,13 +1,13 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
-import Dashboard from "./components/Dashboard";
+import Dashboard from "./components/Layout/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout"; // Adjust the import path based on your file structure
 import { Box } from "@mui/material";
-import Page404 from "./components/Page404";
+import Page404 from "./pages/Page404";
 
-import Sidebar from "../src/components/Sidebar";
+import Sidebar from "./components/Layout/Sidebar";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./constants/theme";
 

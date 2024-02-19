@@ -23,10 +23,10 @@ import {
 } from "@mui/icons-material";
 import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
 
-import { ListContext } from "../../context/listContext";
+import { ListContext } from "../../../context/listContext";
 import ButtonComponent from "../Button";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
-import { LIST_ACTIONS } from "../../constants";
+import { LIST_ACTIONS } from "../../../constants";
 import { useNavigate } from "react-router-dom";
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 

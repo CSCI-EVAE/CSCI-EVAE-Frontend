@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Box, Typography } from "@mui/material";
-import Select from "../composants/Select";
-import ButtonComponent from "../composants/Button";
+import Select from "./common/Select";
+import ButtonComponent from "./common/Button";
 import {
     QuestionContext,
     
