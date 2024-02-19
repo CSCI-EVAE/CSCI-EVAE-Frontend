@@ -6,6 +6,8 @@ export const useInitial: () => InitialHookStatus = () => {
         loading: false,
         error: false,
     });
+    console.log(setStatus);
+    
     /*
       Implement hook functionality here.
       If you need to execute async operation, set loading to true and when it's over, set loading to false.

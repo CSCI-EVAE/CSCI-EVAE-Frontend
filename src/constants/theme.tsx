@@ -14,7 +14,7 @@ const theme = createTheme({
       main: '#008080', // Vert foncé
     },
     background: {
-      default: '#d1dcde', // Fond par défaut
+      default: '#fff', // Fond par défaut
     },
   },
   typography: {
