@@ -38,7 +38,6 @@ export const addQuestion = async (question: QuestionBody) => {
             question
         );
          
-        console.log("joooooooooooo"+response.data);
         return response.data;
     } catch (error) {
         console.error("question failed:", error);

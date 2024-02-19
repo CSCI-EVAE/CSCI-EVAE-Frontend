@@ -12,10 +12,10 @@ import { QualificatifContextProvider } from "../context/qualificatifContext";
 import { QuestionContextProvider } from "../context/questionContext";
 import RubriquePage from "../pages/Admin/rubriques";
 import { RubriqueContextProvider } from "../context/rubriqueContext";
-import Tab from "../composants/List/essai";
 import { RubriqueComposeContextProvider } from "../context/rubriqueComposeContext";
 import RubriqueComposePage from "../pages/Admin/rubriquesCompose";
 import { ROLE } from "../constants";
+import RubriqueCompose from "./RubriqueCompose";
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
@@ -58,7 +58,7 @@ const Dashboard: React.FC = () => {
                                 />
                                  <Route
                                     path="/essai"
-                                    element={<Tab />}
+                                    element={<RubriqueCompose />}
                                 />
                                  <Route
                                     path="/rubriquecompose"

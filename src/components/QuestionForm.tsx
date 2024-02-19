@@ -9,6 +9,7 @@ import {
 import { ListContext } from "../context/listContext";
 import { QualificatifContext } from "../context/qualificatifContext";
 import { Qualificatif } from "../types/qualificatifTypes";
+import { TYPE_STANDARD } from "../constants";
 interface questionFormProps {
     add: boolean; 
 }
@@ -41,24 +42,9 @@ const QuestionForm: React.FC<questionFormProps> = ({ add }) => {
             idLabel: "ID qualificatif", 
             idValue: qualificatif.id 
         }));
-        // function handleQualificatifChange(value: string | number | (string | number)[]): void {
-        //     if (Array.isArray(value)) {
-        //         setSelectedQualificatif(value[0]); 
-        //     } else {
-        //         setSelectedQualificatif(value); 
-        //     }
-        // }
-        
-    //console.log(transformedQuestionListe);
-   // console.log("Intitlué existant : "+questionintitule);
+    
     const { updateModalOpen, selectedRow } = useContext(ListContext);
-    // useEffect(() => {
-    //     if (!add && selectedRow) {
-    //         const intitul = trouverIntitule(selectedRow, questionListe);
-    //         setInitialIntitule(intitul); // Mettre à jour l'intitul initial
-    //       //  setInitialIdQualificatif(selectedRow.idQualificatif.id); // Mettre à jour l'idQualificatif initial
-    //     }
-    // }, [selectedRow, questionListe, add]);
+
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -67,8 +53,8 @@ const QuestionForm: React.FC<questionFormProps> = ({ add }) => {
             addNewQuestion({
                 idQualificatif: { id: selectedQualificatifObj.idValue},
                 noEnseignant: null,
-                 type: "Standard",
-                 intitulֹ: questionintitule,
+                 type: TYPE_STANDARD.question_standard,
+                 intitule: questionintitule,
             });
         } else {
             const id = trouverIdQuestion(selectedRow, questionListe);
@@ -79,7 +65,7 @@ const QuestionForm: React.FC<questionFormProps> = ({ add }) => {
             modifyQuestion(id, {
                 idQualificatif: { id: selectedQualificatifObj.idValue },
                 noEnseignant: null,
-                type: "standart",
+                type: TYPE_STANDARD.question_standard,
                 intitulֹ: questionintitule,
             });
         }
@@ -111,29 +97,31 @@ const QuestionForm: React.FC<questionFormProps> = ({ add }) => {
                 {" "}
                 Entrez les informations
             </Typography>
+
+            <Box sx={{ display: "flex", gap: "1rem" }}>
+            <TextField
+                label="Intitulֹé"
+                variant="outlined"
+                value={questionintitule}
+                onChange={(e) => updateQuestionintitule(e.target.value)}
+                required
+                //sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
+            />
+            </Box>
           
             <Box sx={{ display: "flex", gap: "1rem" }}>
     <Select
-        label="list qualificatif"
+        label="Qualificatifs"
         options={transformedQuestionListe} 
         value={selectedQualificatif} 
         onChange={(value) => setSelectedQualificatif(value as string)}
         required
         multiple={false}
-        sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
+      //  sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
     />
 </Box>
-<Box sx={{ display: "flex", gap: "1rem" }}>
-    <TextField
-        label="intitulֹ"
-        variant="outlined"
-        value={questionintitule}
-        onChange={(e) => updateQuestionintitule(e.target.value)}
-        required
-        sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
-    />
-</Box>
-8
+
+
 
             <Box sx={{ display: "flex", justifyContent: "start", gap: "1rem" }}>
                 <ButtonComponent

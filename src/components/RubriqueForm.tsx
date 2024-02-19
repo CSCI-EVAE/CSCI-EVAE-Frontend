@@ -6,6 +6,7 @@ import {
    trouverRubrique, getMaxOrdre
 } from "../context/rubriqueContext";
 import { ListContext } from "../context/listContext";
+import { TYPE_STANDARD } from "../constants";
 interface rubriqueFormProps {
     add: boolean; 
 }
@@ -23,16 +24,12 @@ const RubriqueForm: React.FC<rubriqueFormProps> = ({ add }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault(); 
-        if(rubrique.ordre <= getMaxOrdre(rubriqueList)){
-            alert("Ordre déjà utilisé");
-            return;
-        }
+       
         if (add === true) {
+          
             
-            addNewRubrique({...rubrique, type : "STANDARD",
-            noEnseignant : {
-                id : "1"
-            }});
+            addNewRubrique({...rubrique, type : TYPE_STANDARD.rubrique_standard, ordre : getMaxOrdre(rubriqueList)+1,
+            noEnseignant :null });
         } else {
 
             const rubriqueModify = trouverRubrique(selectedRow, rubriqueList);
@@ -74,13 +71,7 @@ const RubriqueForm: React.FC<rubriqueFormProps> = ({ add }) => {
                     onChange={(e) => updateCurrentRubrique({...rubrique, designation : e.target.value})}
                     required
                 />
-                  <TextField
-                    label="Ordre"
-                    variant="outlined"
-                    value={rubrique.ordre}
-                    onChange={(e) => updateCurrentRubrique({...rubrique, ordre : e.target.value})}
-                    required
-                />
+                
                 
             </Box>
             <Box sx={{ display: "flex", justifyContent: "start", gap: "1rem" }}>

@@ -1,5 +1,5 @@
 import React from "react";
-import ListComponent from "../../composants/List";
+import ListComponent from "../../composants/List/list";
 import RubriqueForm from "../../components/RubriqueForm";
 import { useContext } from "react";
 import { RubriqueContext, trierParOrdre } from "../../context/rubriqueContext";

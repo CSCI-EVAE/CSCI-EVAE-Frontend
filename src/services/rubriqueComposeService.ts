@@ -22,7 +22,7 @@ export const getRubriqueComposeList = async () => {
 
         return response.data;
     } catch (error) {
-        console.error("rubriqueCompose list failed:", error);
+        //console.error("rubriqueCompose list failed:", error);
         //throw error;
     }
 };

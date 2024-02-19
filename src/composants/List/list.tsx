@@ -19,6 +19,7 @@ import {
     Edit,
     Delete,
     Visibility,
+    KeyboardBackspace,
 } from "@mui/icons-material";
 import { ArrowUpward, ArrowDownward } from '@mui/icons-material';
 
@@ -26,6 +27,8 @@ import { ListContext } from "../../context/listContext";
 import ButtonComponent from "../Button";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import { LIST_ACTIONS } from "../../constants";
+import { useNavigate } from "react-router-dom";
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 interface Column {
     id: string;
@@ -46,6 +49,7 @@ interface Props {
     createHandler?: (rowData: any) => void;
     modifyElement?: ReactNode;
     addElement?: ReactNode;
+    detailsElement?: ReactNode;
     handleAdd?: (rowData: any) => void;
 }
 
@@ -65,6 +69,7 @@ const ListComponent: React.FC<Props> = ({
     addElement,
     handleAdd,
     modifyHandler,
+    detailsElement
 }) => {
     const [filters, setFilters] = useState<{ [key: string]: string }>({});
     const { openModal, updateModalOpen, selectedRow, updateSelectedRow } =
@@ -93,10 +98,32 @@ const ListComponent: React.FC<Props> = ({
         // Update order
         newData.forEach((item, index) => {
             item.order = index + 1;
+            if(item.ordre){
+                item.ordre = item.order;
+              };
         });
 
         setDataset(newData);
     };
+    const onDragEnd = (result: any) => {
+        if (!result.destination) return;
+      
+        const newItems = Array.from(dataset);
+        const [reorderedItem] = newItems.splice(result.source.index, 1);
+        newItems.splice(result.destination.index, 0, reorderedItem);
+      
+        // Mise à jour de l'ordre de chaque élément
+        newItems.forEach((item, index) => {
+          item.order = index + 1;
+          if(item.ordre){
+            item.ordre = item.order;
+          };
+        });
+        console.log(newItems);
+      
+        setDataset(newItems);
+      };
+
 
     const filteredData = dataset.filter((row: any) => {
         return Object.entries(filters).every(([columnId, filter]) => {
@@ -105,8 +132,28 @@ const ListComponent: React.FC<Props> = ({
                 .includes(filter.toLowerCase());
         });
     });
+    const navigate = useNavigate();
 
     return (
+        <>
+         <div
+            style={{
+                maxWidth: "90%",
+                margin: "auto",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+            }}
+        >
+        <ButtonComponent
+                text="Retour"
+                variant="contained"
+                icon={<KeyboardBackspace/>}
+                onClick={() => {
+                    navigate('/dashboard/admin');
+                }}
+            />
+            </div>
         <div
             style={{
                 maxWidth: "90%",
@@ -119,7 +166,7 @@ const ListComponent: React.FC<Props> = ({
             <h2>{title}</h2>
             <ButtonComponent
                 text="Ajouter"
-                variant="text"
+                variant="contained"
                 icon={<AddCircleOutline />}
                 onClick={() => {
                     setSelectedActions(LIST_ACTIONS.add);
@@ -127,24 +174,25 @@ const ListComponent: React.FC<Props> = ({
                     updateSelectedRow({});
                 }}
             />
-
+             
             <div
                 style={{
-                    border: "1px solid #ccc",
+                    border: "3px solid #3c768c",
                     padding: "10px",
-                    marginBottom: "10px",
+                    marginBottom: "20px",
                     width: "100%",
                     boxSizing: "border-box",
+                    marginTop:"20px",
                 }}
             >
                 {columns.map((column) => (
                     <TextField
                         key={column.id}
                         label={`Filtrer par ${column.label}`}
-                        variant="outlined"
+                        variant="filled"
                         value={filters[column.id] || ""}
                         onChange={(e) => handleFilterChange(e, column.id)}
-                        style={{ marginRight: "10px" }}
+                        style={{ marginRight: "10px", }}
                         
                     />
                 ))}
@@ -152,8 +200,8 @@ const ListComponent: React.FC<Props> = ({
             <TableContainer component={Paper}>
                 <Table>
                     <TableHead>
-                        <TableRow style={{ backgroundColor: "#d1def0" }}>
-                            <TableCell style={{ fontWeight: "bold" }}>ORDRE</TableCell>
+                        <TableRow >
+                            <TableCell style={{ fontWeight: "bold" }}>POSITION</TableCell>
                             {columns.map((column) => (
                                 
                                 <TableCell
@@ -171,15 +219,26 @@ const ListComponent: React.FC<Props> = ({
                             )}
                         </TableRow>
                     </TableHead>
-                    <TableBody>
+                    <DragDropContext onDragEnd={onDragEnd}>
+                    <Droppable droppableId="rubriqueItems">
+                    {(provided : any) => (
+            
+                    <TableBody {...provided.droppableProps} ref={provided.innerRef}>
+                        
                         {filteredData.map((row : any, rowIndex:any) => (
+                             <Draggable key={rowIndex} draggableId={String(rowIndex)} index={rowIndex}>
+                                 {(provided : any) => (
                             <TableRow
                                 key={rowIndex}
                                 style={{
                                     backgroundColor:
                                         rowIndex % 2 === 0 ? "#fffff" : "#f9f9f9",
                                 }}
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
                             >
+                                
                                 <TableCell>
                                     <IconButton onClick={() => moveRow(rowIndex, -1)} disabled={rowIndex === 0}>
                                         <ArrowUpward />
@@ -212,6 +271,7 @@ const ListComponent: React.FC<Props> = ({
                                                     setSelectedActions(LIST_ACTIONS.read);
                                                     updateSelectedRow(row);
                                                     detailsHandler && detailsHandler(row);
+                                                    updateModalOpen(true);
                                                 }}
                                             >
                                                 <Visibility />
@@ -244,9 +304,17 @@ const ListComponent: React.FC<Props> = ({
                                         )}
                                     </TableCell>
                                 )}
+                                
                             </TableRow>
+                             )}
+                           
+                            </Draggable>
                         ))}
+                        {provided.placeholder}
                     </TableBody>
+                    )}
+                    </Droppable>
+                    </DragDropContext>
                 </Table>
             </TableContainer>
 
@@ -256,7 +324,8 @@ const ListComponent: React.FC<Props> = ({
                     onClose={() => updateModalOpen(false)}
                     PaperProps={{
                         style: {
-                            width: 500,
+                            minHeight:500,
+                            minWidth: 800,
                             border: "1px solid #ccc",
                             borderRadius: 8,
                             backgroundColor: "rgba(255, 255, 255, 0.9)",
@@ -265,14 +334,30 @@ const ListComponent: React.FC<Props> = ({
                     }}
                 >
                     <DialogTitle>{selectedRow.name}</DialogTitle>
-                    <DialogContent>
+                    <DialogContent
+                        style={{ 
+                        margin: "auto",
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",
+                        //border:"1px solid black"
+                    }}
+                    >
                         {selectedAction === LIST_ACTIONS.update && modifyElement}
+                        {selectedAction === LIST_ACTIONS.read && detailsElement}
+
                         {selectedAction === LIST_ACTIONS.delete && (
-                            <div>Êtes-vous sûr de vouloir supprimer ?</div>
+                            <div style={{fontSize: "1.5rem", border:"1px solid black"}}>Êtes-vous sûr de vouloir supprimer ?</div>
                         )}
                         {selectedAction === LIST_ACTIONS.add && addElement}
                     </DialogContent>
-                    <DialogActions>
+                    <DialogActions 
+                     style={{ 
+                        margin: "auto",
+                        display: "flex",
+                        flexDirection: "row",
+                        alignItems: "center",}}
+                        >
                         {selectedAction === LIST_ACTIONS.delete && (
                             <>
                                 <ButtonComponent
@@ -293,6 +378,7 @@ const ListComponent: React.FC<Props> = ({
                 </Dialog>
             )}
         </div>
+        </>
     );
 };
 

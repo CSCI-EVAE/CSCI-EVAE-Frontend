@@ -34,7 +34,6 @@ export function trouverIdQuestion(
                 item.intitule === question.intitule 
               
         );
-        console.log("trouveeeeeeeeeeeeeerrrrrrrrrrrrrrr", questionTrouve);
 
         if (questionTrouve && questionTrouve.id !== undefined) {
             return questionTrouve.id;

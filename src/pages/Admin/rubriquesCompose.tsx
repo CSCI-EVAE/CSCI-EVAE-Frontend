@@ -1,26 +1,27 @@
 import React from "react";
 import ListComponent from "../../composants/List/list";
-import RubriqueComposeForm from "../../components/RubriqueComposeForm ";
 import { useContext } from "react";
-import { RubriqueComposeContext, trierParOrdre } from "../../context/rubriqueComposeContext";
+import { RubriqueContext, trierParOrdre } from "../../context/rubriqueContext";
 import {  RUBRIQUE_COLUMNS } from "../../constants";
 import {
     supprimerColonnesId,
-    trouverRubriqueCompose
-} from "../../context/rubriqueComposeContext";
+    trouverRubrique
+} from "../../context/rubriqueContext";
+import RubriqueCompose from "../../components/RubriqueCompose";
+import RubriqueComposeAdd from "../../components/RubriqueComposeAdd";
 
 
-const RubriqueComposePage: React.FC = () => {
+const RubriquePage: React.FC = () => {
     const {
-        rubriqueComposeList,
-        rubriqueComposeListError,
-        removeRubriqueCompose,
-        deleteRubriqueComposeError,
-        modifyRubriqueComposeError,
-        updateCurrentRubriqueCompose,
+        rubriqueList,
+        rubriqueListError,
+        removeRubrique,
+        deleteRubriqueError,
+        modifyRubriqueError,
+        updateCurrentRubrique,
         
        
-    } = useContext(RubriqueComposeContext);
+    } = useContext(RubriqueContext);
 
   
 
@@ -29,8 +30,8 @@ const RubriqueComposePage: React.FC = () => {
     // Données fictives
     
     const getR = () =>{
-        if(rubriqueComposeList){
-            const dat = supprimerColonnesId(trierParOrdre(rubriqueComposeList));
+        if(rubriqueList){
+            const dat = supprimerColonnesId(trierParOrdre(rubriqueList));
             return  dat;
         }
         return null;
@@ -42,7 +43,7 @@ const RubriqueComposePage: React.FC = () => {
 
     const handleEdit = (rowData: any) => {
         console.log("Modifier:", rowData);
-        updateCurrentRubriqueCompose(rowData);
+        updateCurrentRubrique(rowData);
         
         
     };
@@ -50,8 +51,8 @@ const RubriqueComposePage: React.FC = () => {
     const handleDelete = (rowData: any) => {
         console.log("Supprimer:", rowData);
         
-        const currentRub = trouverRubriqueCompose(rowData, rubriqueComposeList);
-        removeRubriqueCompose(currentRub?.id);
+        const currentRub = trouverRubrique(rowData, rubriqueList);
+        removeRubrique(currentRub?.id);
         
        
     
@@ -60,16 +61,20 @@ const RubriqueComposePage: React.FC = () => {
     return (
         <div>
             <div style={{ textAlign: "center", color: "red" }}>
-                {rubriqueComposeListError && rubriqueComposeListError}
-                {deleteRubriqueComposeError && deleteRubriqueComposeError}
-                {modifyRubriqueComposeError&& modifyRubriqueComposeError}
+                {rubriqueListError && rubriqueListError}
+                {deleteRubriqueError && deleteRubriqueError}
+                {modifyRubriqueError&& modifyRubriqueError}
             </div>
             <ListComponent
              
-            
-                title={"Liste des RubriqueComposes"}
                 details={true}
+                detailsElement={
+                    <div>
+                        <RubriqueCompose/>
+                    </div>
+                }
 
+                title={"Liste des Rubriques Composes"}
                 columns={RUBRIQUE_COLUMNS}
                 data={dat ? dat.reverse() : []}
                 actions={true}
@@ -78,13 +83,13 @@ const RubriqueComposePage: React.FC = () => {
                 modify={true}
                 modifyElement={
                     <div>
-                        <RubriqueComposeForm add={false} />
+                        <RubriqueComposeAdd add={false} />
                     </div>
                 }
                 modifyHandler={handleEdit}
                 addElement={
                     <div>
-                        <RubriqueComposeForm add={true} />
+                        <RubriqueComposeAdd add={true} />
                     </div>
                 }
                 
@@ -93,4 +98,4 @@ const RubriqueComposePage: React.FC = () => {
     );
 };
 
-export default RubriqueComposePage;
+export default RubriquePage;
