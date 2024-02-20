@@ -16,6 +16,8 @@ import { RubriqueComposeContextProvider } from "../../context/rubriqueComposeCon
 import RubriqueComposePage from "../../pages/Admin/rubriquesCompose";
 import { ROLE } from "../../constants";
 import RubriqueCompose from "../RubriqueCompose";
+import Evaluation from "../../pages/Etudiant/evaluation";
+import { EvaluationContextProvider } from "../../context/evaluationEtudiantContext";
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
@@ -31,12 +33,19 @@ const Dashboard: React.FC = () => {
                     <QuestionContextProvider>
                     <RubriqueContextProvider>
                         <RubriqueComposeContextProvider>
+                         <EvaluationContextProvider>
                     
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
 
                         {role === ROLE.etudiant && (
+                        <>
                             <Route path="/etudiant" element={<Etudiant />} />
+                            <Route
+                                    path="/evaluations"
+                                    element={<Evaluation />}
+                                />
+                        </>
                         )}
                         {/* //METTRE TOUTES LES PAGES ADMIN ICI */}
 
@@ -75,6 +84,8 @@ const Dashboard: React.FC = () => {
                         <Route path="/404" element={<Page404 />} />
                         <Route path="*" element={<Page404 />} />
                     </Routes>
+                   
+                     </EvaluationContextProvider>
                     </RubriqueComposeContextProvider>
                    
                     </RubriqueContextProvider>

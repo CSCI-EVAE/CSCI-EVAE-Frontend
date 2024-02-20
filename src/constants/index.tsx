@@ -34,6 +34,18 @@ export const RUBRIQUE_COLUMNS = [
     
 ];
 
+export const Evalution_Etudiant_COLUMNS = [
+    { id: "anneeUniversitaire", label: "annee Universitaire" },
+    { id: "codeFormation", label: "Nom Formation" },
+    { id: "noEvaluation", label: "Evaluation" },
+    { id: "designation", label: "designation" },
+    { id: "etat", label: "etat" },
+    { id: "periode", label: "periode" },
+    { id: "nomEnseignant", label: "nom Enseignant" },
+    { id: "debutReponse", label: "debut Reponse" },
+    { id: "finReponse", label: "fin Reponse" }
+];
+
 export const TYPE_STANDARD ={
     question_standard : "QUS",
     rubrique_standard : "RBS"
