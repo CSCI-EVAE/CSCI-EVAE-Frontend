@@ -1,6 +1,3 @@
-
-
-
 import React from 'react';
 import { Container, Grid, Paper, Typography, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';

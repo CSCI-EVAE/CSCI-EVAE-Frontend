@@ -15,10 +15,15 @@ import { RubriqueComposeContextProvider } from "../../context/rubriqueComposeCon
 import RubriqueComposePage from "../../pages/Admin/rubriquesCompose";
 import { ROLE } from "../../constants";
 import RubriqueCompose from "../RubriqueCompose";
+
 import UePage from "../../pages/Enseignant/ue";
 import { UEContextProvider } from "../../context/UeContext";
 import { DetailsEvaluationContextProvider } from "../../context/detailsEvaluationContext";
 import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
+
+import Evaluation from "../../pages/Etudiant/evaluation";
+import { EvaluationContextProvider } from "../../context/evaluationEtudiantContext";
+
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
@@ -34,14 +39,24 @@ const Dashboard: React.FC = () => {
                     <QuestionContextProvider>
                     <RubriqueContextProvider>
                         <RubriqueComposeContextProvider>
+
                             <UEContextProvider>
                                 <DetailsEvaluationContextProvider>
+
+                         <EvaluationContextProvider>
+
                     
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
 
                         {role === ROLE.etudiant && (
+                        <>
                             <Route path="/etudiant" element={<Etudiant />} />
+                            <Route
+                                    path="/evaluations"
+                                    element={<Evaluation />}
+                                />
+                        </>
                         )}
                         {/* //METTRE TOUTES LES PAGES ADMIN ICI */}
 
@@ -93,10 +108,15 @@ const Dashboard: React.FC = () => {
                         <Route path="/404" element={<Page404 />} />
                         <Route path="*" element={<Page404 />} />
                     </Routes>
+
             
 
                     </DetailsEvaluationContextProvider>
                     </UEContextProvider>
+
+                   
+                     </EvaluationContextProvider>
+
                     </RubriqueComposeContextProvider>
                    
                     </RubriqueContextProvider>
