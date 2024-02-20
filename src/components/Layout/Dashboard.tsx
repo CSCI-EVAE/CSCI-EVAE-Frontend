@@ -16,6 +16,10 @@ import { RubriqueComposeContextProvider } from "../../context/rubriqueComposeCon
 import RubriqueComposePage from "../../pages/Admin/rubriquesCompose";
 import { ROLE } from "../../constants";
 import RubriqueCompose from "../RubriqueCompose";
+import UePage from "../../pages/Enseignant/ue";
+import { UEContextProvider } from "../../context/UeContext";
+import { EvaluationContextProvider } from "../../context/evaluationContext";
+import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
@@ -31,6 +35,8 @@ const Dashboard: React.FC = () => {
                     <QuestionContextProvider>
                     <RubriqueContextProvider>
                         <RubriqueComposeContextProvider>
+                            <UEContextProvider>
+                                <EvaluationContextProvider>
                     
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
@@ -47,6 +53,7 @@ const Dashboard: React.FC = () => {
                                     path="/qualificatif"
                                     element={<Qualificatif />}
                                 />
+
                                  <Route
                                     path="/questions"
                                     element={<Question />}
@@ -68,13 +75,27 @@ const Dashboard: React.FC = () => {
                         )}
                         {/* //METTRE TOUTES LES PAGES ENSEIGNANT ICI */}
 
-                        {role === ROLE.etudiant && (
-                            <Route path="/etudiant" element={<Enseignant />} />
+                        {role === ROLE.enseigannt && (
+                            <>
+                            <Route
+                                path="/enseignant"
+                                element={<UePage />} 
+                            />
+
+                    
+                        <Route path="enseignant/evaluation-details/:id_eva" element={<DetailsEvaluationPage />} />
+
+                                
+                                 
+                            </>
                         )}
+
 
                         <Route path="/404" element={<Page404 />} />
                         <Route path="*" element={<Page404 />} />
                     </Routes>
+                    </EvaluationContextProvider>
+                    </UEContextProvider>
                     </RubriqueComposeContextProvider>
                    
                     </RubriqueContextProvider>

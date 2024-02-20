@@ -115,16 +115,7 @@ const ListComponent: React.FC<Props> = ({
             }}
         >
             <h2>{title}</h2>
-            <ButtonComponent
-                text="Ajouter"
-                variant="text"
-                icon={<AddCircleOutline />}
-                onClick={() => {
-                    setSelectedActions(LIST_ACTIONS.add);
-                    updateModalOpen(true);
-                    updateSelectedRow({});
-                }}
-            />
+       
 
             <div
                 style={{
@@ -184,7 +175,7 @@ const ListComponent: React.FC<Props> = ({
                                 ))}
                                 {actions && (
                                     <TableCell>
-                                        {create && (
+                                        {row.createValue && (
                                             <IconButton
                                                 onClick={() => {
                                                     setSelectedActions(
@@ -198,7 +189,7 @@ const ListComponent: React.FC<Props> = ({
                                                 <AddCircleIcon />
                                             </IconButton>
                                         )}
-                                        {details && (
+                                        {row.detailsValue && (
                                             <IconButton
                                                 onClick={() => {
                                                     setSelectedActions(
