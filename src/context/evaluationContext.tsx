@@ -1,5 +1,5 @@
-import React, { createContext, ReactNode, useCallback, useEffect, useState } from "react";
-import { Evaluation, EvaluationResponse } from "../types/EvaluationTypes";
+import React, { createContext, ReactNode, useCallback, useState } from "react";
+import { Evaluation } from "../types/EvaluationTypes";
 import { getEvaluationDetails } from "../services/evaluationService";
 
 interface EvaluationContextProps {

@@ -3,7 +3,6 @@ import { userInfos } from "../../utils/authUtils";
 import { Route, Routes } from "react-router-dom";
 import Etudiant from "../../pages/Etudiant";
 import Admin from "../../pages/Admin";
-import Enseignant from "../../pages/Enseignant";
 import Page404 from "../../pages/Page404";
 import Qualificatif from "../../pages/Admin/qualificatif";
 import Question from "../../pages/Admin/question";
