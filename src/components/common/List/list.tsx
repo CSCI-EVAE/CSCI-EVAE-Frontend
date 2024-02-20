@@ -347,7 +347,9 @@ const ListComponent: React.FC<Props> = ({
                         {selectedAction === LIST_ACTIONS.read && detailsElement}
 
                         {selectedAction === LIST_ACTIONS.delete && (
-                            <div style={{fontSize: "1.5rem", border:"1px solid black"}}>Êtes-vous sûr de vouloir supprimer ?</div>
+                            <div style={{fontSize: "1.5rem",
+                             //border:"1px solid black"
+                            }}>Êtes-vous sûr de vouloir supprimer ?</div>
                         )}
                         {selectedAction === LIST_ACTIONS.add && addElement}
                     </DialogContent>

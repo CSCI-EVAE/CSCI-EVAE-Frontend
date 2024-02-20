@@ -14,7 +14,9 @@ import { RubriqueContextProvider } from "../../context/rubriqueContext";
 import { RubriqueComposeContextProvider } from "../../context/rubriqueComposeContext";
 import RubriqueComposePage from "../../pages/Admin/rubriquesCompose";
 import { ROLE } from "../../constants";
-import RubriqueCompose from "../RubriqueCompose";
+import RubriqueCompose from "../RubriqueComposeView";
+import MyTable from "../../pages/Enseignant/RubriqueList";
+import { RubriqueEnseignantContextProvider } from "../../context/rubriqueEnseignantContext";
 
 import UePage from "../../pages/Enseignant/ue";
 import { UEContextProvider } from "../../context/UeContext";
@@ -40,11 +42,15 @@ const Dashboard: React.FC = () => {
                     <RubriqueContextProvider>
                         <RubriqueComposeContextProvider>
 
+                           
+                               
+
+                         
+
+                            <RubriqueEnseignantContextProvider>
+                            <EvaluationContextProvider>
                             <UEContextProvider>
-                                <DetailsEvaluationContextProvider>
-
-                         <EvaluationContextProvider>
-
+                            <DetailsEvaluationContextProvider>
                     
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
@@ -85,6 +91,10 @@ const Dashboard: React.FC = () => {
                                     path="/rubriquecompose"
                                     element={<RubriqueComposePage />}
                                 />
+                                 <Route
+                                    path="/table"
+                                    element={<MyTable />}
+                                />
                             </>
                         )}
                         {/* //METTRE TOUTES LES PAGES ENSEIGNANT ICI */}
@@ -117,6 +127,7 @@ const Dashboard: React.FC = () => {
                    
                      </EvaluationContextProvider>
 
+                    </RubriqueEnseignantContextProvider>
                     </RubriqueComposeContextProvider>
                    
                     </RubriqueContextProvider>

@@ -3,7 +3,7 @@ import { TextField, Box, Typography } from "@mui/material";
 import ButtonComponent from "./common/Button";
 import {
     RubriqueComposeContext,
-   trouverRubriqueCompose, getMaxOrdre
+   trouverRubriqueCompose
 } from "../context/rubriqueComposeContext";
 import { ListContext } from "../context/listContext";
 interface rubriqueComposeFormProps {
@@ -24,21 +24,15 @@ const RubriqueComposeForm: React.FC<rubriqueComposeFormProps> = ({ add }) => {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault(); 
-        if(rubriqueCompose.ordre <= getMaxOrdre(rubriqueComposeList)){
-            alert("Ordre déjà utilisé");
-            return;
-        }
+        
         if (add === true) {
             
-            addNewRubriqueCompose({...rubriqueCompose, type : "STANDARD",
-            noEnseignant : {
-                id : "1"
-            }});
+            addNewRubriqueCompose({...rubriqueCompose});
         } else {
 
             const rubriqueComposeModify = trouverRubriqueCompose(selectedRow, rubriqueComposeList);
             
-            modifyRubriqueCompose(rubriqueComposeModify?.id, {...rubriqueCompose, id : rubriqueComposeModify?.id, type :rubriqueComposeModify?.type,  noEnseignant :rubriqueComposeModify?.noEnseignant});
+        //    modifyRubriqueCompose(rubriqueComposeModify?.id, {...rubriqueCompose, id : rubriqueComposeModify?.id,   noEnseignant :rubriqueComposeModify?.noEnseignant});
         }
 
         updateModalOpen(false);

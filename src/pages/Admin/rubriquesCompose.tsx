@@ -1,37 +1,35 @@
 import React from "react";
 import ListComponent from "../../components/common/List/list";
 import { useContext } from "react";
-import { RubriqueContext, trierParOrdre } from "../../context/rubriqueContext";
+import { RubriqueComposeContext } from "../../context/rubriqueComposeContext";
 import {  RUBRIQUE_COLUMNS } from "../../constants";
-import {
-    supprimerColonnesId,
-    trouverRubrique
-} from "../../context/rubriqueContext";
-import RubriqueCompose from "../../components/RubriqueCompose";
+
+import RubriqueComposeView from "../../components/RubriqueComposeView";
 import RubriqueComposeAdd from "../../components/RubriqueComposeAdd";
 
 
 const RubriquePage: React.FC = () => {
     const {
-        rubriqueList,
-        rubriqueListError,
-        removeRubrique,
-        deleteRubriqueError,
-        modifyRubriqueError,
-        updateCurrentRubrique,
+     
+        rubriqueComposeList,
+      
+        updateCurrentRubriqueCompose,
+        rubriqueComposeListError,
+        removeRubriqueCompose,
+        deleteRubriqueComposeError,
+        modifyRubriqueComposeError,
+       
+       
+
         
        
-    } = useContext(RubriqueContext);
+    } = useContext(RubriqueComposeContext);
 
-  
-
-    
-    
-    // Données fictives
-    
+      
     const getR = () =>{
-        if(rubriqueList){
-            const dat = supprimerColonnesId(trierParOrdre(rubriqueList));
+        if(rubriqueComposeList){
+            const dat  = rubriqueComposeList;
+            console.log("dat", dat);
             return  dat;
         }
         return null;
@@ -43,37 +41,45 @@ const RubriquePage: React.FC = () => {
 
     const handleEdit = (rowData: any) => {
         console.log("Modifier:", rowData);
-        updateCurrentRubrique(rowData);
-        
-        
+        updateCurrentRubriqueCompose(rowData);      
     };
 
     const handleDelete = (rowData: any) => {
         console.log("Supprimer:", rowData);
         
-        const currentRub = trouverRubrique(rowData, rubriqueList);
-        removeRubrique(currentRub?.id);
+       // const currentRub = trouverRubriqueCompose(rowData, rubriqueComposeList);
+        removeRubriqueCompose(rowData.id);
+        
+       
+    
+    };
+    const handleView = (rowData: any) => {
+        console.log("vue:", rowData);
+        updateCurrentRubriqueCompose(rowData);
+        
+        
         
        
     
     };
 
+
     return (
         <div>
             <div style={{ textAlign: "center", color: "red" }}>
-                {rubriqueListError && rubriqueListError}
-                {deleteRubriqueError && deleteRubriqueError}
-                {modifyRubriqueError&& modifyRubriqueError}
+                {rubriqueComposeListError && rubriqueComposeListError}
+                {deleteRubriqueComposeError && deleteRubriqueComposeError}
+                {modifyRubriqueComposeError&& modifyRubriqueComposeError}
             </div>
             <ListComponent
              
                 details={true}
                 detailsElement={
                     <div>
-                        <RubriqueCompose/>
+                        <RubriqueComposeView/>
                     </div>
                 }
-
+                detailsHandler={handleView}
                 title={"Liste des Rubriques Composes"}
                 columns={RUBRIQUE_COLUMNS}
                 data={dat ? dat.reverse() : []}
