@@ -98,3 +98,12 @@ export const ADMIN_DASHBOARD: Dashboard[] = [
     },
 ];
 
+
+export const UE_COLUMNS = [
+    { id: "anneePro", label: "Promotion" },
+    { id: "nomFormation", label: "Formation" },
+    { id: "codeUE", label: "UE" },
+    { id: "codeEC", label: "EC" },
+    { id: "designation", label: "Désignation" },
+    { id: "etat", label: "Etat" }
+];
