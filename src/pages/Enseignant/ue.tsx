@@ -74,6 +74,24 @@ const UePage: React.FC = () => {
     }
   };
 
+
+  const handleCreate = (rowData: any) => {
+  
+      const selectedUe = ueList.find((ue) =>
+       ue.nomFormation === rowData.nomFormation && 
+       ue.codeUe === rowData.codeUE && 
+       ue.codeEc === rowData.codeEC );
+
+       console.log("jjjjjjj",selectedUe);
+     
+      if (selectedUe) {
+        const rowDataInfo = extractNeededInfo(selectedUe);
+       
+        navigate(`creation-evaluation`, { state: { rowDataInfo } });
+      }
+    
+  };
+
   const myData = ueList.map(extractNeededInfo);
   console.log(myData)
 
@@ -95,6 +113,7 @@ const UePage: React.FC = () => {
         create={true}
         addElement={false}
         detailsHandler={handleDetails}
+        createHandler={handleCreate}
         details={true}
         data={myData}
       />

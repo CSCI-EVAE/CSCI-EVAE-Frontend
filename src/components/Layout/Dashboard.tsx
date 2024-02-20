@@ -25,6 +25,7 @@ import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
 
 import Evaluation from "../../pages/Etudiant/evaluation";
 import { EvaluationContextProvider } from "../../context/evaluationEtudiantContext";
+import InfoGeneralesPage from "../../pages/Enseignant/saisirInfoGenarales";
 
 
 const Dashboard: React.FC = () => {
@@ -108,7 +109,7 @@ const Dashboard: React.FC = () => {
 
                     
                         <Route path="enseignant/evaluation-details/:id_eva" element={<DetailsEvaluationPage />} />
-
+                        <Route path="enseignant/creation-evaluation" element={<InfoGeneralesPage />} />
                                 
                                  
                             </>
