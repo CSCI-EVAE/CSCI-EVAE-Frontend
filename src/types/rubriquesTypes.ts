@@ -13,3 +13,4 @@ export interface RubriqueListResponse {
     data: Rubrique[];
     success: boolean;
 }
+

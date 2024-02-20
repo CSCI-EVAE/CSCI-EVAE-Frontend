@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { userInfos } from "../utils/authUtils";
-import { RubriqueCompose, RubriqueComposeListResponse } from "../types/rubriquesComposeTypes ";
+import { RubriqueComposeDTO,RubriqueCompose,  RubriqueComposeListResponse } from "../types/rubriquesComposeTypes ";
 const API_URL = "http://localhost:8080/api/v1";
 const token = userInfos().token;
 
@@ -17,10 +17,11 @@ const axiosInstance = axios.create({
 export const getRubriqueComposeList = async () => {
     try {
         const response = await axiosInstance.get<RubriqueComposeListResponse>(
-            `${API_URL}/rubriqueCompose`
+            `${API_URL}/admin/rubriqueQuestion/all`
         );
-
+//console.log("data", response.data.data)
         return response.data;
+
     } catch (error) {
         //console.error("rubriqueCompose list failed:", error);
         //throw error;
@@ -29,7 +30,7 @@ export const getRubriqueComposeList = async () => {
 
 export const addRubriqueCompose = async (rubriqueCompose: RubriqueCompose) => {
     try {
-        const response = await axiosInstance.post<RubriqueCompose>(
+        const response = await axiosInstance.post<RubriqueComposeDTO>(
             `${API_URL}/rubriqueCompose`,
             rubriqueCompose
         );

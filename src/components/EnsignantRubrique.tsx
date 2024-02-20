@@ -8,41 +8,34 @@ import {
 } from "../context/questionContext";
 
 import { ListContext } from "../context/listContext";
-import { RubriqueContext } from "../context/rubriqueContext";
-import { Rubrique } from "../types/rubriquesTypes";
+
 import { Question } from "../types/questionTypes";
 import { RubriqueComposeContext } from "../context/rubriqueComposeContext";
+import { RubriqueCompose } from "../types/rubriquesComposeTypes ";
+import { RubriqueEnseignantContext, findRubriqueByDesignation } from "../context/rubriqueEnseignantContext";
 interface rubriqueComposeFormProps {
     add: boolean; 
 }
 
-const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
+const EnseignantRubrique: React.FC<rubriqueComposeFormProps> = ({ add }) => {
    
-    const {
-
-        rubriqueCompose
-    
-        
-       
-    } = useContext(RubriqueComposeContext);
     const {questionListe} = useContext(QuestionContext);
-    const {rubriqueList} = useContext(RubriqueContext);
-    console.log('my rub', rubriqueList)
-    console.log('my des',rubriqueCompose.designation)
-    const [selectedRubriqueCompose, setSelectedRubriqueCompose] = React.useState<string>(rubriqueCompose.designation);
+    const {rubriqueComposeList} = useContext(RubriqueComposeContext);
+    const { updateRubriqueAdded, rubriqueAdded} = useContext(RubriqueEnseignantContext);
+
+    const [selectedRubriqueCompose, setSelectedRubriqueCompose] = React.useState<string>("");
     const [selectedQuestionInRubriqueCompose, setSelectedQuestionInRubriqueCompose] = React.useState<string []>([]);
 
-   
+
     const { updateModalOpen } = useContext(ListContext);
 
     const handleSubmit = (e: React.FormEvent) => {
-        console.log("aa", selectedQuestionInRubriqueCompose);
-        console.log("bb", selectedRubriqueCompose);
-        
-        e.preventDefault();
+        e.preventDefault(); 
        
         if (add === true) {
-            
+            updateRubriqueAdded( findRubriqueByDesignation( rubriqueComposeList,selectedRubriqueCompose));
+            console.log(rubriqueAdded);
+
            
         } else {
 
@@ -59,7 +52,7 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
        // idLabel: "ID qualificatif", 
         //idValue: qualificatif.id 
     }));
-    const RListe = rubriqueList.map((rubriqueList: Rubrique) => ({
+    const RListe = rubriqueComposeList.map((rubriqueList: RubriqueCompose) => ({
         label: `${rubriqueList.designation}`,
         value: `${rubriqueList.designation}`,
         //idLabel: "ID qualificatif", 
@@ -86,19 +79,20 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
                 {" "}
                 Entrez les informations
             </Typography>
-            <Box sx={{ display: "flex", gap: "1rem" }}>
-                <Select
-                
-                    label="Choisissez la Rubrique"
-                    options={RListe} 
-                    value={selectedRubriqueCompose} 
-                    onChange={(value) => setSelectedRubriqueCompose(value as string)}
-                    required
-                    multiple={false}
-                    sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
-                />
-            </Box>
-            <Box sx={{ display: "flex", gap: "1rem" }}>
+            {add ? (
+                 <Box sx={{ display: "flex", gap: "1rem" }}>
+                 <Select
+                     label="Choisissez la Rubrique"
+                     options={RListe} 
+                     value={selectedRubriqueCompose} 
+                     onChange={(value) => setSelectedRubriqueCompose(value as string)}
+                     required
+                     multiple={false}
+                     sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
+                 />
+             </Box>
+            ) : (
+                <Box sx={{ display: "flex", gap: "1rem" }}>
                 <Select
                     label="Choiissiez les questions"
                     options={transformedQuestionListe} 
@@ -109,6 +103,9 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
                     sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
                 />
             </Box>
+            )}
+           
+           
             <Box sx={{ display: "flex", justifyContent: "start", gap: "1rem" }}>
                 <ButtonComponent
                     text="Valider"
@@ -127,4 +124,4 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
     );
 };
 
-export default RubriqueComposeAdd;
+export default EnseignantRubrique;

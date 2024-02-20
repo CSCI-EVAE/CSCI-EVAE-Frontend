@@ -15,7 +15,9 @@ import { RubriqueContextProvider } from "../../context/rubriqueContext";
 import { RubriqueComposeContextProvider } from "../../context/rubriqueComposeContext";
 import RubriqueComposePage from "../../pages/Admin/rubriquesCompose";
 import { ROLE } from "../../constants";
-import RubriqueCompose from "../RubriqueCompose";
+import RubriqueCompose from "../RubriqueComposeView";
+import MyTable from "../../pages/Enseignant/RubriqueList";
+import { RubriqueEnseignantContextProvider } from "../../context/rubriqueEnseignantContext";
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
@@ -31,6 +33,7 @@ const Dashboard: React.FC = () => {
                     <QuestionContextProvider>
                     <RubriqueContextProvider>
                         <RubriqueComposeContextProvider>
+                            <RubriqueEnseignantContextProvider>
                     
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
@@ -64,17 +67,22 @@ const Dashboard: React.FC = () => {
                                     path="/rubriquecompose"
                                     element={<RubriqueComposePage />}
                                 />
+                                 <Route
+                                    path="/table"
+                                    element={<MyTable />}
+                                />
                             </>
                         )}
                         {/* //METTRE TOUTES LES PAGES ENSEIGNANT ICI */}
 
-                        {role === ROLE.etudiant && (
-                            <Route path="/etudiant" element={<Enseignant />} />
+                        {role === ROLE.enseigannt && (
+                            <Route path="/enseignant" element={<Enseignant />} />
                         )}
 
                         <Route path="/404" element={<Page404 />} />
                         <Route path="*" element={<Page404 />} />
                     </Routes>
+                    </RubriqueEnseignantContextProvider>
                     </RubriqueComposeContextProvider>
                    
                     </RubriqueContextProvider>
