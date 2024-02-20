@@ -4,7 +4,7 @@ import ListItemButton from "@mui/material/ListItemButton";
 import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { useParams, useLocation } from 'react-router-dom';
-import { EvaluationContext } from "../../context/evaluationContext";
+import { DetailsEvaluationContext } from "../../context/detailsEvaluationContext";
 
 const DetailsEvaluationPage: React.FC = () => {
   const { id_eva } = useParams();
@@ -17,7 +17,7 @@ const DetailsEvaluationPage: React.FC = () => {
   const {
     evaluationDetails,
     fetchEvaluationDetails,
-  } = useContext(EvaluationContext) || {
+  } = useContext(DetailsEvaluationContext) || {
     evaluationDetails: null,
     evaluationError: "",
     fetchEvaluationDetails: () => {},

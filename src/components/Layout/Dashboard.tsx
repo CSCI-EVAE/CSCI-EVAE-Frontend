@@ -17,7 +17,7 @@ import { ROLE } from "../../constants";
 import RubriqueCompose from "../RubriqueCompose";
 import UePage from "../../pages/Enseignant/ue";
 import { UEContextProvider } from "../../context/UeContext";
-import { EvaluationContextProvider } from "../../context/evaluationContext";
+import { DetailsEvaluationContextProvider } from "../../context/detailsEvaluationContext";
 import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
 
 const Dashboard: React.FC = () => {
@@ -35,7 +35,7 @@ const Dashboard: React.FC = () => {
                     <RubriqueContextProvider>
                         <RubriqueComposeContextProvider>
                             <UEContextProvider>
-                                <EvaluationContextProvider>
+                                <DetailsEvaluationContextProvider>
                     
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
@@ -93,7 +93,9 @@ const Dashboard: React.FC = () => {
                         <Route path="/404" element={<Page404 />} />
                         <Route path="*" element={<Page404 />} />
                     </Routes>
-                    </EvaluationContextProvider>
+            
+
+                    </DetailsEvaluationContextProvider>
                     </UEContextProvider>
                     </RubriqueComposeContextProvider>
                    

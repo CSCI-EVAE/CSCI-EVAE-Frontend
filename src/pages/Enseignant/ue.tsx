@@ -3,7 +3,7 @@ import ListComponent from "../../components/common/List";
 import { UEContext, trouverIdEvaluation } from "../../context/UeContext";
 import { UE_COLUMNS } from "../../constants";
 import { UE } from "../../types/UeTypes";
-import { EvaluationContext } from "../../context/evaluationContext";
+import { DetailsEvaluationContext } from "../../context/detailsEvaluationContext";
 import { useNavigate } from "react-router-dom";
 
 const UePage: React.FC = () => {
@@ -11,7 +11,7 @@ const UePage: React.FC = () => {
   const navigate = useNavigate();
 
   const ueContext = useContext(UEContext);
-  const evaContext = useContext(EvaluationContext);
+  const evaContext = useContext(DetailsEvaluationContext);
 
   if (!ueContext) {
     return <div>Loading...</div>;

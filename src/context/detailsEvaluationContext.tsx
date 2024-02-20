@@ -2,19 +2,19 @@ import React, { createContext, ReactNode, useCallback, useState } from "react";
 import { Evaluation } from "../types/EvaluationTypes";
 import { getEvaluationDetails } from "../services/evaluationService";
 
-interface EvaluationContextProps {
+interface DetailsEvaluationContextProps {
   children: ReactNode;
 }
 
-interface EvaluationContextData {
+interface DetailsEvaluationContextData {
   evaluationDetails: Evaluation| null;
   evaluationError: string;
   fetchEvaluationDetails: (evaluationId: number) => void;
 }
 
-export const EvaluationContext = createContext<EvaluationContextData | null>(null);
+export const DetailsEvaluationContext = createContext<DetailsEvaluationContextData | null>(null);
 
-export const EvaluationContextProvider: React.FC<EvaluationContextProps> = 
+export const DetailsEvaluationContextProvider: React.FC<DetailsEvaluationContextProps> = 
 ({ children }) => {
   const [evaluationDetails, setEvaluationDetails] = useState<Evaluation | null>(null);
   const [evaluationError, setEvaluationError] = useState("");
@@ -41,15 +41,15 @@ export const EvaluationContextProvider: React.FC<EvaluationContextProps> =
 
  
 
-  const contextValue: EvaluationContextData = {
+  const contextValue: DetailsEvaluationContextData = {
     evaluationDetails,
     evaluationError,
     fetchEvaluationDetails,
   };
 
   return (
-    <EvaluationContext.Provider value={contextValue}>
+    <DetailsEvaluationContext.Provider value={contextValue}>
       {children}
-    </EvaluationContext.Provider>
+    </DetailsEvaluationContext.Provider>
   );
 };
