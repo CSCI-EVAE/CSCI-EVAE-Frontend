@@ -1,20 +1,20 @@
-import axios from "axios";
+//import axios from "axios";
 import {
     EvaluationListResponse,
 } from "../types/EvaluationType";
 import evaluationData from "./evaluations.json";
-import { userInfos } from "../utils/authUtils";
-// const API_URL = "http://localhost:8080/api/v1";
-const token = userInfos().token;
+// import { userInfos } from "../utils/authUtils";
+// // const API_URL = "http://localhost:8080/api/v1";
+// const token = userInfos().token;
 
-const axiosInstance = axios.create({
-    //baseURL: 'https://votre-api.com',
-    headers: {
-        "Content-Type": "application/json",
+// const axiosInstance = axios.create({
+//     //baseURL: 'https://votre-api.com',
+//     headers: {
+//         "Content-Type": "application/json",
 
-        Authorization: `Bearer ${token}`,
-    },
-});
+//         Authorization: `Bearer ${token}`,
+//     },
+// });
 
 // export const getEvaluationList = async () => {
 //     try {
