@@ -8,6 +8,7 @@ import {
     supprimerColonnesId,
     trouverIdQualificatif,
 } from "../../context/qualificatifContext";
+import Sidebar from "../../components/Layout/sideBar/SidebarPage";
 
 const QualificatifPage: React.FC = () => {
     const {
@@ -44,6 +45,7 @@ const QualificatifPage: React.FC = () => {
                 {deleteQualificatifError && deleteQualificatifError}
                 {modifyQualificatifError&& modifyQualificatifError}
             </div>
+            <Sidebar />
             <ListComponent
             
                 title={"Liste des qualificatifs"}

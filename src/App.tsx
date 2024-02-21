@@ -6,8 +6,10 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout"; 
 import { Box } from "@mui/material";
 import Page404 from "./pages/Page404";
+
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./constants/theme";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
    
@@ -18,12 +20,13 @@ function App() {
         <ThemeProvider theme={theme}>
         <div className="App">
             {/* <Header /> */}
-             {/* <Sidebar/>  */}
+
+
             <Box sx={{ marginBottom: "128px" }}></Box>
             <Routes>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/logout" element={<Logout />} />
-              
+                <Route path="/" element={<LandingPage />} />
                     <Route
                         path="/dashboard/*"
                         element={
@@ -32,12 +35,10 @@ function App() {
                             </ProtectedRoute>
                         }
                     />
-            
                 {/* other routes */}
-                <Route path="/404" element={<Page404 />} />
+                        <Route path="/404" element={<Page404 />} />
                         <Route path="*" element={<Page404 />} />
-            </Routes>
-            
+            </Routes>  
         </div>
         </ThemeProvider>
     );

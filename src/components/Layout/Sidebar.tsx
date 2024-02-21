@@ -153,7 +153,7 @@ export default function MiniDrawer() {
       <CssBaseline />
       
       <AppBar position="fixed" open={open} 
-      sx={{backgroundColor : 'white'}}
+      sx={{backgroundColor : myTheme.palette.secondary.main}}
       >
         <Toolbar>
           <IconButton
@@ -201,7 +201,7 @@ export default function MiniDrawer() {
                  ADMIN_DASHBOARD.map((element, index)=> (
                      <ListItem key={index} disablePadding sx={{...item, ...itemCategory,  display: 'block' }}>
                <ListItemButton 
-           
+              // selected={true}
                sx={{
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',

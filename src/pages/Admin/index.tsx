@@ -1,9 +1,8 @@
 import React from 'react';
-import { Container, Grid, Paper, Typography } from '@mui/material';
+import { Container, Grid, Paper, Typography, Icon } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Icon } from '@mui/material';
 import { ADMIN_DASHBOARD } from '../../constants';
-
+import Sidebar from '../../components/Layout/sideBar/SidebarPage';
 import Header from '../../components/Layout/Header';
 
 function BigMenu() {
@@ -26,9 +25,10 @@ function BigMenu() {
   }
 
   return (
-    <div style={{ marginTop: "-130px" }}>
-      <Header/>
-      <Container maxWidth="lg" >
+    <>
+      <Sidebar />
+      <Header />
+      <Container maxWidth="lg">
         <Typography variant="h4" align="center" gutterBottom style={textStyle}>
           Menu Administrateur
         </Typography>
@@ -38,7 +38,7 @@ function BigMenu() {
               <Paper
                 onClick={() => navigate(menuItem.link)}
                 elevation={3}
-                sx={{ p: 5, textAlign: 'center', cursor: 'pointer', height: '70%',width: '70%', backgroundColor: "white" }}
+                sx={{ p: 5, textAlign: 'center', cursor: 'pointer', height: '70%', width: '70%', backgroundColor: "white" }}
               >
                 <Icon style={iconStyle} fontSize="large">{menuItem.icon}</Icon>
                 <Typography variant="h6" style={nomMenu}>{menuItem.title}</Typography>
@@ -47,7 +47,7 @@ function BigMenu() {
           ))}
         </Grid>
       </Container>
-    </div>
+    </>
   );
 }
 

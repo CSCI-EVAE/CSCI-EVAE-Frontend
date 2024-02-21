@@ -6,6 +6,7 @@ import {  RUBRIQUE_COLUMNS } from "../../constants";
 
 import RubriqueComposeView from "../../components/RubriqueComposeView";
 import RubriqueComposeAdd from "../../components/RubriqueComposeAdd";
+import Sidebar from "../../components/Layout/sideBar/SidebarPage";
 
 
 const RubriquePage: React.FC = () => {
@@ -71,6 +72,7 @@ const RubriquePage: React.FC = () => {
                 {deleteRubriqueComposeError && deleteRubriqueComposeError}
                 {modifyRubriqueComposeError&& modifyRubriqueComposeError}
             </div>
+            <Sidebar />
             <ListComponent
              
                 details={true}

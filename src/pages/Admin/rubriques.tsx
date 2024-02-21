@@ -8,6 +8,7 @@ import {
     supprimerColonnesId,
     trouverRubrique
 } from "../../context/rubriqueContext";
+import Sidebar from "../../components/Layout/sideBar/SidebarPage";
 
 
 const RubriquePage: React.FC = () => {
@@ -64,6 +65,7 @@ const RubriquePage: React.FC = () => {
                 {deleteRubriqueError && deleteRubriqueError}
                 {modifyRubriqueError&& modifyRubriqueError}
             </div>
+            <Sidebar />
             <ListComponent
              
             
