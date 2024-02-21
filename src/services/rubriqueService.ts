@@ -29,7 +29,7 @@ export const getRubriqueList = async () => {
 export const addRubrique = async (rubrique: Rubrique) => {
     try {
         const response = await axiosInstance.post<Rubrique>(
-            `${API_URL}/rubrique`,
+            `${API_URL}/rubrique/create`,
             rubrique
         );
 

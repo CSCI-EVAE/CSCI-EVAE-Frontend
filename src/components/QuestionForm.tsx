@@ -51,6 +51,7 @@ const QuestionForm: React.FC<questionFormProps> = ({ add }) => {
         if (add === true) {
             const selectedQualificatifObj = transformedQuestionListe.find((item: { value: string | number; }) => item.value === selectedQualificatif);
             addNewQuestion({
+                
                 idQualificatif: { id: selectedQualificatifObj.idValue},
                 noEnseignant: null,
                  type: TYPE_STANDARD.question_standard,

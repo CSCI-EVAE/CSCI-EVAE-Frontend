@@ -192,7 +192,13 @@ const ListComponent: React.FC<Props> = ({
                         variant="filled"
                         value={filters[column.id] || ""}
                         onChange={(e) => handleFilterChange(e, column.id)}
-                        style={{ marginRight: "10px", }}
+                      
+                        style={{
+                            marginRight: "10px",                         
+                          
+                            width: "20%",
+                           
+                        }}
                         
                     />
                 ))}
@@ -324,8 +330,8 @@ const ListComponent: React.FC<Props> = ({
                     onClose={() => updateModalOpen(false)}
                     PaperProps={{
                         style: {
-                            minHeight:500,
-                            minWidth: 800,
+                            minHeight:200,
+                            minWidth: 400,
                             border: "1px solid #ccc",
                             borderRadius: 8,
                             backgroundColor: "rgba(255, 255, 255, 0.9)",

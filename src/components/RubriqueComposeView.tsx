@@ -57,8 +57,10 @@ const RubriqueComposeView= () => {
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                     >
-                      <ListItemText primary={item.intitule} />
-                      <ListItemText secondary = {`${item.maximal} - ${item.minimal}`}/>
+                    
+    <ListItemText primary={item.intitule} />
+    <ListItemText secondary={`${item.maximal} - ${item.minimal}`} />
+
                     </ListItem>
                   )}
                 </Draggable>
