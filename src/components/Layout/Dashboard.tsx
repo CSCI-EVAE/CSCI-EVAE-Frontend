@@ -26,7 +26,7 @@ import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
 import Evaluation from "../../pages/Etudiant/evaluation";
 import { EvaluationContextProvider } from "../../context/evaluationEtudiantContext";
 import InfoGeneralesPage from "../../pages/Enseignant/saisirInfoGenarales";
-import { SoumettreEvaluationContext, SoumettreEvaluationContextProvider } from "../../context/soumettreEvaluationContext";
+import {SoumettreEvaluationContextProvider } from "../../context/soumettreEvaluationContext";
 
 
 const Dashboard: React.FC = () => {
