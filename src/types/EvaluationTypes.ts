@@ -1,3 +1,4 @@
+import { Enseignant } from "./questionTypes";
 
 
 export interface Qualificatif {
@@ -51,5 +52,30 @@ export interface Qualificatif {
     data: Evaluation;
   }
   
+  export interface ElementConstitutif{
+    codeFormation: string;
+    codeUe: string;
+    codeEc: string | null;
 
+  }
+  export interface Promotion{
+    anneeUniversitaire: string;
+    codeFormation: string;
+
+  }
+  
+export interface CreateEvaluation{
+  id :number;
+  noEnseignant:Enseignant;
+  elementConstitutif : ElementConstitutif;
+  promotion: Promotion;
+  noEvaluation : number;
+  designation:string;
+  etat :string;
+  periode :string;
+  debutReponse: Date;
+  finReponse : Date;
+  rubriqueEvaluations:RubriqueEvaluation[]
+
+}
   

@@ -27,12 +27,11 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
     } = useContext(RubriqueComposeContext);
     const {questionListe} = useContext(QuestionContext);
     const {rubriqueList} = useContext(RubriqueContext);
-    console.log('my rub', rubriqueList)
-    console.log('my des',rubriqueCompose.designation)
-    const [selectedRubriqueCompose, setSelectedRubriqueCompose] = React.useState<string>(rubriqueCompose.designation);
+
+    const [selectedRubriqueCompose, setSelectedRubriqueCompose] = React.useState<string>();
     const [selectedQuestionInRubriqueCompose, setSelectedQuestionInRubriqueCompose] = React.useState<string []>([]);
 
-   
+   // setSelectedRubriqueCompose(rubriqueCompose.designation);
     const { updateModalOpen } = useContext(ListContext);
 
     const handleSubmit = (e: React.FormEvent) => {

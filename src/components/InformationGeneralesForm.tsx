@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { TextField, Alert, Container, Paper, Typography, Grid } from "@mui/material";
 import ButtonComponent from "./common/Button";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const InfoGenerales: React.FC = () => {
+  const navigate = useNavigate()
   const { state } = useLocation();
   const infoGenerale = state?.rowDataInfo;
 
@@ -58,7 +59,7 @@ const InfoGenerales: React.FC = () => {
     };
   
     localStorage.setItem('formData', JSON.stringify(infoGenerales));
-  
+    navigate(`/dashboard/enseignant/rubrique-evaluation`);
     setDesignation("");
     setDateDebut("");
     setDateFin("");
@@ -163,7 +164,7 @@ const InfoGenerales: React.FC = () => {
 
           </Grid>
           <div style={{ textAlign: 'right' }}>
-          <ButtonComponent text="Suivant" type="submit" variant="contained" />
+          <ButtonComponent  text="Suivant" type="submit" variant="contained" />
           </div>
         </form>
       </Paper>
