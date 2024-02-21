@@ -19,7 +19,7 @@ const AjoutRubriqueEvaluation = () => {
   const {
     rubriqueAdded, 
     rubriqueSelectedEns, 
-    updateRubriqueSelectedEns, updateRubriqueAddedByList, updateRubriqueAdded
+    updateRubriqueSelectedEns, updateRubriqueAddedByList,
    
 } = useContext(RubriqueEnseignantContext);
 
@@ -66,7 +66,7 @@ const AjoutRubriqueEvaluation = () => {
   }
 
   const handleSubmit=()=>{
-    
+    localStorage.getItem("formData")
 
   }
 

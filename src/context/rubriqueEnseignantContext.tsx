@@ -5,7 +5,6 @@ import React, {
     useState,
 } from "react";
 import { questionsInRubrique, RubriqueCompose } from "../types/rubriquesComposeTypes ";
-import { Rubrique } from "../types/rubriquesTypes";
 import { Question } from "../types/questionTypes";
 import { Qualificatif } from "../types/qualificatifTypes";
 import { TYPE_STANDARD } from "../constants";
@@ -39,7 +38,7 @@ export function convertirQuestionsEnQuestionsInRubrique(questions: Question[]): 
     const questionsInRubriqueArray: questionsInRubrique[] = [];
 
     questions.forEach((question: Question) => {
-        const { id, intitule, idQualificatif, noEnseignant } = question;
+        const { id, intitule, idQualificatif } = question;
         const { minimal, maximal } = idQualificatif;
 
         const questionInRubrique: questionsInRubrique = {
@@ -112,7 +111,7 @@ export const RubriqueEnseignantContextProvider: React.FC<
     }, [rubriqueAdded]);
     const updateRubriqueAddedByList = useCallback((value: RubriqueCompose[] ) => {
         setRubriqueAdded(value );
-    }, [rubriqueAdded]);
+    }, []);
 
     
 

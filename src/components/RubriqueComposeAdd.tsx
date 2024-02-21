@@ -11,20 +11,13 @@ import { ListContext } from "../context/listContext";
 import { RubriqueContext } from "../context/rubriqueContext";
 import { Rubrique } from "../types/rubriquesTypes";
 import { Question } from "../types/questionTypes";
-import { RubriqueComposeContext } from "../context/rubriqueComposeContext";
 interface rubriqueComposeFormProps {
     add: boolean; 
 }
 
 const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
    
-    const {
-
-        rubriqueCompose
-    
-        
-       
-    } = useContext(RubriqueComposeContext);
+ 
     const {questionListe} = useContext(QuestionContext);
     const {rubriqueList} = useContext(RubriqueContext);
 
