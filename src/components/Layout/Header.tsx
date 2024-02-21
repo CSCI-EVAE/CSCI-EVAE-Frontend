@@ -15,7 +15,6 @@ import {
 import ButtonComponent from "../common/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import {  useTheme,} from '@mui/material/styles';
 import logo from '../../images/echoSim.png'
 const Header: React.FC = () => {
     let navigate = useNavigate();
@@ -54,7 +53,6 @@ const Header: React.FC = () => {
     };
 
     
-    const myTheme  = useTheme();
 
     return (
         <>

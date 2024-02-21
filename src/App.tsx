@@ -6,7 +6,6 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout"; 
 import { Box } from "@mui/material";
 import Page404 from "./pages/Page404";
-import Sidebar from "./components/Layout/Sidebar";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./constants/theme";
 
