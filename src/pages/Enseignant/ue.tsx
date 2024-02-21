@@ -5,6 +5,7 @@ import { UE_COLUMNS } from "../../constants";
 import { UE } from "../../types/UeTypes";
 import { DetailsEvaluationContext } from "../../context/detailsEvaluationContext";
 import { useNavigate } from "react-router-dom";
+import { SoumettreEvaluationContext } from "../../context/soumettreEvaluationContext";
 
 const UePage: React.FC = () => {
 
@@ -12,6 +13,7 @@ const UePage: React.FC = () => {
 
   const ueContext = useContext(UEContext);
   const evaContext = useContext(DetailsEvaluationContext);
+  const soumettre = useContext(SoumettreEvaluationContext)
 
   if (!ueContext) {
     return <div>Loading...</div>;
@@ -33,10 +35,12 @@ const UePage: React.FC = () => {
       codeUE: ue.codeUe,
       etat: "",
       designation: "",
+      idEvaluation: "",
       debutReponse: null,
       finReponse: null,
       detailsValue: false,
-      createValue: true
+      createValue: true,
+      soumettreValue: false,
     };
 
     if (ue.evaluationId) {
@@ -46,9 +50,18 @@ const UePage: React.FC = () => {
         designation: ue.designation,
         debutReponse: ue.debutReponse,
         finReponse: ue.finReponse,
+        idEvaluation: ue.evaluationId,
         detailsValue: true,
-        createValue: false
+        createValue: false,
+        soumettreValue: false
       };
+      
+      if(ue.etat === "ELA"){
+        extractedInfo = {
+          ...extractedInfo,
+          soumettreValue: true
+        };
+      }
 
       
       
@@ -92,6 +105,28 @@ const UePage: React.FC = () => {
     
   };
 
+  const handleSoumettre = async (rowData: any) => {
+    try {
+      const evaluationId = rowData.idEvaluation;
+      const response = await soumettre?.soumettreEvaluation(evaluationId);
+  
+      if (response) {
+        await ueContext?.refreshList(); 
+  
+        console.log("Soumettre Response:", response);
+      } else {
+        console.error("Soumettre evaluation failed");
+      }
+    } catch (error) {
+      console.error("Soumettre evaluation error:", error);
+    }
+  };
+  
+
+   
+  
+
+
   const myData = ueList.map(extractNeededInfo);
   console.log(myData)
 
@@ -112,8 +147,10 @@ const UePage: React.FC = () => {
         modify={false}
         create={true}
         addElement={false}
+        soumettre={true}
         detailsHandler={handleDetails}
         createHandler={handleCreate}
+        soumettreHandler={handleSoumettre}
         details={true}
         data={myData}
       />
