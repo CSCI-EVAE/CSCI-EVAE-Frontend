@@ -153,7 +153,7 @@ export default function MiniDrawer() {
       <CssBaseline />
       
       <AppBar position="fixed" open={open} 
-      sx={{backgroundColor : myTheme.palette.secondary.main}}
+      sx={{backgroundColor : 'white'}}
       >
         <Toolbar>
           <IconButton
@@ -171,7 +171,7 @@ export default function MiniDrawer() {
           <Header/>
         </Toolbar>
       </AppBar>
-      <Drawer 
+      <Drhttps://github.com/CSCI-EVAE/CSCI-EVAE-Frontend/pull/21/conflict?name=src%252Fcomponents%252FLayout%252FSidebar.tsx&ancestor_oid=e245bd50372b8740a7347ad1460edafeeae7ed1b&base_oid=a21bfb5b96946c1bd45a0293edc086ae9a7d29cc&head_oid=7f0964b5504193237da42e3a55083ee0c46a113aawer 
        id="drawer"
        sx={{
         '& .MuiDrawer-paper': {
@@ -201,6 +201,7 @@ export default function MiniDrawer() {
                  ADMIN_DASHBOARD.map((element, index)=> (
                      <ListItem key={index} disablePadding sx={{...item, ...itemCategory,  display: 'block' }}>
                <ListItemButton 
+
                sx={{
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
