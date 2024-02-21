@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import LoginForm from "../components/LoginForm";
 import { Container, Paper, Typography, Box } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../utils/authUtils";
 import logo from "../images/echoSim.png";
 
