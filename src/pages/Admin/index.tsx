@@ -3,12 +3,16 @@ import { Container, Grid, Paper, Typography, Divider } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { Icon } from '@mui/material';
 import { ADMIN_DASHBOARD } from '../../constants';
+import Sidebar from '../../components/Layout/sideBar/SidebarPage';
 
 function BigMenu() {
     const navigate = useNavigate();
 
 
     return (
+        <>
+        <Sidebar />
+        
         <Container maxWidth="lg" >
             <Typography variant="h4" align="center" gutterBottom>
                 Menu
@@ -31,6 +35,7 @@ function BigMenu() {
 </Grid>
 
         </Container>
+        </>
     );
 }
 

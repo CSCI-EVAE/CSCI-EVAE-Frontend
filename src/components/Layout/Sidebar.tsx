@@ -96,14 +96,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const item = {
     py: '2px',
     px: 3,
-    color: 'rgba(255, 255, 255, 0.7)',
+    color: 'hsla(14, 95%, 66%, 0.1)',
     '&:hover, &:focus': {
-      bgcolor: 'rgba(255, 255, 255, 0.08)',
+      bgcolor: 'hsla(14, 95%, 66%, 0.1)',
     },
   };
   
   const itemCategory = {
-    boxShadow: '0 -1px 0 rgb(255,255,255,0.1) inset',
+    boxShadow: '0 -1px 0 hsla(14, 95%, 66%, 0.1) inset',
     py: 1.5,
     px: 3,
   };
@@ -185,7 +185,7 @@ export default function MiniDrawer() {
          >
          <Box mb={2}>
                          <img
-                             src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/51/Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg/1280px-Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg.png"
+                             src="./echoSim.png"
                              alt="Logo"
                              width="100"
                          />
@@ -201,7 +201,6 @@ export default function MiniDrawer() {
                  ADMIN_DASHBOARD.map((element, index)=> (
                      <ListItem key={index} disablePadding sx={{...item, ...itemCategory,  display: 'block' }}>
                <ListItemButton 
-              // selected={true}
                sx={{
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',

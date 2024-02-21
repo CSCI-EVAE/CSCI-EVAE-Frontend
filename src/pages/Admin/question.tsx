@@ -8,6 +8,7 @@ import {
     supprimerColonnesId,
     
 } from "../../context/questionContext";
+import Sidebar from "../../components/Layout/sideBar/SidebarPage";
 
 const QuestionPage: React.FC = () => {
     const {
@@ -48,6 +49,7 @@ const QuestionPage: React.FC = () => {
                 {deleteQuestionError && deleteQuestionError}
                 {modifyQuestionError&& modifyQuestionError}
             </div>
+            <Sidebar />
             <ListComponent
                 title={"Liste des questions"}
                 columns={Question_COLUMNS}

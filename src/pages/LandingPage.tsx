@@ -1,7 +1,15 @@
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faBars, faTimes, faArrowRight, faArrowUp,faChevronRight, faLocationPin  } from '@fortawesome/free-solid-svg-icons';
-import {  faPhone, faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
+import PersonIcon from '@mui/icons-material/Person';
+import DnsIcon from '@mui/icons-material/Dns';
+import AccessTimeFilledIcon from '@mui/icons-material/AccessTimeFilled';
+import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import SmartphoneIcon from '@mui/icons-material/Smartphone';
+import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
+import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
+
 const LandingPage: React.FC = () => {
   return (
     <html lang="en">
@@ -60,17 +68,17 @@ const LandingPage: React.FC = () => {
                 EcoSim Tech
                 </span>
                 <button className="nav-close-btn" aria-label="Close menu" data-nav-toggler>
-                <FontAwesomeIcon icon={faArrowUp} />  
+                  <ArrowUpwardIcon/>
                 </button>
               </div>
             </nav>
             <div className="header-actions">
               <a href="/login" className="header-action-btn login-btn">
-              <FontAwesomeIcon icon={faUser} />
+                <PersonIcon/>
                 <span className="span">Login </span>
               </a>
               <button className="header-action-btn nav-open-btn" aria-label="Open menu" data-nav-toggler>
-              <FontAwesomeIcon icon={faBars} />
+               <DnsIcon/>
               </button>
             </div>
             <div className="overlay" data-nav-toggler data-overlay></div>
@@ -80,12 +88,12 @@ const LandingPage: React.FC = () => {
         <div className="search-container" data-search-box>
           <div className="container">
             <button className="search-close-btn" aria-label="Close search" data-search-toggler>
-            <FontAwesomeIcon icon={faTimes} />
+            <AccessTimeFilledIcon/>
             </button>
             <div className="search-wrapper">
               <input type="search" name="search" placeholder="Search Here..." aria-label="Search" className="search-field" />
               <button className="search-submit" aria-label="Submit" data-search-toggler>
-              <FontAwesomeIcon icon={faTimes} />
+              <AccessTimeFilledIcon/>
               </button>
             </div>
           </div>
@@ -107,7 +115,7 @@ const LandingPage: React.FC = () => {
                   </p>
                   <a href="/login" className="btn btn-primary">
                     <span className="span">Get Started Today</span>
-                    <FontAwesomeIcon icon={faArrowRight} />
+                    < ArrowRightAltIcon/>
                   </a>
                 </div>
                 <figure className="hero-banner">
@@ -145,7 +153,7 @@ const LandingPage: React.FC = () => {
                   </ul>
                   <span className="btn btn-primary">
                     <span className="span">Know About Us</span>
-                    <FontAwesomeIcon icon={faArrowRight} />
+                    < ArrowRightAltIcon/>
                   </span>
                 </div>
               </div>
@@ -179,7 +187,7 @@ const LandingPage: React.FC = () => {
             </li>
             <li>
             <span className="footer-link">
-            <FontAwesomeIcon icon={faChevronRight} aria-hidden="true" />
+              <ChevronRightIcon/>
   <span className="span">About Us</span>
 </span>
        
@@ -187,31 +195,31 @@ const LandingPage: React.FC = () => {
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}   aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">Upcoming Events</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true" />  
+              <ChevronRightIcon/>
                 <span className="span">Blog & News</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">FAQ Question</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">Testimonial</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">Privacy Policy</span>
               </span>
             </li>
@@ -223,37 +231,37 @@ const LandingPage: React.FC = () => {
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
               <span className="span">Contact Us</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">Pricing Plan</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">Instructor Profile</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">FAQ</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">Popular Courses</span>
               </span>
             </li>
             <li>
               <span className="footer-link">
-              <FontAwesomeIcon icon={faChevronRight}  aria-hidden="true"/>  
+              <ChevronRightIcon/>
                 <span className="span">Terms & Conditions</span>
               </span>
             </li>
@@ -264,19 +272,21 @@ const LandingPage: React.FC = () => {
               <p className="footer-list-title">Contact Info</p>
             </li>
             <li className="footer-item">
-            <FontAwesomeIcon icon={faLocationPin}  aria-hidden="true"/>
+            
+            <LocationOnIcon/>
               <address className="footer-link">275 Quadra Street Victoria Road, New York</address>
             </li>
             <li className="footer-item">
-            <FontAwesomeIcon icon={faPhone}  aria-hidden="true"/>
+              <SmartphoneIcon/>
               <a href="tel:+13647657839" className="footer-link">+ 1 (364) 765-7839</a>
             </li>
             <li className="footer-item">
-            <FontAwesomeIcon icon={faPhone}  aria-hidden="true"/>
+             <LocalPhoneIcon/>
               <a href="tel:+13647657840" className="footer-link">+ 1 (364) 765-7840</a>
             </li>
             <li className="footer-item">
-            <FontAwesomeIcon icon={faEnvelope}  aria-hidden="true"/>
+            <AlternateEmailIcon/>
+            
               <a href="mailto:contact@eduhome.com" className="footer-link">contact@eduhome.com</a>
             </li>
           </ul>
@@ -292,7 +302,7 @@ const LandingPage: React.FC = () => {
       </div>
     </footer>
         <span className="back-top-btn" aria-label="Back to top" data-back-top-btn>
-        <FontAwesomeIcon icon={faArrowUp}  aria-hidden="true"/>
+          <ArrowUpwardIcon/>
         </span>
         <script src="./js/script.ts" defer></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
