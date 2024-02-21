@@ -1,9 +1,12 @@
 import axios from "axios";
 
-import { userInfos } from "../utils/authUtils";
-import { RubriqueComposeDTO,RubriqueCompose,  RubriqueComposeListResponse } from "../types/rubriquesComposeTypes ";
+import { getToken, userInfos } from "../utils/authUtils";
+import { RubriqueCompose,  RubriqueComposeListResponse, CreateRubriqueCompose } from "../types/rubriquesComposeTypes ";
+
 const API_URL = "http://localhost:8080/api/v1";
-const token = userInfos().token;
+//const token = userInfos().token;
+//const token = getToken();
+const token = localStorage.getItem("jwtToken");
 
 const axiosInstance = axios.create({
     //baseURL: 'https://votre-api.com',
@@ -17,7 +20,7 @@ const axiosInstance = axios.create({
 export const getRubriqueComposeList = async () => {
     try {
         const response = await axiosInstance.get<RubriqueComposeListResponse>(
-            `${API_URL}/admin/rubriqueQuestion/all`
+            `${API_URL}/rubriqueQuestion/all`
         );
 //console.log("data", response.data.data)
         return response.data;
@@ -30,8 +33,10 @@ export const getRubriqueComposeList = async () => {
 
 export const addRubriqueCompose = async (rubriqueCompose: RubriqueCompose) => {
     try {
-        const response = await axiosInstance.post<RubriqueComposeDTO>(
-            `${API_URL}/rubriqueCompose`,
+
+        const response = await axiosInstance.post(
+            `${API_URL}/rubriqueQuestion/AjouterRubriqueQuestion`,
+
             rubriqueCompose
         );
 

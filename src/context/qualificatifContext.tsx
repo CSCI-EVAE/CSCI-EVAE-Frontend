@@ -132,6 +132,7 @@ export const QualificatifContextProvider: React.FC<
     const removeQualificatif = useCallback(async (qualificatif_id: number) => {
         const response = await deleteQualificatif(qualificatif_id);
         if (response) {
+            
             setDeleteQualificatifError("");
             getList();
             return;

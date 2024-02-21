@@ -4,9 +4,11 @@ import {
     QuestionListResponse,
     QuestionBody
 } from "../types/questionTypes";
-import { userInfos } from "../utils/authUtils";
+import { getToken, userInfos } from "../utils/authUtils";
 const API_URL = "http://localhost:8080/api/v1";
-const token = userInfos().token;
+//const token = userInfos().token;
+//const token = getToken();
+const token = localStorage.getItem("jwtToken");
 
 const axiosInstance = axios.create({
     //baseURL: 'https://votre-api.com',

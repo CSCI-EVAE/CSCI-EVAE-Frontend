@@ -11,7 +11,7 @@ import {
 } from "../types/EvaluationType";
 
 import {
-    getEvaluationList
+    getEvaluationEtudiantList
 }  from "../services/EvaluationEtudiantService";
 
 interface evaluationContextProviderProps {
@@ -22,29 +22,7 @@ interface evaluationContextProviderProps {
 //creation de context
 export const EvaluationContext = createContext<any>(null);
 
-// export function trouverIdEvaluation(
-//     evaluation: Evaluation,
-//     evaluationList: Evaluation[]
-// ): number | null {
-//     if(evaluation && evaluationList){
-       
-//         const evaluationTrouve = evaluationList.find(
-//             (item) => 
-//             item.noEvaluation === evaluation.noEvaluation
-//         );
-        
-//         if(evaluationTrouve && evaluationTrouve.id !== undefined){
-//                return evaluationTrouve.id;
-//         }
-//         else{
-//             return null;
-//         }
 
-//     }else{
-//         return null;
-//     }
-    
-// } 
 
 export function AjusterColonnes(evaluationList: Evaluation[]): any[] {
     // Vérifier si questionList et questionList.questionList sont définis
@@ -75,7 +53,7 @@ evaluationContextProviderProps
     },[] );
 
     const getList = useCallback(async () => {
-        let list = await getEvaluationList();
+        let list = await getEvaluationEtudiantList();
         if (list) {
             setEvaluationListeError("");
             updateEvaluationList(list.data);

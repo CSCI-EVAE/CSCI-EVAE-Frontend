@@ -1,10 +1,9 @@
 import axios from "axios";
 
-import { userInfos } from "../utils/authUtils";
 import { Rubrique, RubriqueListResponse } from "../types/rubriquesTypes";
 const API_URL = "http://localhost:8080/api/v1";
-const token = userInfos().token;
 
+const token = localStorage.getItem("jwtToken");
 const axiosInstance = axios.create({
     //baseURL: 'https://votre-api.com',
     headers: {

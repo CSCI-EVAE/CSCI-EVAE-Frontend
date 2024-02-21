@@ -26,6 +26,15 @@ import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
 import Evaluation from "../../pages/Etudiant/evaluation";
 import { EvaluationContextProvider } from "../../context/evaluationEtudiantContext";
 
+import InfoGeneralesPage from "../../pages/Enseignant/saisirInfoGenarales";
+import {SoumettreEvaluationContextProvider } from "../../context/soumettreEvaluationContext";
+import AjoutRubriqueEvaluation from "../../pages/Enseignant/AjoutRubriqueEvaluation";
+import { StepContextProvider } from "../../context/stepperContext";
+import ReponseEvaluation from "../../pages/Etudiant/ReponseEvaluation";
+import CreerEvaluation from "../../pages/Enseignant/CreerEvaluation";
+import TokenExpirationWrapper from "./TokenEpxpire";
+
+
 
 const Dashboard: React.FC = () => {
     // const role = Object.keys(ROLE_COMPONENTS).find(hasRole);
@@ -36,6 +45,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <div>
+            <TokenExpirationWrapper>
             <ListContextProvider>
                 <QualificatifContextProvider>
                     <QuestionContextProvider>
@@ -134,6 +144,7 @@ const Dashboard: React.FC = () => {
                     </QuestionContextProvider>
                 </QualificatifContextProvider>
             </ListContextProvider>
+            </TokenExpirationWrapper>
         </div>
     );
 };
