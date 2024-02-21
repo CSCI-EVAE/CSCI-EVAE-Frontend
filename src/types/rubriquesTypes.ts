@@ -14,4 +14,3 @@ export interface RubriqueListResponse {
     success: boolean;
 }
 
-

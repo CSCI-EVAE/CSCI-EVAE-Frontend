@@ -1,24 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {  TableCell, List, ListItem,ListItemIcon, ListItemButton } from '@mui/material';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import { RubriqueCompose, questionsInRubrique } from '../../types/rubriquesComposeTypes ';
-import { RubriqueEnseignantContext } from '../../context/rubriqueEnseignantContext';
-
-interface TableQuestionProps {
-
-  rubriqueParent : RubriqueCompose;
-  questions : questionsInRubrique[];
-  deleteQuestionHandler : (row : questionsInRubrique,rubriqueParent : RubriqueCompose )=> void;
-}
-
-const AjoutQuestionEvaluation : React.FC<TableQuestionProps>= ({ rubriqueParent, questions, deleteQuestionHandler }) => {
-const [dataset, setDataset] = useState<questionsInRubrique[]>(questions );
-  const {rubriqueAdded  } = useContext(RubriqueEnseignantContext);
- useEffect(()=>{
-  setDataset(questions);
- },[questions, rubriqueAdded,deleteQuestionHandler, rubriqueParent])
-
+import { questionsInRubrique } from '../../types/rubriquesComposeTypes ';
+const MyTableQuestion = (props :any) => {
+  const data  = props.questions;
+  const [dataset, setDataset] = useState<questionsInRubrique[]>(data);
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;
@@ -27,13 +14,14 @@ const [dataset, setDataset] = useState<questionsInRubrique[]>(questions );
     const [reorderedItem] = newItems.splice(result.source.index, 1);
     newItems.splice(result.destination.index, 0, reorderedItem);
   
-    //Mise à jour de l'ordre de chaque élément
-      newItems.forEach((item, index) => {
-      
-          item.ordre = index + 1;
-        
-      });
-     console.log(newItems);
+    // Mise à jour de l'ordre de chaque élément
+    //  newItems.forEach((item, index) => {
+    //   item.order = index + 1;
+    //    if(item.ordre){
+    //      item.ordre = item.order;
+    //    };
+    //  });
+    // console.log(newItems);
   
     setDataset(newItems);
   };
@@ -69,7 +57,6 @@ const [dataset, setDataset] = useState<questionsInRubrique[]>(questions );
                {/* <ListItemText style={{width:'90%'}}>{row.intitule}</ListItemText> */}
 
                 <ListItemButton
-                        onClick={()=> deleteQuestionHandler(row, rubriqueParent)}
                         
                         sx={{ display: "flex",
                           flexDirection: "column",
@@ -93,4 +80,4 @@ const [dataset, setDataset] = useState<questionsInRubrique[]>(questions );
   );
 };
 
-export default AjoutQuestionEvaluation;
+export default MyTableQuestion;
