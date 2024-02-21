@@ -15,12 +15,7 @@ export interface Qualificatif {
     intitule: string;
   }
   
-  export interface QuestionEvaluation {
-    id: number;
-    intitule: string | null;
-    idQuestion: Question;
-    ordre: number;
-  }
+  
   
   export interface Rubrique {
     id: number;
@@ -28,6 +23,12 @@ export interface Qualificatif {
     designation: string | null;
     ordre: number;
     questionEvaluations: QuestionEvaluation[] | null;
+  }
+  export interface QuestionEvaluation {
+    id: number;
+    intitule: string | null;
+    idQuestion: Question;
+    ordre: number;
   }
   
   export interface RubriqueEvaluation {
@@ -45,6 +46,7 @@ export interface Qualificatif {
     finReponse: string;
     rubriqueEvaluations: RubriqueEvaluation[];
   }
+  
   
   export interface EvaluationResponse {
     success: boolean;

@@ -25,6 +25,7 @@ import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
 import Evaluation from "../../pages/Etudiant/evaluation";
 import { EvaluationContextProvider } from "../../context/evaluationEtudiantContext";
 import InfoGeneralesPage from "../../pages/Enseignant/saisirInfoGenarales";
+import {SoumettreEvaluationContextProvider } from "../../context/soumettreEvaluationContext";
 import AjoutRubriqueEvaluation from "../../pages/Enseignant/AjoutRubriqueEvaluation";
 import { StepContextProvider } from "../../context/stepperContext";
 import ReponseEvaluation from "../../pages/Etudiant/ReponseEvaluation";
@@ -50,6 +51,7 @@ const Dashboard: React.FC = () => {
                             <EvaluationContextProvider>
                             <UEContextProvider>
                             <DetailsEvaluationContextProvider>
+                            <SoumettreEvaluationContextProvider>
                                 
                     
                     <Routes>
@@ -128,7 +130,7 @@ const Dashboard: React.FC = () => {
                     </Routes>
 
             
-
+                  </SoumettreEvaluationContextProvider>
                     </DetailsEvaluationContextProvider>
                     </UEContextProvider>
 

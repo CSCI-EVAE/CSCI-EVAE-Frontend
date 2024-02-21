@@ -11,6 +11,7 @@ interface UEContextData {
   ueList: UE[];
   ueListError: string;
   getUEList: () => void;
+  refreshList: () => void;
 }
 
 export const UEContext = createContext<UEContextData | null>(null);
@@ -43,22 +44,30 @@ export const UEContextProvider: React.FC<UEContextProps> = ({ children }) => {
 
   const fetchUEList = useCallback(async () => {
     try {
-        const response: UEListResponse | undefined = await getUEList();
-        
-     
-    if (response) {
-        console.log("je suis response",response.data);
-        console.log("je suis la");
+      const response: UEListResponse | undefined = await getUEList();
+
+      if (response) {
         setUeList(response.data);
         setUeListError("");
       } else {
         setUeListError("Une erreur est survenue");
       }
     } catch (error) {
-      console.log(error)
+      console.error(error);
       setUeListError("Une erreur de chargement est survenue");
     }
   }, []);
+
+  const refreshList = useCallback(async () => {
+    try {
+      setUeList([]);
+      await fetchUEList(); 
+      setUeListError("");
+    } catch (error) {
+      console.error(error);
+      setUeListError("Une erreur de chargement est survenue");
+    }
+  }, [fetchUEList]);
 
   useEffect(() => {
     fetchUEList();
@@ -68,6 +77,7 @@ export const UEContextProvider: React.FC<UEContextProps> = ({ children }) => {
     ueList,
     ueListError,
     getUEList: fetchUEList,
+    refreshList,
   };
 
   return (
