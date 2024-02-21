@@ -23,17 +23,27 @@ const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
             await login({ username, password });
             onLoginSuccess();
 
-            const role = userInfos().role;
+           // const role = userInfos().role;
+            window.location.reload();
 
-            role === ROLE.admin && navigate("/dashboard/admin");
-            role === ROLE.enseigannt && navigate("/dashboard/enseignant");
-            role === ROLE.etudiant && navigate("/dashboard/etudiant");
         } catch (error: any) {
             setError(error.response?.data?.message || "Login failed");
         }
     };
-
+    window.onload = () => {
+     
+        const role = userInfos().role;
+    
+        if (role === ROLE.admin) {
+            navigate("/dashboard/admin");
+        } else if (role === ROLE.enseigannt) {
+            navigate("/dashboard/enseignant");
+        } else if (role === ROLE.etudiant) {
+            navigate("/dashboard/etudiant");
+        }
+    };
     return (
+        <>
         <form onSubmit={handleSubmit}>
             {error && <Alert severity="error">{error}</Alert>}
             <TextField
@@ -61,6 +71,8 @@ const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
                 variant="contained"
             />
         </form>
+      
+        </>
     );
 };
 

@@ -1,9 +1,11 @@
 import axios from "axios";
 import { UEListResponse } from "../types/UeTypes";
-import { userInfos } from "../utils/authUtils";
+import { getToken, userInfos } from "../utils/authUtils";
 
 const API_URL = "http://localhost:8080/api/v1/enseignant/ue";
-const token = userInfos().token;
+//const token = userInfos().token;
+const token = getToken();
+
 
 const axiosInstance = axios.create({
   baseURL: API_URL,

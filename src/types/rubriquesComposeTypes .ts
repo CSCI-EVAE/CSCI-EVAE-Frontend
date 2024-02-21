@@ -72,6 +72,6 @@ export interface RubriqueComposeListResponse {
 
 export interface CreateRubriqueCompose {
     idRubrique : number;
-    questionsIds : number  [];
+    questionIds : number  [];
     ordre : number
 }

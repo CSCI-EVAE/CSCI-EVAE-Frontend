@@ -33,7 +33,7 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
 
         const rubriqueSelected : Rubrique = rubriqueList.find((rubrique  : Rubrique )=> rubrique.designation === selectedRubriqueCompose); 
         const questionsSelected : Question[] =  questionListe.filter((question : Question) => selectedQuestionInRubriqueCompose.includes(question.intitule));
-        const rubriqueToAdd : CreateRubriqueCompose = {idRubrique: rubriqueSelected.id ||0, questionsIds:  questionsSelected.map(question => question.id || 0), ordre:1} 
+        const rubriqueToAdd : CreateRubriqueCompose = {idRubrique: rubriqueSelected.id ||0, questionIds:  questionsSelected.map(question => question.id || 0), ordre:1} 
         console.log(rubriqueToAdd);
                e.preventDefault();
        

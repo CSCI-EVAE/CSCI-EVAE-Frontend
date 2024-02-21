@@ -30,6 +30,7 @@ import AjoutRubriqueEvaluation from "../../pages/Enseignant/AjoutRubriqueEvaluat
 import { StepContextProvider } from "../../context/stepperContext";
 import ReponseEvaluation from "../../pages/Etudiant/ReponseEvaluation";
 import CreerEvaluation from "../../pages/Enseignant/CreerEvaluation";
+import TokenExpirationWrapper from "./TokenEpxpire";
 
 
 const Dashboard: React.FC = () => {
@@ -41,6 +42,7 @@ const Dashboard: React.FC = () => {
 
     return (
         <div>
+            <TokenExpirationWrapper>
             <ListContextProvider>
             <StepContextProvider>
                 <QualificatifContextProvider>
@@ -145,6 +147,7 @@ const Dashboard: React.FC = () => {
                 </QualificatifContextProvider>
                 </StepContextProvider>
             </ListContextProvider>
+            </TokenExpirationWrapper>
         </div>
     );
 };

@@ -1,9 +1,11 @@
 import axios from "axios";
-import { userInfos } from "../utils/authUtils";
+import { getToken, userInfos } from "../utils/authUtils";
 import { EvaluationResponse } from "../types/EvaluationTypes";
 
 const API_URL = "http://localhost:8080/api/v1/evaluation";
-const token = userInfos().token;
+//const token = userInfos().token;
+//const token = getToken();
+const token = localStorage.getItem("jwtToken");
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
