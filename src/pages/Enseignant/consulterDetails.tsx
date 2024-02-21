@@ -5,7 +5,7 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { useParams, useLocation } from 'react-router-dom';
 import { DetailsEvaluationContext } from "../../context/detailsEvaluationContext";
-import { Evaluation, QuestionEvaluation, RubriqueEvaluation } from "../../types/EvaluationTypes";
+import { Evaluation } from "../../types/EvaluationTypes";
 
 const DetailsEvaluationPage: React.FC = () => {
   const { id_eva } = useParams();
