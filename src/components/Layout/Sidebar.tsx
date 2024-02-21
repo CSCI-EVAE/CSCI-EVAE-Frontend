@@ -96,14 +96,14 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 const item = {
     py: '2px',
     px: 3,
-    color: 'hsla(14, 95%, 66%, 0.1)',
+    color: 'rgba(255, 255, 255, 0.7)',
     '&:hover, &:focus': {
-      bgcolor: 'hsla(14, 95%, 66%, 0.1)',
+      bgcolor: 'rgba(255, 255, 255, 0.08)',
     },
   };
   
   const itemCategory = {
-    boxShadow: '0 -1px 0 hsla(14, 95%, 66%, 0.1) inset',
+    boxShadow: '0 -1px 0 rgb(255,255,255,0.1) inset',
     py: 1.5,
     px: 3,
   };
@@ -153,7 +153,7 @@ export default function MiniDrawer() {
       <CssBaseline />
       
       <AppBar position="fixed" open={open} 
-      sx={{backgroundColor : 'white'}}
+      sx={{backgroundColor : myTheme.palette.secondary.main}}
       >
         <Toolbar>
           <IconButton
@@ -171,7 +171,7 @@ export default function MiniDrawer() {
           <Header/>
         </Toolbar>
       </AppBar>
-      <Drhttps://github.com/CSCI-EVAE/CSCI-EVAE-Frontend/pull/21/conflict?name=src%252Fcomponents%252FLayout%252FSidebar.tsx&ancestor_oid=e245bd50372b8740a7347ad1460edafeeae7ed1b&base_oid=a21bfb5b96946c1bd45a0293edc086ae9a7d29cc&head_oid=7f0964b5504193237da42e3a55083ee0c46a113aawer 
+      <Drawer 
        id="drawer"
        sx={{
         '& .MuiDrawer-paper': {
@@ -185,7 +185,7 @@ export default function MiniDrawer() {
          >
          <Box mb={2}>
                          <img
-                             src="./echoSim.png"
+                             src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/51/Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg/1280px-Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg.png"
                              alt="Logo"
                              width="100"
                          />
@@ -201,7 +201,7 @@ export default function MiniDrawer() {
                  ADMIN_DASHBOARD.map((element, index)=> (
                      <ListItem key={index} disablePadding sx={{...item, ...itemCategory,  display: 'block' }}>
                <ListItemButton 
-
+              // selected={true}
                sx={{
                 minHeight: 48,
                 justifyContent: open ? 'initial' : 'center',
