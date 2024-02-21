@@ -5,7 +5,7 @@ import React, {
     useEffect,
     useState,
 } from "react";
-import { CreateRubriqueCompose, RubriqueCompose, transformRubriquesComposeDTOToMyRubriquesCompose } from "../types/rubriquesComposeTypes ";
+import { RubriqueCompose, transformRubriquesComposeDTOToMyRubriquesCompose } from "../types/rubriquesComposeTypes ";
 import {
     addRubriqueCompose,
     deleteRubriqueCompose,
@@ -20,6 +20,29 @@ interface rubriqueComposeContextProviderProps {
 
 // Création du contexte
 export const RubriqueComposeContext = createContext<any>(null); // Vous pouvez remplacer 'any' par le type spécifique que vous souhaitez utiliser
+
+export function trouverRubriqueCompose(
+    rubriqueCompose: RubriqueCompose,
+    rubriqueComposeListe: RubriqueCompose[]
+): RubriqueCompose | null {
+    // if (rubriqueCompose && rubriqueComposeListe) {
+    //     // Recherche du rubriqueCompose dans la liste
+    //     const rubriqueComposeTrouve = rubriqueComposeListe.find(
+    //         (item) =>
+    //             item.ordre === rubriqueCompose.ordre &&
+    //             item.designation === rubriqueCompose.designation
+    //     );
+
+    //     // Si le rubriqueCompose est trouvé, retourne son ID
+    //     if (rubriqueComposeTrouve ) {
+    //         return rubriqueComposeTrouve;
+    //     } else {
+    //         return null; // Retourne null si le rubriqueCompose n'est pas trouvé ou s'il n'a pas d'ID
+    //     }
+    // } else {
+   return null; // Retourne null si les données d'entrée sont invalides ou manquantes
+    // }
+}
 
 
 
@@ -68,10 +91,9 @@ export const RubriqueComposeContextProvider: React.FC<
     }, [getList]);
 
     const addNewRubriqueCompose = useCallback(
-        async (rubriqueCompose: CreateRubriqueCompose) => {
+        async (rubriqueCompose: RubriqueCompose) => {
             const response = await addRubriqueCompose(rubriqueCompose);
             if (response) {
-                console.log("rsp", response);
                 setRubriqueCompose({});
                 setAddRubriqueComposeError("");
                 getList();

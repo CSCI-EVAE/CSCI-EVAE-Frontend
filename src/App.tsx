@@ -4,29 +4,29 @@ import LoginPage from "./pages/LoginPage";
 import Dashboard from "./components/Layout/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Logout from "./components/Logout"; // Adjust the import path based on your file structure
-// import { Box } from "@mui/material";
+import { Box } from "@mui/material";
 import Page404 from "./pages/Page404";
 // import Sidebar from "./components/Layout/Sidebar";
+
+import Sidebar from "./components/Layout/Sidebar";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./constants/theme";
-import LandingPage from "./pages/LandingPage";
-// import Header from "./components/Layout/Header";
-import Header from "./components/Layout/Header";
 
-function App() {   
+function App() {
+   
+
+
+
     return (
         <ThemeProvider theme={theme}>
         <div className="App">
-             {/* <Header />  */}
-             {/* <Sidebar/> 
-             <Box sx={{ marginBottom: "128px" }}></Box>  */}
-           <Header /> 
-          
-          <Routes>
-            
+            {/* <Header /> */}
+            <Sidebar/>
+            <Box sx={{ marginBottom: "128px" }}></Box>
+            <Routes>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/logout" element={<Logout />} />
-                <Route path="/" element={<LandingPage />} />  
+              
                     <Route
                         path="/dashboard/*"
                         element={

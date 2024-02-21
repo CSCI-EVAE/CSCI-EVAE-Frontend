@@ -1,4 +1,3 @@
-import { Enseignant } from "./questionTypes";
 
 
 export interface Qualificatif {
@@ -15,7 +14,12 @@ export interface Qualificatif {
     intitule: string;
   }
   
-  
+  export interface QuestionEvaluation {
+    id: number;
+    intitule: string | null;
+    idQuestion: Question;
+    ordre: number;
+  }
   
   export interface Rubrique {
     id: number;
@@ -23,12 +27,6 @@ export interface Qualificatif {
     designation: string | null;
     ordre: number;
     questionEvaluations: QuestionEvaluation[] | null;
-  }
-  export interface QuestionEvaluation {
-    id: number;
-    intitule: string | null;
-    idQuestion: Question;
-    ordre: number;
   }
   
   export interface RubriqueEvaluation {
@@ -47,37 +45,11 @@ export interface Qualificatif {
     rubriqueEvaluations: RubriqueEvaluation[];
   }
   
-  
   export interface EvaluationResponse {
     success: boolean;
     message: string;
     data: Evaluation;
   }
   
-  export interface ElementConstitutif{
-    codeFormation: string;
-    codeUe: string;
-    codeEc: string | null;
 
-  }
-  export interface Promotion{
-    anneeUniversitaire: string;
-    codeFormation: string;
-
-  }
-  
-export interface CreateEvaluation{
-  id :number;
-  noEnseignant:Enseignant;
-  elementConstitutif : ElementConstitutif;
-  promotion: Promotion;
-  noEvaluation : number;
-  designation:string;
-  etat :string;
-  periode :string;
-  debutReponse: Date;
-  finReponse : Date;
-  rubriqueEvaluations:RubriqueEvaluation[]
-
-}
   

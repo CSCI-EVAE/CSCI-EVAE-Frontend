@@ -45,7 +45,7 @@ export interface Question {
     intitule: string;
     type: string;
     idQualificatif: Qualificatif;
-    noEnseignant: Enseignant |null;
+    noEnseignant: Enseignant;
 }
 
 export interface QuestionListResponse {
