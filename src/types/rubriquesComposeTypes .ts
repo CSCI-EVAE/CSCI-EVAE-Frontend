@@ -69,3 +69,9 @@ export interface RubriqueComposeListResponse {
     data: RubriqueComposeDTO[];
     success: boolean;
 }
+
+export interface CreateRubriqueCompose {
+    idRubrique : number;
+    questionsIds : number  [];
+    ordre : number
+}

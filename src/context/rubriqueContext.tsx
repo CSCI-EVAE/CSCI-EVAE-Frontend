@@ -18,6 +18,8 @@ interface rubriqueContextProviderProps {
     children: ReactNode; // children doit être de type ReactNode
 }
 
+
+
 // Création du contexte
 export const RubriqueContext = createContext<any>(null); // Vous pouvez remplacer 'any' par le type spécifique que vous souhaitez utiliser
 

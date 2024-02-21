@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Box, Typography } from "@mui/material";
 import Select from "./common/Select";
 import ButtonComponent from "./common/Button";
@@ -11,8 +11,8 @@ import { ListContext } from "../context/listContext";
 
 import { Question } from "../types/questionTypes";
 import { RubriqueComposeContext } from "../context/rubriqueComposeContext";
-import { RubriqueCompose } from "../types/rubriquesComposeTypes ";
-import { RubriqueEnseignantContext, findRubriqueByDesignation } from "../context/rubriqueEnseignantContext";
+import { RubriqueCompose, questionsInRubrique } from "../types/rubriquesComposeTypes ";
+import { RubriqueEnseignantContext, findRubriqueByDesignation, elementsNonSelectionnees, convertirQuestionsEnQuestionsInRubrique, convertirQuestionsInRubriqueEnQuestions } from "../context/rubriqueEnseignantContext";
 interface rubriqueComposeFormProps {
     add: boolean; 
 }
@@ -21,23 +21,67 @@ const EnseignantRubrique: React.FC<rubriqueComposeFormProps> = ({ add }) => {
    
     const {questionListe} = useContext(QuestionContext);
     const {rubriqueComposeList} = useContext(RubriqueComposeContext);
-    const { updateRubriqueAdded, rubriqueAdded} = useContext(RubriqueEnseignantContext);
-
+    const { updateRubriqueAdded, rubriqueAdded, updateRubriqueAddedByList,rubriqueSelectedEns} = useContext(RubriqueEnseignantContext);
+  
     const [selectedRubriqueCompose, setSelectedRubriqueCompose] = React.useState<string>("");
     const [selectedQuestionInRubriqueCompose, setSelectedQuestionInRubriqueCompose] = React.useState<string []>([]);
 
+    const [rubriqueListOptions, setRubriqueListOptions] = useState<{ label: string; value: string; }[]>([]);
+    const [questionsListOptions, setQuestionsListOptions] = useState<{ label: string; value: string; }[]>([]);
+
+    const getRubriqueListOptions = (liste1 : RubriqueCompose[],liste2:RubriqueCompose[] )=> {
+
+     return    elementsNonSelectionnees(liste1,liste2).map((rubriqueList: RubriqueCompose) => ({
+            label: `${rubriqueList.designation}`,
+            value: `${rubriqueList.designation}`
+        }));
+    }
+    const getQuestionsListOptions = (liste1 : Question[] )=> {
+
+        return   liste1.map((question: Question) => ({
+               label: `${question.intitule}`,
+               value: `${question.intitule}`
+           }));
+       }
+    useEffect(()=>{
+       setRubriqueListOptions(getRubriqueListOptions(rubriqueAdded,rubriqueComposeList)); 
+    }, [rubriqueAdded, selectedRubriqueCompose, rubriqueComposeList])
+
+    useEffect(()=>{
+        if (rubriqueSelectedEns){
+            const l1 = convertirQuestionsInRubriqueEnQuestions(rubriqueSelectedEns.questions);
+            const l2 = questionListe.filter((element: Question) => !l1.some((item: Question) => item.id=== element.id && item.intitule===element.intitule));
+        
+            
+          setQuestionsListOptions(getQuestionsListOptions(l2));
+
+        }
+     }, [selectedQuestionInRubriqueCompose, selectedRubriqueCompose, questionListe,rubriqueComposeList, rubriqueSelectedEns])
 
     const { updateModalOpen } = useContext(ListContext);
+   
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault(); 
        
         if (add === true) {
             updateRubriqueAdded( findRubriqueByDesignation( rubriqueComposeList,selectedRubriqueCompose));
-            console.log(rubriqueAdded);
 
            
         } else {
+
+            let newQuestions : Question[] = questionListe.filter((element : Question)=> selectedQuestionInRubriqueCompose.some((elementSelect: string )=> element.intitule===elementSelect));
+
+            let newQuestionsInRubrique :questionsInRubrique[] = convertirQuestionsEnQuestionsInRubrique(newQuestions);
+            let newRubrique : RubriqueCompose= {...rubriqueSelectedEns, questions : rubriqueSelectedEns.questions.concat(newQuestionsInRubrique)};
+            let NewList : RubriqueCompose[] =rubriqueAdded.filter( (element : RubriqueCompose) => element.designation!==newRubrique.designation);
+
+            
+            NewList.push(newRubrique);
+            console.log("newl", NewList);
+            updateRubriqueAddedByList(NewList);
+
+
 
               }
 
@@ -46,18 +90,8 @@ const EnseignantRubrique: React.FC<rubriqueComposeFormProps> = ({ add }) => {
     const handleReset = () => {
         updateModalOpen(false);
     };
-    const transformedQuestionListe = questionListe.map((question: Question) => ({
-        label: `${question.intitule}`,
-        value: `${question.intitule}`,
-       // idLabel: "ID qualificatif", 
-        //idValue: qualificatif.id 
-    }));
-    const RListe = rubriqueComposeList.map((rubriqueList: RubriqueCompose) => ({
-        label: `${rubriqueList.designation}`,
-        value: `${rubriqueList.designation}`,
-        //idLabel: "ID qualificatif", 
-        //idValue: qualificatif.id 
-    }));
+
+ 
 
     return (
         <form
@@ -83,7 +117,7 @@ const EnseignantRubrique: React.FC<rubriqueComposeFormProps> = ({ add }) => {
                  <Box sx={{ display: "flex", gap: "1rem" }}>
                  <Select
                      label="Choisissez la Rubrique"
-                     options={RListe} 
+                     options={rubriqueListOptions} 
                      value={selectedRubriqueCompose} 
                      onChange={(value) => setSelectedRubriqueCompose(value as string)}
                      required
@@ -95,7 +129,7 @@ const EnseignantRubrique: React.FC<rubriqueComposeFormProps> = ({ add }) => {
                 <Box sx={{ display: "flex", gap: "1rem" }}>
                 <Select
                     label="Choiissiez les questions"
-                    options={transformedQuestionListe} 
+                    options={questionsListOptions} 
                     value={selectedQuestionInRubriqueCompose} 
                     onChange={(value) => setSelectedQuestionInRubriqueCompose(value as string [])}
                     required

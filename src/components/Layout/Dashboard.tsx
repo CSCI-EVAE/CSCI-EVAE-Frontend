@@ -15,7 +15,6 @@ import { RubriqueComposeContextProvider } from "../../context/rubriqueComposeCon
 import RubriqueComposePage from "../../pages/Admin/rubriquesCompose";
 import { ROLE } from "../../constants";
 import RubriqueCompose from "../RubriqueComposeView";
-import MyTable from "../../pages/Enseignant/RubriqueList";
 import { RubriqueEnseignantContextProvider } from "../../context/rubriqueEnseignantContext";
 
 import UePage from "../../pages/Enseignant/ue";
@@ -25,6 +24,12 @@ import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
 
 import Evaluation from "../../pages/Etudiant/evaluation";
 import { EvaluationContextProvider } from "../../context/evaluationEtudiantContext";
+import InfoGeneralesPage from "../../pages/Enseignant/saisirInfoGenarales";
+import {SoumettreEvaluationContextProvider } from "../../context/soumettreEvaluationContext";
+import AjoutRubriqueEvaluation from "../../pages/Enseignant/AjoutRubriqueEvaluation";
+import { StepContextProvider } from "../../context/stepperContext";
+import ReponseEvaluation from "../../pages/Etudiant/ReponseEvaluation";
+import CreerEvaluation from "../../pages/Enseignant/CreerEvaluation";
 
 
 const Dashboard: React.FC = () => {
@@ -37,20 +42,17 @@ const Dashboard: React.FC = () => {
     return (
         <div>
             <ListContextProvider>
+            <StepContextProvider>
                 <QualificatifContextProvider>
                     <QuestionContextProvider>
                     <RubriqueContextProvider>
                         <RubriqueComposeContextProvider>
-
-                           
-                               
-
-                         
-
                             <RubriqueEnseignantContextProvider>
                             <EvaluationContextProvider>
                             <UEContextProvider>
                             <DetailsEvaluationContextProvider>
+                            <SoumettreEvaluationContextProvider>
+                                
                     
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
@@ -61,6 +63,10 @@ const Dashboard: React.FC = () => {
                             <Route
                                     path="/evaluations"
                                     element={<Evaluation />}
+                                />
+                                 <Route
+                                    path="/reponse"
+                                    element={<ReponseEvaluation/>}
                                 />
                         </>
                         )}
@@ -91,10 +97,7 @@ const Dashboard: React.FC = () => {
                                     path="/rubriquecompose"
                                     element={<RubriqueComposePage />}
                                 />
-                                 <Route
-                                    path="/table"
-                                    element={<MyTable />}
-                                />
+                                
                             </>
                         )}
                         {/* //METTRE TOUTES LES PAGES ENSEIGNANT ICI */}
@@ -105,10 +108,17 @@ const Dashboard: React.FC = () => {
                                 path="/enseignant"
                                 element={<UePage />} 
                             />
+                             <Route
+                                    path="enseignant/rubrique-evaluation"
+                                    element={<AjoutRubriqueEvaluation />}
+                                />
+                                 
+                                
 
                     
                         <Route path="enseignant/evaluation-details/:id_eva" element={<DetailsEvaluationPage />} />
-
+                        <Route path="enseignant/creation-evaluation" element={<InfoGeneralesPage />} />
+                        <Route path="enseignant/test" element={<CreerEvaluation />} />
                                 
                                  
                             </>
@@ -120,7 +130,7 @@ const Dashboard: React.FC = () => {
                     </Routes>
 
             
-
+                  </SoumettreEvaluationContextProvider>
                     </DetailsEvaluationContextProvider>
                     </UEContextProvider>
 
@@ -133,6 +143,7 @@ const Dashboard: React.FC = () => {
                     </RubriqueContextProvider>
                     </QuestionContextProvider>
                 </QualificatifContextProvider>
+                </StepContextProvider>
             </ListContextProvider>
         </div>
     );
