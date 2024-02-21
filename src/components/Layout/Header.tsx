@@ -60,14 +60,14 @@ const Header: React.FC = () => {
         <>
             <AppBar
                 position="static"
-                sx={{backgroundColor : "#c2cefc"}}
+                sx={{backgroundColor : "#bec3d4"}}
                 >
                 <Toolbar>
                     <Box mb={2}>
                         <img
                             src={logo}
                             alt="Logo"
-                            width="100"
+                            width="80"
                             style={{"marginBottom":"-40px"}}
                         />
                     </Box>

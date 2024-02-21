@@ -65,7 +65,7 @@ const UePage: React.FC = () => {
       evaContext?.fetchEvaluationDetails(id_eva);
 
       const selectedUe = ueList.find((ue) => ue.evaluationId === id_eva);
-     
+       
       if (selectedUe) {
         const rowDataInfo = extractNeededInfo(selectedUe);
        

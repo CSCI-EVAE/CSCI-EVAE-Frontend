@@ -4,6 +4,7 @@ import { Container, Paper, Typography, Box } from "@mui/material";
 import { isAuthenticated } from "../utils/authUtils";
 import logo from "../images/echoSim.png";
 import { useNavigate } from "react-router-dom";
+import Header from "../components/Layout/Header";
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
@@ -23,7 +24,7 @@ const LoginPage: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "80vh",
-        background: "rgba(255, 255, 255, 0.4)", 
+       
     };
 
     const paperStyle: React.CSSProperties = {
@@ -42,7 +43,8 @@ const LoginPage: React.FC = () => {
 
 
     return (
-      
+      <div style={{marginTop: "-130px"}}>
+      <Header />
         <Container maxWidth="md" style={containerStyle}>
             <Paper elevation={3} style={paperStyle}>
                 <Box mb={2}>
@@ -59,7 +61,7 @@ const LoginPage: React.FC = () => {
                 <LoginForm onLoginSuccess={handleLoginSuccess} />
             </Paper>
         </Container>
-      
+        </div>
     );
 };
 

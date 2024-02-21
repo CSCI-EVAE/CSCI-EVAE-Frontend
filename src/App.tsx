@@ -19,7 +19,7 @@ function App() {
         <ThemeProvider theme={theme}>
         <div className="App">
             {/* <Header /> */}
-            <Sidebar/>
+             {/* <Sidebar/>  */}
             <Box sx={{ marginBottom: "128px" }}></Box>
             <Routes>
                 <Route path="/login" element={<LoginPage />} />
