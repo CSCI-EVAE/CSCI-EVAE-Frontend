@@ -2,24 +2,24 @@ import React, { useContext, useEffect, useState } from 'react';
 import {  DialogTitle, DialogActions ,DialogContent, Dialog,List,ListItemIcon, Accordion, AccordionSummary, AccordionDetails, ListItemButton, ListItemText } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+import MyTableQuestion from './QuestionList';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import { ListContext } from '../../context/listContext';
 import ButtonComponent from '../../components/common/Button';
 import EnseignantRubrique from '../../components/EnsignantRubrique';
 import { LIST_ACTIONS } from '../../constants';
-import { RubriqueCompose, questionsInRubrique } from '../../types/rubriquesComposeTypes ';
+import { RubriqueCompose } from '../../types/rubriquesComposeTypes ';
 import { RubriqueEnseignantContext } from '../../context/rubriqueEnseignantContext';
-import AjoutQuestionEvaluation from './AjoutQuestionEvaluation';
 
 
 
-const AjoutRubriqueEvaluation = () => {
+const MyTable = () => {
 
   const {
     rubriqueAdded, 
-    rubriqueSelectedEns, 
-    updateRubriqueSelectedEns, updateRubriqueAddedByList,
+    //rubriqueSelectedEns, 
+    updateRubriqueSelectedEns, updateRubriqueAdded
    
 } = useContext(RubriqueEnseignantContext);
 
@@ -31,6 +31,7 @@ const AjoutRubriqueEvaluation = () => {
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;
+    console.log('ondrag');
     const newItems = Array.from(dataset);
     const [reorderedItem] = newItems.splice(result.source.index, 1);
     newItems.splice(result.destination.index, 0, reorderedItem);
@@ -40,6 +41,7 @@ const AjoutRubriqueEvaluation = () => {
          item.ordre = index + 1;;
        
      });
+    console.log(newItems);
   
     setDataset(newItems);
   };
@@ -48,25 +50,9 @@ const AjoutRubriqueEvaluation = () => {
   
   const [selectedAction, setSelectedActions] = useState<any | null>(null);
   const handleDelete =()=>{
-  //  updateRubriqueAdded();
-  updateRubriqueAddedByList(rubriqueAdded.filter( (element : RubriqueCompose) => element.designation!==rubriqueSelectedEns.designation));
+    updateRubriqueAdded(rubriqueAdded.filter())
     
     updateModalOpen(false);
-
-  }
-  const deleteQuestionHandler=( row : questionsInRubrique,rubriqueParent : RubriqueCompose )=>{
-  
-    const newRubrique  : RubriqueCompose= {...rubriqueParent, questions : rubriqueParent.questions.filter((element)=> element.intitule!== row.intitule )};
-    let NewList : RubriqueCompose[] =rubriqueAdded.filter( (element : RubriqueCompose) => element.designation!==newRubrique.designation);
-    NewList.push(newRubrique);
-    console.log(NewList);
-    updateRubriqueAddedByList(NewList);
-    
-
-  }
-
-  const handleSubmit=()=>{
-    localStorage.getItem("formData")
 
   }
 
@@ -133,10 +119,8 @@ const AjoutRubriqueEvaluation = () => {
                           <ListItemIcon
                              onClick={() => {
                               setSelectedActions(LIST_ACTIONS.read);
-                              //readp pour les questions
-                              updateRubriqueSelectedEns(row);
                               updateModalOpen(true);
-                             // updateSelectedRow({});
+                              updateSelectedRow({});
                           }}
                           >
                             <AddCircleIcon/> Ajouter une question
@@ -144,7 +128,7 @@ const AjoutRubriqueEvaluation = () => {
                             </ListItemIcon>
                         </ListItemButton>
                         <AccordionDetails>
-                        <AjoutQuestionEvaluation rubriqueParent = {row} questions={row.questions} deleteQuestionHandler={deleteQuestionHandler} />
+                        <MyTableQuestion questions={row.questions} />
                       </AccordionDetails>
                     </Accordion>
                   </div>
@@ -156,10 +140,6 @@ const AjoutRubriqueEvaluation = () => {
         )}
       </Droppable>
     </DragDropContext>
-    <ButtonComponent
-                onClick={handleSubmit}
-              text="Valider" type='submit'
-                                />
     <Dialog
                     open={openModal}
                     onClose={() => updateModalOpen(false)}
@@ -217,4 +197,4 @@ const AjoutRubriqueEvaluation = () => {
   );
 };
 
-export default AjoutRubriqueEvaluation;
+export default MyTable;

@@ -3,6 +3,7 @@ import LoginForm from "../components/LoginForm";
 import { Container, Paper, Typography, Box } from "@mui/material";
 import { isAuthenticated } from "../utils/authUtils";
 import logo from "../images/echoSim.png";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();

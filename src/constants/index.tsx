@@ -15,7 +15,6 @@ export const LIST_ACTIONS = {
     read: "READ",
     update: "UPDATE",
     delete: "DELETE",
-    soumettre: "SOUMETTRE"
 };
 
 export const QUALIFICATIF_COLUMNS = [

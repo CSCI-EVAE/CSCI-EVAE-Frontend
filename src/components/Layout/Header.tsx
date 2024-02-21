@@ -15,7 +15,6 @@ import {
 import ButtonComponent from "../common/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
-import PersonIcon from '@mui/icons-material/Person';
 import {  useTheme,} from '@mui/material/styles';
 import logo from '../../images/echoSim.png'
 const Header: React.FC = () => {
@@ -69,7 +68,7 @@ const Header: React.FC = () => {
                             src={logo}
                             alt="Logo"
                             width="100"
-                            // style={{"marginBottom":"-40px"}}
+                            style={{"marginBottom":"-40px"}}
                         />
                     </Box>
                     {isAuth ? (
@@ -92,7 +91,7 @@ const Header: React.FC = () => {
                             component="div"
                             sx={{ flexGrow: 1 }}
                         >
-                            Bienvenue
+                            
                         </Typography>
                     )}
                     {isAuth ? (
@@ -106,7 +105,7 @@ const Header: React.FC = () => {
                         <ButtonComponent
                             variant="contained"
                             icon={<LoginIcon />}
-                            text="Connexion"
+                            text=" Connexion"
                             onClick={handleLogin}
                         />
                     )}
