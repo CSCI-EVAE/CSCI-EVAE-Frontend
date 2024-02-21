@@ -25,23 +25,3 @@ export const getEvaluationDetails = async (evaluationId: number) => {
         throw error;
     }
 };
-
-export const soumettreEvaluation = async (
-  evaluationId: number,
-) => {
-  try {
-      const response = await axiosInstance.put<EvaluationResponse>(
-          `${API_URL}/soumettre/${evaluationId}`
-      );
-      // log the response to the console
-      console.log("Evaluation response:", response);
-
-      if (response.status === 400) {
-          return true;
-      }
-      return response.data;
-  } catch (error) {
-      console.error("Evaluation failed:", error);
-      return false;
-  }
-};

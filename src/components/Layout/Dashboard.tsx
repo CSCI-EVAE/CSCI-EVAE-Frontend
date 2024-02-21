@@ -25,8 +25,6 @@ import DetailsEvaluationPage from "../../pages/Enseignant/consulterDetails";
 
 import Evaluation from "../../pages/Etudiant/evaluation";
 import { EvaluationContextProvider } from "../../context/evaluationEtudiantContext";
-import InfoGeneralesPage from "../../pages/Enseignant/saisirInfoGenarales";
-import {SoumettreEvaluationContextProvider } from "../../context/soumettreEvaluationContext";
 
 
 const Dashboard: React.FC = () => {
@@ -53,7 +51,6 @@ const Dashboard: React.FC = () => {
                             <EvaluationContextProvider>
                             <UEContextProvider>
                             <DetailsEvaluationContextProvider>
-                            <SoumettreEvaluationContextProvider>
                     
                     <Routes>
                         {/* //METTRE TOUTES LES PAGES ETUDIANTS ICI */}
@@ -111,7 +108,7 @@ const Dashboard: React.FC = () => {
 
                     
                         <Route path="enseignant/evaluation-details/:id_eva" element={<DetailsEvaluationPage />} />
-                        <Route path="enseignant/creation-evaluation" element={<InfoGeneralesPage />} />
+
                                 
                                  
                             </>
@@ -123,7 +120,7 @@ const Dashboard: React.FC = () => {
                     </Routes>
 
             
-                    </SoumettreEvaluationContextProvider>
+
                     </DetailsEvaluationContextProvider>
                     </UEContextProvider>
 

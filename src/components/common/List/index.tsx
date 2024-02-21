@@ -38,7 +38,6 @@ import {
     Edit,
     Delete,
     Visibility,
-    Backup,
 } from "@mui/icons-material";
 import { ListContext } from "../../../context/listContext";
 import ButtonComponent from "../Button";
@@ -55,15 +54,13 @@ interface Props {
     data: any[];
     actions: boolean;
     details?: boolean;
-    soumettre?: boolean;
     remove?: boolean;
     modify?: boolean;
-    create?: boolean
+    create?: boolean;
     detailsHandler?: (rowData: any) => void;
     modifyHandler?: (rowData: any) => void;
     deleteHandler?: (rowData: any) => void;
     createHandler?: (rowData: any) => void;
-    soumettreHandler?: (rowData: any) => void;
     modifyElement?: ReactNode;
     addElement?: ReactNode;
     handleAdd?: (rowData: any) => void;
@@ -75,6 +72,7 @@ const ListComponent: React.FC<Props> = ({
     data,
     actions,
     create,
+   
     createHandler,
     remove,
     deleteHandler,
@@ -85,9 +83,6 @@ const ListComponent: React.FC<Props> = ({
     addElement,
     handleAdd,
     modifyHandler,
-    soumettre,
-    soumettreHandler,
-
 }) => {
     const [filters, setFilters] = useState<{ [key: string]: string }>({});
     const { openModal, updateModalOpen, selectedRow, updateSelectedRow } =
@@ -238,20 +233,6 @@ const ListComponent: React.FC<Props> = ({
                                                 <Delete />
                                             </IconButton>
                                         )}
-
-                                        {row.soumettreValue && (
-                                            <IconButton
-                                                onClick={() => {
-                                                    setSelectedActions(
-                                                        LIST_ACTIONS.soumettre
-                                                    );
-                                                    updateModalOpen(true);
-                                                    updateSelectedRow(row);
-                                                }}
-                                            >
-                                                <Backup />
-                                            </IconButton>
-                                        )} 
                                     </TableCell>
                                 )}
                             </TableRow>
@@ -281,10 +262,6 @@ const ListComponent: React.FC<Props> = ({
                         {selectedAction === LIST_ACTIONS.delete && (
                             <div>Êtes-vous sûr de vouloir supprimer ?</div>
                         )}
-                        {selectedAction === LIST_ACTIONS.soumettre && (
-                            <div>Êtes-vous sûr de vouloir soumettre l'évaluation ?</div>
-                        )}
-
                         {selectedAction === LIST_ACTIONS.add && addElement}
                     </DialogContent>
                     <DialogActions>
@@ -296,24 +273,6 @@ const ListComponent: React.FC<Props> = ({
                                         deleteHandler &&
                                             deleteHandler(selectedRow);
                                         console.log(selectedRow);
-                                        updateModalOpen(false);
-                                    }}
-                                />
-
-                                <ButtonComponent
-                                    onClick={() => updateModalOpen(false)}
-                                    text="Non"
-                                />
-                            </>
-                        )}
-                        {selectedAction === LIST_ACTIONS.soumettre && (
-                            <>
-                                <ButtonComponent
-                                    text="Oui"
-                                    onClick={() => {
-                                        soumettreHandler &&
-                                            soumettreHandler(selectedRow);
-                                        
                                         updateModalOpen(false);
                                     }}
                                 />
