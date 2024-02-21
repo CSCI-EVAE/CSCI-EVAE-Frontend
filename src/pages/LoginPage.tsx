@@ -3,13 +3,14 @@ import LoginForm from "../components/LoginForm";
 import { Container, Paper, Typography, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../utils/authUtils";
+import image from "../images/echoSim.png";
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
         if (isAuthenticated()) {
-            navigate("/dashboard"); // Redirige vers le tableau de bord si déjà connecté
+            navigate("/dashboard"); 
         }
     }, [navigate]);
 
@@ -22,26 +23,36 @@ const LoginPage: React.FC = () => {
         justifyContent: "center",
         alignItems: "center",
         height: "80vh",
-        background: "rgba(255, 255, 255, 0.4)", // Fond transparent à 40%
+        background: "rgba(255, 255, 255, 0.4)", 
     };
 
     const paperStyle: React.CSSProperties = {
         padding: "20px",
         textAlign: "center",
-        background: "rgba(209, 222, 240, 0.4)",
+        background: "",
     };
+
+  const textStyle: React.CSSProperties = {
+        fontFamily: "cursive",
+        color: "#e3a12f"
+  }
+
+   
+
+
 
     return (
         <Container maxWidth="md" style={containerStyle}>
             <Paper elevation={3} style={paperStyle}>
                 <Box mb={2}>
                     <img
-                        src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/51/Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg/1280px-Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg.png"
+                        src={image}
                         alt="Logo"
-                        width="100"
+                        width="150"
+                        style={{"margin":"-20px"}}
                     />
                 </Box>
-                <Typography variant="h4" gutterBottom>
+                <Typography variant="h5" gutterBottom style={textStyle} >
                     Connexion
                 </Typography>
                 <LoginForm onLoginSuccess={handleLoginSuccess} />

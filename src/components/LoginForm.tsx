@@ -44,6 +44,7 @@ const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 placeholder="Entrez votre nom d'utilisateur"
+
             />
             <TextField
                 label="Mot de Passe"
@@ -54,11 +55,14 @@ const LoginForm: React.FC<Props> = ({ onLoginSuccess }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="Entrez votre mot de passe"
+                style={{marginBottom:"20px" }}
             />
             <ButtonComponent
                 text="Se Connecter"
                 type="submit"
                 variant="contained"
+                size="large"
+                
             />
         </form>
     );

@@ -27,7 +27,7 @@ const ButtonComponent: FC<Props> = ({
     ariaExpanded,
     type = "button",
     disabled,
-
+    
     text,
     role,
     icon,
@@ -58,7 +58,7 @@ const ButtonComponent: FC<Props> = ({
             className={classNames}
             type={type}
             onClick={onClick}
-            style={{ borderRadius: round }}
+            style={{ borderRadius: "20px", marginTop: "5px" }}
         >
             {iconDirection === "left" ? (
                 <>
