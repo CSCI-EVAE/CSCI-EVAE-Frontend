@@ -8,9 +8,9 @@ import { Box } from "@mui/material";
 import Page404 from "./pages/Page404";
 // import Sidebar from "./components/Layout/Sidebar";
 
-import Sidebar from "./components/Layout/Sidebar";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./constants/theme";
+import LandingPage from "./pages/LandingPage";
 
 function App() {
    
@@ -21,12 +21,12 @@ function App() {
         <ThemeProvider theme={theme}>
         <div className="App">
             {/* <Header /> */}
-            <Sidebar/>
+            
             <Box sx={{ marginBottom: "128px" }}></Box>
             <Routes>
                 <Route path="/login" element={<LoginPage />} />
                 <Route path="/logout" element={<Logout />} />
-              
+                <Route path="/" element={<LandingPage />} />
                     <Route
                         path="/dashboard/*"
                         element={
