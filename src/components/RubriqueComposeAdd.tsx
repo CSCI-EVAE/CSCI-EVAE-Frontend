@@ -11,28 +11,20 @@ import { ListContext } from "../context/listContext";
 import { RubriqueContext } from "../context/rubriqueContext";
 import { Rubrique } from "../types/rubriquesTypes";
 import { Question } from "../types/questionTypes";
-import { RubriqueComposeContext } from "../context/rubriqueComposeContext";
 interface rubriqueComposeFormProps {
     add: boolean; 
 }
 
 const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
    
-    const {
-
-        rubriqueCompose
-    
-        
-       
-    } = useContext(RubriqueComposeContext);
+ 
     const {questionListe} = useContext(QuestionContext);
     const {rubriqueList} = useContext(RubriqueContext);
-    console.log('my rub', rubriqueList)
-    console.log('my des',rubriqueCompose.designation)
-    const [selectedRubriqueCompose, setSelectedRubriqueCompose] = React.useState<string>(rubriqueCompose.designation);
+
+    const [selectedRubriqueCompose, setSelectedRubriqueCompose] = React.useState<string>();
     const [selectedQuestionInRubriqueCompose, setSelectedQuestionInRubriqueCompose] = React.useState<string []>([]);
 
-   
+   // setSelectedRubriqueCompose(rubriqueCompose.designation);
     const { updateModalOpen } = useContext(ListContext);
 
     const handleSubmit = (e: React.FormEvent) => {

@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import {  TableCell, List, ListItem,ListItemIcon, ListItemButton } from '@mui/material';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
-import { questionsInRubrique } from '../../types/rubriquesComposeTypes ';
-const MyTableQuestion = (props :any) => {
-  const data  = props.questions;
-  const [dataset, setDataset] = useState<questionsInRubrique[]>(data);
+import { RubriqueCompose, questionsInRubrique } from '../../types/rubriquesComposeTypes ';
+import { RubriqueEnseignantContext } from '../../context/rubriqueEnseignantContext';
+
+interface TableQuestionProps {
+
+  rubriqueParent : RubriqueCompose;
+  questions : questionsInRubrique[];
+  deleteQuestionHandler : (row : questionsInRubrique,rubriqueParent : RubriqueCompose )=> void;
+}
+
+const AjoutQuestionEvaluation : React.FC<TableQuestionProps>= ({ rubriqueParent, questions, deleteQuestionHandler }) => {
+const [dataset, setDataset] = useState<questionsInRubrique[]>(questions );
+  const {rubriqueAdded  } = useContext(RubriqueEnseignantContext);
+ useEffect(()=>{
+  setDataset(questions);
+ },[questions, rubriqueAdded,deleteQuestionHandler, rubriqueParent])
+
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;
@@ -14,14 +27,13 @@ const MyTableQuestion = (props :any) => {
     const [reorderedItem] = newItems.splice(result.source.index, 1);
     newItems.splice(result.destination.index, 0, reorderedItem);
   
-    // Mise à jour de l'ordre de chaque élément
-    //  newItems.forEach((item, index) => {
-    //   item.order = index + 1;
-    //    if(item.ordre){
-    //      item.ordre = item.order;
-    //    };
-    //  });
-    // console.log(newItems);
+    //Mise à jour de l'ordre de chaque élément
+      newItems.forEach((item, index) => {
+      
+          item.ordre = index + 1;
+        
+      });
+     console.log(newItems);
   
     setDataset(newItems);
   };
@@ -57,6 +69,7 @@ const MyTableQuestion = (props :any) => {
                {/* <ListItemText style={{width:'90%'}}>{row.intitule}</ListItemText> */}
 
                 <ListItemButton
+                        onClick={()=> deleteQuestionHandler(row, rubriqueParent)}
                         
                         sx={{ display: "flex",
                           flexDirection: "column",
@@ -80,4 +93,4 @@ const MyTableQuestion = (props :any) => {
   );
 };
 
-export default MyTableQuestion;
+export default AjoutQuestionEvaluation;
