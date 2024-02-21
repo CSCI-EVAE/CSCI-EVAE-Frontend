@@ -13,7 +13,6 @@ import { Question } from "../types/questionTypes";
 import { RubriqueComposeContext } from "../context/rubriqueComposeContext";
 import { RubriqueCompose, questionsInRubrique } from "../types/rubriquesComposeTypes ";
 import { RubriqueEnseignantContext, findRubriqueByDesignation, elementsNonSelectionnees, convertirQuestionsEnQuestionsInRubrique, convertirQuestionsInRubriqueEnQuestions } from "../context/rubriqueEnseignantContext";
-import { QualificatifContext } from "../context/qualificatifContext";
 interface rubriqueComposeFormProps {
     add: boolean; 
 }
@@ -22,7 +21,7 @@ const EnseignantRubrique: React.FC<rubriqueComposeFormProps> = ({ add }) => {
    
     const {questionListe} = useContext(QuestionContext);
     const {rubriqueComposeList} = useContext(RubriqueComposeContext);
-    const { updateRubriqueAdded, rubriqueAdded, updateRubriqueSelectedEns, updateRubriqueAddedByList,rubriqueSelectedEns} = useContext(RubriqueEnseignantContext);
+    const { updateRubriqueAdded, rubriqueAdded, updateRubriqueAddedByList,rubriqueSelectedEns} = useContext(RubriqueEnseignantContext);
   
     const [selectedRubriqueCompose, setSelectedRubriqueCompose] = React.useState<string>("");
     const [selectedQuestionInRubriqueCompose, setSelectedQuestionInRubriqueCompose] = React.useState<string []>([]);
@@ -51,13 +50,13 @@ const EnseignantRubrique: React.FC<rubriqueComposeFormProps> = ({ add }) => {
     useEffect(()=>{
         if (rubriqueSelectedEns){
             const l1 = convertirQuestionsInRubriqueEnQuestions(rubriqueSelectedEns.questions);
-            const l2 = questionListe.filter((element: Question) => !l1.some((item: Question) => item.id=== element.id && item.intitule===item.intitule));
+            const l2 = questionListe.filter((element: Question) => !l1.some((item: Question) => item.id=== element.id && item.intitule===element.intitule));
         
             
           setQuestionsListOptions(getQuestionsListOptions(l2));
 
         }
-     }, [selectedQuestionInRubriqueCompose, selectedRubriqueCompose, rubriqueComposeList, rubriqueSelectedEns])
+     }, [selectedQuestionInRubriqueCompose, selectedRubriqueCompose, questionListe,rubriqueComposeList, rubriqueSelectedEns])
 
     const { updateModalOpen } = useContext(ListContext);
    
@@ -91,12 +90,7 @@ const EnseignantRubrique: React.FC<rubriqueComposeFormProps> = ({ add }) => {
     const handleReset = () => {
         updateModalOpen(false);
     };
-    const transformedQuestionListe = questionListe.map((question: Question) => ({
-        label: `${question.intitule}`,
-        value: `${question.intitule}`,
-       // idLabel: "ID qualificatif", 
-        //idValue: qualificatif.id 
-    }));
+
  
 
     return (
