@@ -3,7 +3,7 @@ import LoginForm from "../components/LoginForm";
 import { Container, Paper, Typography, Box } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { isAuthenticated } from "../utils/authUtils";
-import image from "../images/echoSim.png";
+import logo from "../images/echoSim.png";
 
 const LoginPage: React.FC = () => {
     const navigate = useNavigate();
@@ -42,11 +42,12 @@ const LoginPage: React.FC = () => {
 
 
     return (
+      
         <Container maxWidth="md" style={containerStyle}>
             <Paper elevation={3} style={paperStyle}>
                 <Box mb={2}>
                     <img
-                        src={image}
+                        src={logo}
                         alt="Logo"
                         width="150"
                         style={{"margin":"-20px"}}
@@ -58,6 +59,7 @@ const LoginPage: React.FC = () => {
                 <LoginForm onLoginSuccess={handleLoginSuccess} />
             </Paper>
         </Container>
+      
     );
 };
 

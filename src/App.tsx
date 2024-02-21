@@ -11,6 +11,7 @@ import Sidebar from "./components/Layout/Sidebar";
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./constants/theme";
 
+import Header from "./components/Layout/Header";
 function App() {
    
 
@@ -19,7 +20,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
         <div className="App">
-            {/* <Header /> */}
+            <Header />
             <Sidebar/>
             <Box sx={{ marginBottom: "128px" }}></Box>
             <Routes>

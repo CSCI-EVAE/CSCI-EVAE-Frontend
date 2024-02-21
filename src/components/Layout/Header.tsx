@@ -15,7 +15,9 @@ import {
 import ButtonComponent from "../common/Button";
 import LoginIcon from "@mui/icons-material/Login";
 import LogoutIcon from "@mui/icons-material/Logout";
+import PersonIcon from '@mui/icons-material/Person';
 import {  useTheme,} from '@mui/material/styles';
+import logo from '../../images/echoSim.png'
 const Header: React.FC = () => {
     let navigate = useNavigate();
 
@@ -51,20 +53,23 @@ const Header: React.FC = () => {
     const handleLogin = () => {
         navigate("/login");
     };
+
+    
     const myTheme  = useTheme();
 
     return (
         <>
             <AppBar
                 position="static"
-                sx={{backgroundColor : myTheme.palette.secondary.main}}
+                sx={{backgroundColor : "#c2cefc"}}
                 >
                 <Toolbar>
                     <Box mb={2}>
                         <img
-                            src="https://upload.wikimedia.org/wikipedia/fr/thumb/5/51/Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg/1280px-Universit%C3%A9_de_Bretagne_occidentale_%28logo%29.svg.png"
+                            src={logo}
                             alt="Logo"
                             width="100"
+                            // style={{"marginBottom":"-40px"}}
                         />
                     </Box>
                     {isAuth ? (
@@ -73,7 +78,9 @@ const Header: React.FC = () => {
                             component="div"
                             sx={{ flexGrow: 1, textAlign: "center" }}
                         >
+                          
                             Bienvenue {prenom}
+                            
                             <br />
                             <span style={{ fontSize: "small", color: "blue" }}>
                                 {role}
