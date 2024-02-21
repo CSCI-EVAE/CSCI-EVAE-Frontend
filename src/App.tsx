@@ -3,10 +3,9 @@ import { Routes, Route } from "react-router-dom";
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./components/Layout/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Logout from "./components/Logout"; // Adjust the import path based on your file structure
+import Logout from "./components/Logout"; 
 import { Box } from "@mui/material";
 import Page404 from "./pages/Page404";
-// import Sidebar from "./components/Layout/Sidebar";
 
 import { ThemeProvider } from '@mui/material/styles';
 import theme from "./constants/theme";
@@ -21,7 +20,8 @@ function App() {
         <ThemeProvider theme={theme}>
         <div className="App">
             {/* <Header /> */}
-            
+
+
             <Box sx={{ marginBottom: "128px" }}></Box>
             <Routes>
                 <Route path="/login" element={<LoginPage />} />

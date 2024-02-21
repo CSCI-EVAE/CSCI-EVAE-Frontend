@@ -90,12 +90,7 @@ export const ADMIN_DASHBOARD: Dashboard[] = [
         title: "Rubriques Composées",
         link: "/dashboard/rubriquecompose",
     },
-    {
-        id: 6,
-        icon: <LiveHelpIcon />,
-        title: "Essai",
-        link: "/dashboard/essai",
-    },
+   
 ];
 
 
