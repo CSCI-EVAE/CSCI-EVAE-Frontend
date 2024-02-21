@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, TextField } from "@mui/material";
 import Select from "./common/Select";
 import ButtonComponent from "./common/Button";
 import {
@@ -11,8 +11,9 @@ import { ListContext } from "../context/listContext";
 import { RubriqueContext } from "../context/rubriqueContext";
 import { Rubrique } from "../types/rubriquesTypes";
 import { Question } from "../types/questionTypes";
-import { CreateRubriqueCompose } from "../types/rubriquesComposeTypes ";
+import { CreateRubriqueCompose, RubriqueCompose, questionsInRubrique } from "../types/rubriquesComposeTypes ";
 import { RubriqueComposeContext } from "../context/rubriqueComposeContext";
+import AjoutQuestionRCompose from "./AjoutQuestionInRubriqueComposeAdmin";
 interface rubriqueComposeFormProps {
     add: boolean; 
 }
@@ -28,7 +29,7 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
 
    // setSelectedRubriqueCompose(rubriqueCompose.designation);
     const { updateModalOpen } = useContext(ListContext);
-    const {addNewRubriqueCompose} = useContext(RubriqueComposeContext);
+    const {addNewRubriqueCompose, modifyRubrique,updateCurrentRubriqueCompose,currentRubriqueCompose} = useContext(RubriqueComposeContext);
     const handleSubmit = (e: React.FormEvent) => {
 
         const rubriqueSelected : Rubrique = rubriqueList.find((rubrique  : Rubrique )=> rubrique.designation === selectedRubriqueCompose); 
@@ -39,11 +40,16 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
        
         if (add === true) {
             addNewRubriqueCompose(rubriqueToAdd);
-           
+            
         } else {
+            
+            const rubriqueSelected : Rubrique = rubriqueList.find((rubrique  : Rubrique )=> rubrique.designation === currentRubriqueCompose); 
+        const questionsSelected : Question[] =  questionListe.filter((question : Question) => currentRubriqueCompose.includes(question.intitule));
+        const rubriqueToAdd : CreateRubriqueCompose = {idRubrique: rubriqueSelected.id ||0, questionIds:  questionsSelected.map(question => question.id || 0), ordre:1} 
+
 
               }
-
+        setSelectedRubriqueCompose("");
         updateModalOpen(false);
     };
     const handleReset = () => {
@@ -61,6 +67,13 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
         //idLabel: "ID qualificatif", 
         //idValue: qualificatif.id 
     }));
+
+    const deleteQuestionHandler=( row : questionsInRubrique,rubriqueParent : RubriqueCompose )=>{
+  
+        const newRubrique  : RubriqueCompose= {...rubriqueParent, questions : rubriqueParent.questions.filter((element)=> element.intitule!== row.intitule )};
+        updateCurrentRubriqueCompose(newRubrique);
+    
+      }
 
     return (
         <form
@@ -82,7 +95,9 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
                 {" "}
                 Entrez les informations
             </Typography>
-            <Box sx={{ display: "flex", gap: "1rem" }}>
+            {add? (
+                <>
+                <Box sx={{ display: "flex", gap: "1rem" }}>
                 <Select
                 
                     label="Choisissez la Rubrique"
@@ -105,6 +120,23 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
                     sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
                 />
             </Box>
+            </>
+            ): (
+                <>
+                <Box sx={{ display: "flex", gap: "1rem" }}>
+                <TextField
+                label="Intitulֹé"
+                variant="outlined"
+                value={modifyRubrique}
+                required
+                disabled={true}
+                //sx={{ width: "50%" }} // Ajustez la largeur comme vous le souhaitez
+            />
+            </Box>
+            <Box sx={{ display: "flex", gap: "1rem" }}>
+               <AjoutQuestionRCompose deleteQuestionHandler={deleteQuestionHandler} questions={currentRubriqueCompose.questions} rubriqueParent={currentRubriqueCompose}/>
+            </Box></>
+            )}
             <Box sx={{ display: "flex", justifyContent: "start", gap: "1rem" }}>
                 <ButtonComponent
                     text="Valider"

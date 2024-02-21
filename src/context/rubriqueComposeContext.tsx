@@ -41,13 +41,19 @@ export const RubriqueComposeContextProvider: React.FC<
     const [addRubriqueComposeError, setAddRubriqueComposeError] = useState("");
     const [deleteRubriqueComposeError, setDeleteRubriqueComposeError] = useState("");
     const [modifyRubriqueComposeError, setModifyRubriqueComposeError] = useState("");
+    const [modifyRubrique,setModifyRubrique]=useState("");
+    const [currentRubriqueCompose, setcurrentRubriqueCompose] = useState<RubriqueCompose>();
 
+
+    const updateModifyRubrique = useCallback((value: string) => {
+        setModifyRubrique(value);
+    }, []); 
     const updateRubriqueComposeList = useCallback((value: RubriqueCompose[]) => {
         setRubriqueComposeList(value);
     }, []);
 
-    const updateCurrentRubriqueCompose= useCallback((value: {}) => {
-        setRubriqueCompose(value);
+    const updateCurrentRubriqueCompose= useCallback((value: RubriqueCompose) => {
+        setcurrentRubriqueCompose(value);
     }, []);
 
     
@@ -130,6 +136,8 @@ export const RubriqueComposeContextProvider: React.FC<
                 modifyRubriqueComposeError,
                 modifyRubriqueCompose,
                 getList,
+                updateModifyRubrique,
+                modifyRubrique,currentRubriqueCompose
                
             }}
         >

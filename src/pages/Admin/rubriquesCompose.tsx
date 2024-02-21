@@ -18,6 +18,7 @@ const RubriquePage: React.FC = () => {
         removeRubriqueCompose,
         deleteRubriqueComposeError,
         modifyRubriqueComposeError,
+        updateModifyRubrique
        
        
 
@@ -29,7 +30,6 @@ const RubriquePage: React.FC = () => {
     const getR = () =>{
         if(rubriqueComposeList){
             const dat  = rubriqueComposeList;
-            console.log("dat", dat);
             return  dat;
         }
         return null;
@@ -41,7 +41,9 @@ const RubriquePage: React.FC = () => {
 
     const handleEdit = (rowData: any) => {
         console.log("Modifier:", rowData);
-        updateCurrentRubriqueCompose(rowData);      
+        updateCurrentRubriqueCompose(rowData);  
+        updateModifyRubrique(rowData.designation);  
+          
     };
 
     const handleDelete = (rowData: any) => {

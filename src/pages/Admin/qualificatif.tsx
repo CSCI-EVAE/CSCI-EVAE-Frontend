@@ -20,6 +20,7 @@ const QualificatifPage: React.FC = () => {
         updateQualificatifMinimal,
     } = useContext(QualificatifContext);
 
+
     // Données fictives
     const dat = supprimerColonnesId(qualificatifList);
 

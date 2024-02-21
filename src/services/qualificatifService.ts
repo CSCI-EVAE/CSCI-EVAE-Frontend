@@ -3,7 +3,6 @@ import {
     Qualificatif,
     QualificatifListResponse,
 } from "../types/qualificatifTypes";
-import { getToken, userInfos } from "../utils/authUtils";
 const API_URL = "http://localhost:8080/api/v1";
 //const token = userInfos().token;
 //const token = getToken();
