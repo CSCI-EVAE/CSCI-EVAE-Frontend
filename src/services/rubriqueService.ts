@@ -16,7 +16,7 @@ const axiosInstance = axios.create({
 export const getRubriqueList = async () => {
     try {
         const response = await axiosInstance.get<RubriqueListResponse>(
-            `${API_URL}/rubrique/all`
+            `${API_URL}/admin/rubrique`
         );
 
         return response.data;
@@ -29,7 +29,7 @@ export const getRubriqueList = async () => {
 export const addRubrique = async (rubrique: Rubrique) => {
     try {
         const response = await axiosInstance.post<Rubrique>(
-            `${API_URL}/rubrique`,
+            `${API_URL}/admin/rubrique`,
             rubrique
         );
 
@@ -42,7 +42,7 @@ export const addRubrique = async (rubrique: Rubrique) => {
 export const deleteRubrique = async (id_rubrique: number) => {
     try {
         const response = await axiosInstance.delete<Rubrique>(
-            `${API_URL}/rubrique/${id_rubrique}`
+            `${API_URL}/admin/rubrique/${id_rubrique}`
         );
 
         if (response.status === 400) {
@@ -61,7 +61,7 @@ export const updateRubrique = async (
 ) => {
     try {
         const response = await axiosInstance.put<Rubrique>(
-            `${API_URL}/rubrique/${id_rubrique}`,
+            `${API_URL}/admin/rubrique/${id_rubrique}`,
             rubrique
         );
         // log the response to the console

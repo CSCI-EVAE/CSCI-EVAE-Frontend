@@ -2,6 +2,7 @@ import axios from "axios";
 
 import { getToken, userInfos } from "../utils/authUtils";
 import { RubriqueCompose,  RubriqueComposeListResponse, CreateRubriqueCompose } from "../types/rubriquesComposeTypes ";
+
 const API_URL = "http://localhost:8080/api/v1";
 //const token = userInfos().token;
 //const token = getToken();
@@ -30,10 +31,12 @@ export const getRubriqueComposeList = async () => {
     }
 };
 
-export const addRubriqueCompose = async (rubriqueCompose: CreateRubriqueCompose) => {
+export const addRubriqueCompose = async (rubriqueCompose: RubriqueCompose) => {
     try {
+
         const response = await axiosInstance.post(
             `${API_URL}/rubriqueQuestion/AjouterRubriqueQuestion`,
+
             rubriqueCompose
         );
 

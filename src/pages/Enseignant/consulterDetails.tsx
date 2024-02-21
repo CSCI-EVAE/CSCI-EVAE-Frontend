@@ -5,7 +5,6 @@ import ListItemText from "@mui/material/ListItemText";
 import ListSubheader from "@mui/material/ListSubheader";
 import { useParams, useLocation } from 'react-router-dom';
 import { DetailsEvaluationContext } from "../../context/detailsEvaluationContext";
-import { Evaluation } from "../../types/EvaluationTypes";
 
 const DetailsEvaluationPage: React.FC = () => {
   const { id_eva } = useParams();
@@ -34,25 +33,6 @@ const DetailsEvaluationPage: React.FC = () => {
     return <div>Loading...</div>;
   }
 
-
-  
-  function trierEvaluations(evaluation: Evaluation): Evaluation {
-    // Tri des rubriques
-
-      evaluation.rubriqueEvaluations.sort((a, b) => a.ordre - b.ordre);
-  
-      // Tri des questions à l'intérieur de chaque rubrique
-      evaluation.rubriqueEvaluations.forEach(rubrique => {
-        if (rubrique.questionEvaluations) {
-          rubrique.questionEvaluations.sort((a, b) => a.ordre - b.ordre);
-        }
-      });
-   
-  
-    return evaluation;
-  }
-const ordonnerRubrique= trierEvaluations(evaluationDetails);
-
   return (
 
     <>
@@ -75,7 +55,7 @@ const ordonnerRubrique= trierEvaluations(evaluationDetails);
         </ListSubheader>
       }
     >
-      {ordonnerRubrique.rubriqueEvaluations.map((rubrique) => (
+      {evaluationDetails.rubriqueEvaluations.map((rubrique) => (
         <div key={rubrique.idRubrique.id}>
           <ListItemButton sx={{ background: "#f0f0f0", borderRadius: "4px", margin: "4px 0" }}>
             <ListItemText primary={`Rubrique: ${rubrique.idRubrique.designation}`} sx={{ fontWeight: "bold" }} />

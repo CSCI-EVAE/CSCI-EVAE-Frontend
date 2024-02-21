@@ -68,10 +68,12 @@ export interface RubriqueComposeListResponse {
     message: string;
     data: RubriqueComposeDTO[];
     success: boolean;
+
 }
 
 export interface CreateRubriqueCompose {
     idRubrique : number;
     questionIds : number  [];
     ordre : number
+
 }

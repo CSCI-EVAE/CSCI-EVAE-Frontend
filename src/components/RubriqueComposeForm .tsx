@@ -3,7 +3,7 @@ import { TextField, Box, Typography } from "@mui/material";
 import ButtonComponent from "./common/Button";
 import {
     RubriqueComposeContext,
-   
+   trouverRubriqueCompose
 } from "../context/rubriqueComposeContext";
 import { ListContext } from "../context/listContext";
 interface rubriqueComposeFormProps {
@@ -30,7 +30,7 @@ const RubriqueComposeForm: React.FC<rubriqueComposeFormProps> = ({ add }) => {
             addNewRubriqueCompose({...rubriqueCompose});
         } else {
 
-         //   const rubriqueComposeModify = trouverRubriqueCompose(selectedRow, rubriqueComposeList);
+            const rubriqueComposeModify = trouverRubriqueCompose(selectedRow, rubriqueComposeList);
             
         //    modifyRubriqueCompose(rubriqueComposeModify?.id, {...rubriqueCompose, id : rubriqueComposeModify?.id,   noEnseignant :rubriqueComposeModify?.noEnseignant});
         }
