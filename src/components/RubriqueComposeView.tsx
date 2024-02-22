@@ -11,16 +11,17 @@ import { questionsInRubrique } from '../types/rubriquesComposeTypes ';
 const RubriqueComposeView= () => {
   const {
 
-    rubriqueCompose
+    currentRubriqueCompose
 
     
    
 } = useContext(RubriqueComposeContext);
 
-    const title = rubriqueCompose.designation;
+    const title = currentRubriqueCompose.designation;
    
       
-  const [rubriqueItems, setRubriqueItems] = useState<questionsInRubrique[]>(rubriqueCompose.questions);
+  const [rubriqueItems, setRubriqueItems] = useState<questionsInRubrique[]>(currentRubriqueCompose.questions);
+  console.log("rrr", currentRubriqueCompose);
 
   const onDragEnd = (result: any) => {
     if (!result.destination) return;

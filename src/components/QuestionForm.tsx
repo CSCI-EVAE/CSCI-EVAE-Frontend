@@ -67,7 +67,7 @@ const QuestionForm: React.FC<questionFormProps> = ({ add }) => {
                 idQualificatif: { id: selectedQualificatifObj.idValue },
                 noEnseignant: null,
                 type: TYPE_STANDARD.question_standard,
-                intitulֹ: questionintitule,
+                intitule: questionintitule,
             });
         }
 

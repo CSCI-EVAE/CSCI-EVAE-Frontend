@@ -1,4 +1,4 @@
-import React, { ReactNode, useContext, useEffect } from 'react';
+import React, { ReactNode, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {  isTokenValid, logout } from '../../utils/authUtils';
 
@@ -22,7 +22,7 @@ const TokenExpirationWrapper: React.FC<Props> = ({ children }) => {
       // Rediriger vers la page de connexion
       navigate('/login');
     }
-  }, [navigate]);
+  }, [navigate,token]);
 
   return <>{children}</>;
 };

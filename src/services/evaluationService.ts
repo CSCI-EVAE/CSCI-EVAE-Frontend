@@ -1,5 +1,4 @@
 import axios from "axios";
-import { getToken, userInfos } from "../utils/authUtils";
 import { EvaluationResponse } from "../types/EvaluationTypes";
 
 const API_URL = "http://localhost:8080/api/v1/evaluation";

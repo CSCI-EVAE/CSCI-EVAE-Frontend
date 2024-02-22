@@ -29,24 +29,26 @@ const RubriqueComposeAdd: React.FC<rubriqueComposeFormProps> = ({ add }) => {
 
    // setSelectedRubriqueCompose(rubriqueCompose.designation);
     const { updateModalOpen } = useContext(ListContext);
-    const {addNewRubriqueCompose, modifyRubrique,updateCurrentRubriqueCompose,currentRubriqueCompose} = useContext(RubriqueComposeContext);
+    const {addNewRubriqueCompose, modifyRubrique,updateCurrentRubriqueCompose,currentRubriqueCompose,modifyRubriqueCompose} = useContext(RubriqueComposeContext);
     const handleSubmit = (e: React.FormEvent) => {
 
-        const rubriqueSelected : Rubrique = rubriqueList.find((rubrique  : Rubrique )=> rubrique.designation === selectedRubriqueCompose); 
-        const questionsSelected : Question[] =  questionListe.filter((question : Question) => selectedQuestionInRubriqueCompose.includes(question.intitule));
-        const rubriqueToAdd : CreateRubriqueCompose = {idRubrique: rubriqueSelected.id ||0, questionIds:  questionsSelected.map(question => question.id || 0), ordre:1} 
-        console.log(rubriqueToAdd);
+       
                e.preventDefault();
        
         if (add === true) {
+            const rubriqueSelected : Rubrique = rubriqueList.find((rubrique  : Rubrique )=> rubrique.designation === selectedRubriqueCompose); 
+            const questionsSelected : Question[] =  questionListe.filter((question : Question) => selectedQuestionInRubriqueCompose.includes(question.intitule));
+            const rubriqueToAdd : CreateRubriqueCompose = {idRubrique: rubriqueSelected.id ||0, questionIds:  questionsSelected.map(question => question.id || 0), ordre:1} 
+            console.log(rubriqueToAdd);
             addNewRubriqueCompose(rubriqueToAdd);
             
         } else {
             
-            const rubriqueSelected : Rubrique = rubriqueList.find((rubrique  : Rubrique )=> rubrique.designation === currentRubriqueCompose); 
-        const questionsSelected : Question[] =  questionListe.filter((question : Question) => currentRubriqueCompose.includes(question.intitule));
-        const rubriqueToAdd : CreateRubriqueCompose = {idRubrique: rubriqueSelected.id ||0, questionIds:  questionsSelected.map(question => question.id || 0), ordre:1} 
-
+         
+        const rubriqueToAdd : CreateRubriqueCompose = {idRubrique: currentRubriqueCompose.idRubrique ||0, questionIds:  currentRubriqueCompose.questions.map((question : questionsInRubrique) => question.idQuestion|| 0), ordre:currentRubriqueCompose.ordre} ;
+    console.log("rr", rubriqueToAdd);
+ 
+    modifyRubriqueCompose(rubriqueToAdd.idRubrique,rubriqueToAdd);
 
               }
         setSelectedRubriqueCompose("");

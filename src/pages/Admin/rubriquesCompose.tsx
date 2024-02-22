@@ -50,7 +50,7 @@ const RubriquePage: React.FC = () => {
         console.log("Supprimer:", rowData);
         
        // const currentRub = trouverRubriqueCompose(rowData, rubriqueComposeList);
-        removeRubriqueCompose(rowData.id);
+        removeRubriqueCompose(rowData.idRubrique);
         
        
     

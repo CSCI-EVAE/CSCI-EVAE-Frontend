@@ -1,10 +1,9 @@
 import axios from "axios";
 import { UEListResponse } from "../types/UeTypes";
-import { getToken, userInfos } from "../utils/authUtils";
 
 const API_URL = "http://localhost:8080/api/v1/enseignant/ue";
 //const token = userInfos().token;
-const token = getToken();
+const token = localStorage.getItem("jwtToken");
 
 
 const axiosInstance = axios.create({

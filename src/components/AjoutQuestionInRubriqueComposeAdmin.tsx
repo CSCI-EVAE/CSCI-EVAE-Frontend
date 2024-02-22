@@ -1,9 +1,12 @@
 import React, { useContext, useEffect, useState } from 'react';
-import {  TableCell, List, ListItem,ListItemIcon, ListItemButton } from '@mui/material';
+import {  TableCell, List, ListItem,ListItemIcon, ListItemButton,Modal,Box } from '@mui/material';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import DeleteSweepIcon from '@mui/icons-material/DeleteSweep';
 import { RubriqueCompose, questionsInRubrique } from '../types/rubriquesComposeTypes ';
 import { RubriqueComposeContext } from '../context/rubriqueComposeContext';
+import ButtonComponent from './common/Button';
+import { AddCircle } from '@mui/icons-material';
+import AdminAddQuestion from './AdminAddQuestion';
 
 
 interface TableQuestionProps {
@@ -12,6 +15,19 @@ interface TableQuestionProps {
   questions : questionsInRubrique[];
   deleteQuestionHandler : (row : questionsInRubrique,rubriqueParent : RubriqueCompose )=> void;
 }
+const style = {
+    position: 'absolute' as 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: 24,
+    p: 4,
+  };
+  
+
 
 const AjoutQuestionRCompose : React.FC<TableQuestionProps>= ({ rubriqueParent, questions, deleteQuestionHandler }) => {
 const [dataset, setDataset] = useState<questionsInRubrique[]>(questions );
@@ -19,6 +35,7 @@ const {currentRubriqueCompose} = useContext(RubriqueComposeContext);
  useEffect(()=>{
   setDataset(questions);
  },[questions,deleteQuestionHandler, rubriqueParent,currentRubriqueCompose])
+ console.log("current", currentRubriqueCompose);
 
 
   const onDragEnd = (result: any) => {
@@ -38,10 +55,25 @@ const {currentRubriqueCompose} = useContext(RubriqueComposeContext);
   
     setDataset(newItems);
   };
-
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <>
+    <div style={{ display: "flex",
+                          flexDirection: "row",
+                          alignItems: "center" }}>
+                          <ButtonComponent
+                             onClick={handleOpen}
+                          icon={ <AddCircle/>}
+                          text='Ajouter une question'
+                          />
+                            
+                           
+                            
+                            
+                        </div>
      <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="questItems">
                     {(provided : any) => (
@@ -90,6 +122,16 @@ const {currentRubriqueCompose} = useContext(RubriqueComposeContext);
           )}
           </Droppable>
           </DragDropContext>
+          <Modal
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Box sx={style}>
+          <AdminAddQuestion handleClose={handleClose}/>
+        </Box>
+      </Modal>
           </>
   );
 };

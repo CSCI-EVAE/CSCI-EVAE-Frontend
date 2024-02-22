@@ -29,7 +29,7 @@ const QuestionPage: React.FC = () => {
         console.log("Intitulé:", rowData.intitule); 
         console.log("intitule",rowData.maximal);
 
-        updateQuestionintitule(rowData.intitulֹe);
+        updateQuestionintitule(rowData.intitule);
        
         updateCoupleQualificatif(`${rowData.maximal}-${rowData.minimal}`);
     };

@@ -1,6 +1,5 @@
 import axios from "axios";
 
-import { getToken, userInfos } from "../utils/authUtils";
 import { RubriqueCompose,  RubriqueComposeListResponse, CreateRubriqueCompose } from "../types/rubriquesComposeTypes ";
 const API_URL = "http://localhost:8080/api/v1";
 //const token = userInfos().token;
@@ -46,7 +45,7 @@ export const addRubriqueCompose = async (rubriqueCompose: CreateRubriqueCompose)
 export const deleteRubriqueCompose = async (id_rubriqueCompose: number) => {
     try {
         const response = await axiosInstance.delete<RubriqueCompose>(
-            `${API_URL}/rubriqueCompose/${id_rubriqueCompose}`
+            `${API_URL}/rubriqueQuestion/deleteAll/${id_rubriqueCompose}`
         );
 
         if (response.status === 400) {
@@ -64,8 +63,8 @@ export const updateRubriqueCompose = async (
     rubriqueCompose: RubriqueCompose
 ) => {
     try {
-        const response = await axiosInstance.put<RubriqueCompose>(
-            `${API_URL}/rubriqueCompose/${id_rubriqueCompose}`,
+        const response = await axiosInstance.post<RubriqueCompose>(
+            `${API_URL}/rubriqueQuestion/UpdateRubriqueQuestions`,
             rubriqueCompose
         );
         // log the response to the console
